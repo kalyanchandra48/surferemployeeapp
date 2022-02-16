@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "88259146899",
+    "firebase_url": "https://employee-app-57d9a-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "employee-app-57d9a",
+    "storage_bucket": "employee-app-57d9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88259146899:android:06a6fc34618be1ba734966",
+        "android_client_info": {
+          "package_name": "com.surfboard.employee_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88259146899-87uh7orjapu09lfk7514a6fl18ln2mlq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZYLhhuHRmVxFsAISs2A1zs9Z1NFTVtG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88259146899-87uh7orjapu09lfk7514a6fl18ln2mlq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "88259146899-5m6jh1gp88fmajp3dfni9vi05ftkifso.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.surfboard.employee-app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

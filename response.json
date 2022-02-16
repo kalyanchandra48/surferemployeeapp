@@ -1,0 +1,46 @@
+{
+    "kind": "calendar#event",
+    "etag": "\"3288687608902000\"",
+    "id": "3p4l16t89hbc89ccoq1cneec2o",
+    "status": "confirmed",
+    "htmlLink": "https://www.google.com/calendar/event?eid=M3A0bDE2dDg5aGJjODljY29xMWNuZWVjMm8gam9lbEBzdXJmYm9hcmQuc2U",
+    "created": "2022-02-08T18:10:04.000Z",
+    "updated": "2022-02-08T18:10:04.451Z",
+    "creator": {
+     "email": "joel@surfboard.se",
+     "displayName": "Joel John",
+     "self": true
+    },
+    "organizer": {
+     "email": "joel@surfboard.se",
+     "displayName": "Joel John",
+     "self": true
+    },
+    "start": {
+     "dateTime": "2022-02-09T00:00:00+05:30",
+     "timeZone": "Asia/Kolkata"
+    },
+    "end": {
+     "dateTime": "2022-02-09T01:00:00+05:30",
+     "timeZone": "Asia/Kolkata"
+    },
+    "iCalUID": "3p4l16t89hbc89ccoq1cneec2o@google.com",
+    "sequence": 0,
+    "attendees": [
+     {
+      "email": "sreeram@surfboard.se",
+      "displayName": "Sreeram Balamurugan",
+      "responseStatus": "needsAction"
+     },
+     {
+      "email": "jatin@surfboard.se",
+      "displayName": "Jatin Raj",
+      "responseStatus": "needsAction"
+     }
+    ],
+    "reminders": {
+     "useDefault": true
+    },
+    "eventType": "default"
+   }
+   
