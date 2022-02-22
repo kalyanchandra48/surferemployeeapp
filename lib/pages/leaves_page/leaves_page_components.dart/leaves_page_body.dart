@@ -14,12 +14,15 @@ class LeavesPageBody extends StatefulWidget {
 class _LeavesPageBodyState extends State<LeavesPageBody>
     with TickerProviderStateMixin {
   TabController? _leavesTabController;
+
   List<String> tabText = <String>['Overview', 'Taken', 'Holidays'];
+
   List<Widget> tabBody = <Widget>[
-    const OverviewTabBody(),
+    OverviewTabBody(),
     const TakenLeavesTabBody(),
     const HolidaysTabBody(),
   ];
+
   @override
   void initState() {
     _leavesTabController = TabController(length: tabText.length, vsync: this);

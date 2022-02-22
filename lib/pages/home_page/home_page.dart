@@ -47,10 +47,10 @@ class HomePage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LeavesPage()));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => LeavesPage()));
                       },
                       child: EssentialLabelWidget(
                         imageURl: 'assets/calendar.png',
@@ -88,19 +88,25 @@ class HomePage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        showModalBottomSheet(
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadii.radius24px,
-                            ),
-                            context: context,
-                            builder: (BuildContext context) {
-                              return ITRequestPage();
-                            });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ITRequestPage(),
+                          ),
+                        );
+                        // showModalBottomSheet(
+                        //     isScrollControlled: true,
+                        //     shape: const RoundedRectangleBorder(
+                        //       borderRadius: BorderRadii.radius24px,
+                        //     ),
+                        //     context: context,
+                        //     builder: (BuildContext context) {
+                        //       return ITRequestSheet();
+                        //     });
                       },
                       child: ExtrasLabelWidget(
                         bgColor: ContainerColors.surfblue,
-                        assetImagePath: 'assets/it.png',
+                        assetImagePath: 'assets/it_request.png',
                         labelText: 'IT Requests',
                       ),
                     ),

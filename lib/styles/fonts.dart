@@ -81,4 +81,9 @@ class AppFonts {
     color: TextColors.inActiveTabTextColor,
     fontSize: 16,
   );
+  static final smallestTextBW = getAppFont(
+    fontWeight: FontWeight.w600,
+    color: TextColors.primaryColor,
+    fontSize: 9,
+  );
 }

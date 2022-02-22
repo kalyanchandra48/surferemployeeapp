@@ -1,12 +1,16 @@
 import 'package:employee_app/common_widgets/background_grid_lines.dart';
+import 'package:employee_app/common_widgets/common_widgets_component.dart';
+import 'package:employee_app/common_widgets/theme_app_bar_widget.dart';
 import 'package:employee_app/pages/leaves_page/leaves_page_components.dart/leaves_page_body.dart';
 import 'package:employee_app/pages/login_page/login_page_components.dart/login_page_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+import 'leaves_page_components.dart/apply_leave_bottom_sheet_body.dart';
+
 class LeavesPage extends StatefulWidget {
-  LeavesPage({Key? key}) : super(key: key);
+  const LeavesPage({Key? key}) : super(key: key);
 
   @override
   State<LeavesPage> createState() => _LeavesPageState();
@@ -14,141 +18,40 @@ class LeavesPage extends StatefulWidget {
 
 class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 500),
+    duration: const Duration(milliseconds: 700),
     vsync: this,
   );
 
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
-    curve: Curves.easeIn,
+    curve: Curves.elasticInOut,
   );
+  late final PanelController _panelController = PanelController();
   bool crossFade = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.appthemeColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(90),
-        child: CustomPaint(
-          painter: BackgroundGridLines(heightGap: 5, widthGap: 15),
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.5,
-            margin: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.05, left: 16),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    height: 50,
-                    color: Colors.transparent,
-                    child: SvgPicture.asset(
-                      'assets/arrow_left.svg',
-                      height: 25,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                AnimatedCrossFade(
-                  duration: Duration(milliseconds: 400),
-                  sizeCurve: Curves.ease,
-                  firstCurve: Curves.easeOutBack,
-                  crossFadeState: crossFade == true
-                      ? CrossFadeState.showFirst
-                      : CrossFadeState.showSecond,
-                  firstChild: Container(
-                    padding: const EdgeInsets.all(4),
-                    height: 68,
-                    //height: MediaQuery.of(context).size.height / 4,
-                    width: 68,
-                    //width: 159,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: ContainerColors.redShade,
-                        ),
-                        BoxShadow(
-                          color: ContainerColors.redShadelight,
-                          spreadRadius: -10,
-                          blurRadius: 6.0,
-                        ),
-                      ],
-                      shape: BoxShape.circle,
-                      // borderRadius: BorderRadii.radius12px,
-                    ),
-                    child: Image.asset(
-                      'assets/calendar.png',
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ),
-                  secondChild: SizedBox(),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Leaves',
-                      style:
-                          AppFonts.appHeaderBlack.copyWith(color: Colors.white),
-                    ),
-                    Text(
-                      '17 available',
-                      style: AppFonts.labelSubTextBG,
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
+          preferredSize: const Size.fromHeight(90),
+          child: ThemeAppBar(
+            crossFade: crossFade,
+            bottomSheetBody: ApplyLeaveBottomSheetBody(),
+            header: 'Leaves',
+            subHeader: '17 available',
+            imageUrl: 'assets/calendar.png',
+            innerShade: ContainerColors.redShadelight,
+            outerShade: ContainerColors.redShade,
+          )),
       body: CustomPaint(
         painter: BackgroundGridLines(heightGap: 30, widthGap: 15),
         child: Stack(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  FadeTransition(
-                    opacity: _animation,
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      height: 254,
-                      width: 254,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: ContainerColors.redShade,
-                          ),
-                          BoxShadow(
-                            color: ContainerColors.redShadelight,
-                            spreadRadius: -50,
-                            blurRadius: 20.0,
-                          ),
-                        ],
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.asset(
-                        'assets/calendar.png',
-                        fit: BoxFit.scaleDown,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            PanelBackgroundImage(
+              animation: _animation,
+              bgImageUrl: 'assets/calendar.png',
+              innerShadeColor: ContainerColors.redShadelight,
+              outerShadeColor: ContainerColors.redShade,
             ),
             SlidingUpPanel(
               boxShadow: [
@@ -158,14 +61,13 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
                     blurRadius: 15),
               ],
               parallaxEnabled: true,
+              parallaxOffset: 1,
+              controller: _panelController,
               maxHeight: 900,
               minHeight: 470,
               defaultPanelState: PanelState.OPEN,
               borderRadius: BorderRadii.radius24px,
               panel: const LeavesPageBody(),
-              // onPanelClosed: () {
-              //   _controller.forward();
-              // },
               onPanelOpened: () {
                 _controller.reset();
                 setState(() {
@@ -182,8 +84,6 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
           ],
         ),
       ),
-      // body: const LeavesPageBody(),
-      //Trial
     );
   }
 }

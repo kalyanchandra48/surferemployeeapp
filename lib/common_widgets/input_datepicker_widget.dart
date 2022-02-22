@@ -56,7 +56,7 @@ class _InputDatePickerWidgetState extends State<InputDatePickerWidget> {
               _showDialog(CupertinoDatePicker(
                   initialDateTime: DateTime.now(),
                   maximumDate: DateTime(2100),
-                  minimumDate: DateTime(1900),
+                  minimumDate: DateTime(1990),
                   mode: CupertinoDatePickerMode.date,
                   onDateTimeChanged: (DateTime date) {
                     widget.textController.text =

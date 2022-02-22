@@ -18,7 +18,7 @@ class TabBarDelegate extends StatelessWidget {
     BuildContext context,
   ) {
     return TabBar(
-      padding: EdgeInsets.only(top: 24, left: 24),
+      padding: EdgeInsets.only(top: 16, left: 24),
       labelStyle: AppFonts.activeTabTextBB,
       unselectedLabelStyle: AppFonts.inActiveTabTextRB,
       isScrollable: true,

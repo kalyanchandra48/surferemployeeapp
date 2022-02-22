@@ -1,5 +1,6 @@
 import 'package:employee_app/common_widgets/input_textfield_widget.dart';
 import 'package:employee_app/common_widgets/navigation_button.dart';
+import 'package:employee_app/pages/bottom_nav/bottom_nav.dart';
 import 'package:employee_app/pages/login_page/login_page.dart';
 import 'package:employee_app/pages/personal_details_page/personal_details_page_components/personal_details_page_components.dart';
 import 'package:employee_app/services/auth.dart';
@@ -28,7 +29,7 @@ class GeneralDetailsPage extends StatelessWidget {
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LoginPage(),
+                  builder: (context) => const BottomNav(),
                 ),
                 (route) => false);
           },

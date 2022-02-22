@@ -20,7 +20,7 @@ class LeavesInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 0, left: 26, right: 10),
+      padding: const EdgeInsets.only(top: 0, left: 18, right: 10),
       height: MediaQuery.of(context).size.height / 7,
       width: MediaQuery.of(context).size.width / 2.4,
       decoration:

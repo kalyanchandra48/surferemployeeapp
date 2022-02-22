@@ -20,7 +20,10 @@ class ExtrasLabelWidget extends StatelessWidget {
           radius: 38,
           backgroundColor: bgColor,
           child: Center(
-            child: Image.asset(assetImagePath),
+            child: Image.asset(
+              assetImagePath,
+              height: 70,
+            ),
           ),
         ),
         const SizedBox(

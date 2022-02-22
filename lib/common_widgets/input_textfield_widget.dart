@@ -31,8 +31,7 @@ class InputTextFieldWidget extends StatelessWidget {
         child: TextFormField(
           textCapitalization: TextCapitalization.characters,
           keyboardType: keyboardType,
-          style:
-              AppFonts.inputTextWR.copyWith(color: TextColors.appHeaderBlack),
+          style: AppFonts.inputTextWR.copyWith(color: TextColors.primaryColor),
           cursorHeight: 18,
           controller: textController,
           decoration: InputDecoration(
