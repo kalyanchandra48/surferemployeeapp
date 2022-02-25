@@ -1,6 +1,5 @@
 import 'package:employee_app/models/auth_status.dart';
 import 'package:employee_app/pages/bottom_nav/bottom_nav.dart';
-import 'package:employee_app/pages/login_page/login_page.dart';
 import 'package:employee_app/services/auth.dart';
 import 'package:employee_app/services/calendar_events.dart';
 import 'package:employee_app/services/locator.dart';
