@@ -10,10 +10,10 @@ environment:
 
 dependencies:
   animations: ^2.0.2
+  cloud_functions: ^3.2.4
   cupertino_icons: ^1.0.2
   dots_indicator: ^2.0.0
   dropdown_button2: ^1.1.1
-  extension_google_sign_in_as_googleapis_auth: ^2.0.4
   firebase: ^9.0.2
   firebase_auth: ^3.3.6
   firebase_core: ^1.12.0

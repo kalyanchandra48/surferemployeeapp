@@ -100,7 +100,6 @@ class LoginPage extends StatelessWidget {
               GestureDetector(
                 onTap: () async {
                   await _auth.signInWithGoogle();
-                  // await AuthService.signInWithGoogle();
                   print('tapped on login with google');
                 },
                 child: Container(
