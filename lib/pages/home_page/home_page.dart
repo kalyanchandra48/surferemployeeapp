@@ -1,9 +1,8 @@
 import 'package:employee_app/pages/it_request_page/it_request_page.dart';
 import 'package:employee_app/pages/leaves_page/leaves.dart';
+import 'package:employee_app/pages/payslips_page/payslips_page.dart';
 import 'package:flutter/material.dart';
-import 'package:employee_app/pages/login_page/login_page_components.dart/login_page_components.dart';
-import 'home_page_components.dart/essential_label_container.dart';
-import 'home_page_components.dart/home_page_components.dart';
+import 'home_page_components/home_page_components.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -31,13 +30,14 @@ class HomePage extends StatelessWidget {
                   'Essentials',
                   style: AppFonts.appHeaderBlack,
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     EssentialLabelWidget(
+                      heroTag: 'foodUpdate',
                       imageURl: 'assets/success.png',
                       titleText: 'Food',
                       type: 'FOOD_UPDATES',
@@ -60,6 +60,7 @@ class HomePage extends StatelessWidget {
                         //         builder: (context) => LeavesPage()));
                       },
                       child: EssentialLabelWidget(
+                        heroTag: 'leaves',
                         imageURl: 'assets/calendar.png',
                         titleText: 'Leaves',
                         type: 'LEAVES_UPDATES',
@@ -70,23 +71,33 @@ class HomePage extends StatelessWidget {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.015,
                 ),
                 Text(
                   'Extras',
                   style: AppFonts.appHeaderBlack,
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ExtrasLabelWidget(
-                      bgColor: ContainerColors.yellowShade,
-                      assetImagePath: 'assets/files.png',
-                      labelText: 'Payslips',
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const PayslipsPage(),
+                          ),
+                        );
+                      },
+                      child: ExtrasLabelWidget(
+                        bgColor: ContainerColors.yellowShade,
+                        assetImagePath: 'assets/files.png',
+                        labelText: 'Payslips',
+                      ),
                     ),
                     ExtrasLabelWidget(
                       bgColor: ContainerColors.bluelight,
@@ -101,15 +112,6 @@ class HomePage extends StatelessWidget {
                             builder: (context) => const ITRequestPage(),
                           ),
                         );
-                        // showModalBottomSheet(
-                        //     isScrollControlled: true,
-                        //     shape: const RoundedRectangleBorder(
-                        //       borderRadius: BorderRadii.radius24px,
-                        //     ),
-                        //     context: context,
-                        //     builder: (BuildContext context) {
-                        //       return ITRequestSheet();
-                        //     });
                       },
                       child: ExtrasLabelWidget(
                         bgColor: ContainerColors.surfblue,

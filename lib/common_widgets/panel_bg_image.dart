@@ -1,4 +1,3 @@
-import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 
 class PanelBackgroundImage extends StatelessWidget {

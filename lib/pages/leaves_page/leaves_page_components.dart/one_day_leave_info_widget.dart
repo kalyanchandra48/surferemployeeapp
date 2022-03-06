@@ -26,8 +26,8 @@ class OneDayLeaveInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
-      height: MediaQuery.of(context).size.height / 8,
+      padding: const EdgeInsets.all(4),
+      height: MediaQuery.of(context).size.height / 7,
       width: 342,
       decoration: BoxDecoration(
         color: Colors.white,

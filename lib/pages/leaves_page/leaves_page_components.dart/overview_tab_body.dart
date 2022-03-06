@@ -31,8 +31,8 @@ class OverviewTabBody extends StatelessWidget {
           ),
           Flexible(
             child: Wrap(
-              spacing: 20,
-              runSpacing: 20,
+              spacing: 10,
+              runSpacing: 10,
               children: [
                 LeavesInfoWidget(
                   innerShadow: Colors.white.withOpacity(0.7),

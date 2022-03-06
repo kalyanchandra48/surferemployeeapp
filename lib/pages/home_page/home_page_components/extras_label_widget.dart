@@ -1,4 +1,4 @@
-import 'package:employee_app/pages/home_page/home_page_components.dart/home_page_components.dart';
+import 'package:employee_app/pages/home_page/home_page_components/home_page_components.dart';
 import 'package:flutter/material.dart';
 
 class ExtrasLabelWidget extends StatelessWidget {
@@ -32,7 +32,7 @@ class ExtrasLabelWidget extends StatelessWidget {
         Text(
           labelText,
           style: AppFonts.smallTextBB,
-        )
+        ),
       ],
     );
   }

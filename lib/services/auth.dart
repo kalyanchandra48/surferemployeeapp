@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:employee_app/models/auth_status.dart';
+import 'package:employee_app/services/user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -40,6 +41,7 @@ class AuthService {
           user: user,
           status: AUTH_STATUS.VERIFICATION_COMPLETED),
     );
+    UserService.setUserCustomClaims();
     return user;
   }
 

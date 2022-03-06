@@ -11,16 +11,18 @@ class ThemeAppBar extends StatelessWidget {
   final String imageUrl;
   final Color innerShade;
   final Color outerShade;
-  const ThemeAppBar(
-      {Key? key,
-      required this.crossFade,
-      required this.bottomSheetBody,
-      required this.header,
-      required this.subHeader,
-      required this.innerShade,
-      required this.outerShade,
-      required this.imageUrl})
-      : super(key: key);
+  final Object herotag;
+  const ThemeAppBar({
+    Key? key,
+    required this.crossFade,
+    required this.bottomSheetBody,
+    required this.header,
+    required this.subHeader,
+    required this.innerShade,
+    required this.outerShade,
+    required this.imageUrl,
+    required this.herotag,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +46,12 @@ class ThemeAppBar extends StatelessWidget {
                   child: Container(
                     height: 50,
                     color: Colors.transparent,
-                    child: SvgPicture.asset(
-                      'assets/arrow_left.svg',
-                      height: 25,
+                    child: Hero(
+                      tag: herotag,
+                      child: SvgPicture.asset(
+                        'assets/arrow_left.svg',
+                        height: 25,
+                      ),
                     ),
                   ),
                 ),

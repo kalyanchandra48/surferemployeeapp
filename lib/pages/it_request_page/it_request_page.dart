@@ -1,11 +1,11 @@
 import 'package:employee_app/common_widgets/background_grid_lines.dart';
 import 'package:employee_app/common_widgets/common_widgets_component.dart';
 import 'package:employee_app/common_widgets/theme_app_bar_widget.dart';
-import 'package:employee_app/pages/it_request_page/it_request_page_components.dart/it_request_page_body.dart';
-import 'package:employee_app/pages/it_request_page/it_request_page_components.dart/it_request_sheet.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'it_request_page_components/it_request_page_body.dart';
+import 'it_request_page_components/it_request_sheet.dart';
 
 class ITRequestPage extends StatefulWidget {
   const ITRequestPage({Key? key}) : super(key: key);
@@ -34,6 +34,7 @@ class _ITRequestPageState extends State<ITRequestPage>
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90),
         child: ThemeAppBar(
+          herotag: 'ITRequest',
           bottomSheetBody: const ITRequestSheet(),
           crossFade: crossFade,
           header: 'IT requests',
@@ -64,7 +65,7 @@ class _ITRequestPageState extends State<ITRequestPage>
               parallaxOffset: 1,
               controller: _panelController,
               maxHeight: 900,
-              minHeight: 470,
+              minHeight: MediaQuery.of(context).size.height / 1.8,
               defaultPanelState: PanelState.OPEN,
               borderRadius: BorderRadii.radius24px,
               panel: const ITRequestPageBody(),

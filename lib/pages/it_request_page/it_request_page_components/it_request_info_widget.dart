@@ -1,6 +1,6 @@
+import 'package:employee_app/common_widgets/common_widgets_component.dart';
 import 'package:employee_app/models/it_request_status.dart';
-import 'package:employee_app/pages/home_page/home_page_components.dart/home_page_components.dart';
-import 'package:employee_app/pages/it_request_page/it_request_page_components.dart/request_status_info_widget.dart';
+import 'package:employee_app/pages/it_request_page/it_request_page_components/request_status_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

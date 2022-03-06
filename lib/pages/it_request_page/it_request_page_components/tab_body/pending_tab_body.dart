@@ -1,7 +1,8 @@
 import 'package:employee_app/models/it_request_status.dart';
-import 'package:employee_app/pages/it_request_page/it_request_page_components.dart/it_request_info_widget.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
+
+import '../it_request_info_widget.dart';
 
 class PendingTabBody extends StatelessWidget {
   const PendingTabBody({Key? key}) : super(key: key);
