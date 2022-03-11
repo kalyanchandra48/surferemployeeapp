@@ -1,3 +1,4 @@
+import 'package:employee_app/pages/food_page.dart/food_page.dart';
 import 'package:employee_app/pages/it_request_page/it_request_page.dart';
 import 'package:employee_app/pages/leaves_page/leaves.dart';
 import 'package:employee_app/pages/payslips_page/payslips_page.dart';
@@ -36,28 +37,34 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    EssentialLabelWidget(
-                      heroTag: 'foodUpdate',
-                      imageURl: 'assets/success.png',
-                      titleText: 'Food',
-                      type: 'FOOD_UPDATES',
-                      labelText: '15 Items',
-                      innerShade: ContainerColors.yellowShadelight,
-                      outerShade: ContainerColors.yellowShade,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => const FoodPage(),
+                          ),
+                        );
+                      },
+                      child: EssentialLabelWidget(
+                        heroTag: 'foodUpdate',
+                        imageURl: 'assets/success.png',
+                        titleText: 'Food',
+                        type: 'FOOD_UPDATES',
+                        labelText: '15 Items',
+                        innerShade: ContainerColors.yellowShadelight,
+                        outerShade: ContainerColors.yellowShade,
+                      ),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (BuildContext context) => LeavesPage(),
+                            builder: (BuildContext context) =>
+                                const LeavesPage(),
                           ),
                         );
-
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => LeavesPage()));
                       },
                       child: EssentialLabelWidget(
                         heroTag: 'leaves',

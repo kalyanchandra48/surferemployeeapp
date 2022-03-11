@@ -24,7 +24,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.appthemeColor,
-        bottomNavigationBar: BottomNavBarWidget(),
+        bottomNavigationBar: const BottomNavBarWidget(),
         body: CustomPaint(
           painter: BackgroundGridLines(
             heightGap: 30,

@@ -1,17 +1,18 @@
 import 'package:employee_app/common_widgets/common_widgets_component.dart';
-import 'package:employee_app/pages/leaves_page/leaves_page_components.dart/leaves_page_body.dart';
+import 'package:employee_app/pages/food_page.dart/food_page_components.dart/food_page_panel_body.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'leaves_page_components.dart/apply_leave_bottom_sheet_body.dart';
 
-class LeavesPage extends StatefulWidget {
-  const LeavesPage({Key? key}) : super(key: key);
+import '../../styles/styles.dart';
+
+class FoodPage extends StatefulWidget {
+  const FoodPage({Key? key}) : super(key: key);
 
   @override
-  State<LeavesPage> createState() => _LeavesPageState();
+  State<FoodPage> createState() => _FoodPageState();
 }
 
-class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
+class _FoodPageState extends State<FoodPage> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 700),
     vsync: this,
@@ -21,8 +22,8 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
     parent: _controller,
     curve: Curves.elasticInOut,
   );
-  late final PanelController _panelController = PanelController();
   bool crossFade = true;
+  final PanelController _panelController = PanelController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,14 +31,14 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90),
         child: ThemeAppBar(
-          herotag: 'leaves',
+          herotag: 'FoodUpdates',
+          bottomSheetBody: Container(),
           crossFade: crossFade,
-          bottomSheetBody: ApplyLeaveBottomSheetBody(),
-          header: 'Leaves',
-          subHeader: '17 available',
-          imageUrl: 'assets/calendar.png',
-          innerShade: ContainerColors.redShadelight,
-          outerShade: ContainerColors.redShade,
+          header: 'Food',
+          subHeader: '20 varieties',
+          imageUrl: 'assets/success.png',
+          innerShade: ContainerColors.yellowShadelight,
+          outerShade: ContainerColors.yellowShade,
         ),
       ),
       body: CustomPaint(
@@ -45,10 +46,10 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
         child: Stack(
           children: [
             PanelBackgroundImage(
+              bgImageUrl: 'assets/success.png',
               animation: _animation,
-              bgImageUrl: 'assets/calendar.png',
-              innerShadeColor: ContainerColors.redShadelight,
-              outerShadeColor: ContainerColors.redShade,
+              innerShadeColor: ContainerColors.yellowShadelight,
+              outerShadeColor: ContainerColors.yellowShade,
             ),
             SlidingUpPanel(
               boxShadow: [
@@ -64,7 +65,7 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
               minHeight: MediaQuery.of(context).size.height / 1.8,
               defaultPanelState: PanelState.OPEN,
               borderRadius: BorderRadii.radius24px,
-              panel: const LeavesPageBody(),
+              panel: const FoodPagePanelBody(),
               onPanelOpened: () {
                 _controller.reset();
                 setState(() {
@@ -73,13 +74,11 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
               },
               onPanelSlide: (d) {
                 _controller.forward();
-                setState(
-                  () {
-                    crossFade = false;
-                  },
-                );
+                setState(() {
+                  crossFade = false;
+                });
               },
-            ),
+            )
           ],
         ),
       ),

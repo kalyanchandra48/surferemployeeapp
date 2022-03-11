@@ -15,7 +15,11 @@ class _LeavesPageBodyState extends State<LeavesPageBody>
     with TickerProviderStateMixin {
   TabController? _leavesTabController;
 
-  List<String> tabText = <String>['Overview', 'Taken', 'Holidays'];
+  List<String> tabText = <String>[
+    'Overview',
+    'Taken',
+    'Holidays',
+  ];
 
   List<Widget> tabBody = <Widget>[
     OverviewTabBody(),

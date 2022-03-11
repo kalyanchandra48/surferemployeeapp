@@ -1,30 +1,46 @@
 import 'package:employee_app/models/auth_status.dart';
+import 'package:employee_app/models/leaves.dart';
 import 'package:employee_app/pages/login_page/login_page.dart';
 import 'package:employee_app/services/auth.dart';
 import 'package:employee_app/services/calendar_events.dart';
-import 'package:employee_app/services/it_request.dart';
 import 'package:employee_app/services/locator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await CalendarService.fetchCalendarUpdates();
-  await ITRequestService.postITRequest();
-  await ITRequestService.getITRequestType();
+  final dir = await getApplicationSupportDirectory();
+  final isar = await Isar.open(
+    schemas: [
+      LeavesSchema,
+    ],
+    directory: dir.path,
+    inspector: true,
+  );
 
   setupLocator();
-  runApp(const MyApp());
+  runApp(MyApp(
+    isar: isar,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key, required this.isar}) : super(key: key);
+  final Isar isar;
+  final AuthService _auth = locator<AuthService>();
+  final CalendarService _cs = locator<CalendarService>();
+  fetchleaves() async {
+    final myLeaves = await isar.leavess.where().findAll();
+  }
 
   @override
   Widget build(BuildContext context) {
-    AuthService _auth = locator<AuthService>();
+    _cs.obtainCredentials(isar);
+    fetchleaves();
 
     return MultiProvider(
       providers: [

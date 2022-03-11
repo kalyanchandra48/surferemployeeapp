@@ -24,8 +24,6 @@ class GeneralDetailsPage extends StatelessWidget {
         backgroundColor: AppColors.appthemeColor,
         floatingActionButton: GestureDetector(
           onTap: () async {
-            await _auth.signOut().catchError((e) {});
-
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(

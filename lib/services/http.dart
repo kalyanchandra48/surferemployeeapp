@@ -1,19 +1,29 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
 class FireFunctionsHttpsCaller {
-  static Future<Model> post<Model extends ModelBlueprint>(
-      Uri uri, dynamic data, Model model) async {
+  static Future<dynamic> post(
+    Uri uri,
+    dynamic data,
+  ) async {
     final response =
         await http.post(uri, body: data, headers: await _generateHeader());
     if (response.statusCode != 200) {
-      print("this is an error da");
+      print("An error has occured");
     }
     final body = response.body;
-    return model.fromJson(body) as Model;
+    return body;
   }
 
-  get(Uri uri) {}
+  static Future<dynamic> get(Uri uri) async {
+    final response = await http.get(uri, headers: await _generateHeader());
+    final data = jsonDecode(response.body);
+    //String data = response.body;
+    print('this is data ${data['data']}');
+    return response.body;
+  }
 }
 
 class ModelBlueprint {

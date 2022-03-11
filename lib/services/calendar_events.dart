@@ -1,22 +1,55 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:employee_app/models/leaves.dart';
+import 'package:googleapis/calendar/v3.dart';
+import 'package:googleapis_auth/auth_io.dart';
+import 'package:isar/isar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CalendarService {
-  static Future<dynamic> fetchCalendarUpdates() async {
-    final response = await http.get(Uri.parse(
-        'https://www.googleapis.com/calendar/v3/calendars/c_84r0ih1jnlek013pcsn51b0n68@group.calendar.google.com/events'));
+  static const _scopes = [
+    CalendarApi.calendarScope,
+    CalendarApi.calendarEventsScope
+  ];
+  var clientId = ClientId(
+      '325425263810-48ootrrsk65jfsmme71ck085tf1e2h5f.apps.googleusercontent.com',
+      '');
 
-    var mapData = [];
-    print(response.statusCode);
+  Future<Events> obtainCredentials(Isar event) async =>
+      await clientViaUserConsent(
+        clientId,
+        _scopes,
+        _prompt,
+      ).then((AuthClient client) async {
+        var calendar = CalendarApi(client);
+        String calendarId =
+            "c_84r0ih1jnlek013pcsn51b0n68@group.calendar.google.com";
+        Events result = await calendar.events.list(
+          calendarId,
+          q: 'joel',
+        );
+        List<Leaves> userLeaves = [];
+        print(result.items![0].summary);
+        for (var e in result.items!) {
+          userLeaves.add(
+            Leaves(
+                leaveId: e.id ?? '',
+                title: e.summary ?? '',
+                description: e.description ?? '',
+                category: 'VACATION INDIA',
+                toDate: e.end!.date ?? DateTime.now(),
+                fromDate: e.end!.date ?? DateTime.now()),
+          );
+        }
+        for (var element in userLeaves) {
+          event.writeTxn((isar) => isar.leavess.put(element));
+        }
+        return result;
+      });
 
-    if (response.statusCode == 200) {
-      var json = jsonDecode(response.body);
-      print(json);
-      print('hello');
+  void _prompt(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
     }
-    return mapData;
   }
-  // Future<http.Response> fetchAlbum() {
-  //   return http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-  // }
 }

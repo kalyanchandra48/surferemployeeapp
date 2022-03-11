@@ -20,7 +20,7 @@ class LeaveDateTimeWidget extends StatelessWidget {
       ),
       decoration: BoxDecoration(
           color: ContainerColors.secondaryTextField.withOpacity(0.09),
-          border: Border.all(color: BorderColor.textField, width: 1.5),
+          border: Border.all(color: BorderColor.borderprimarygrey, width: 1.5),
           borderRadius: BorderRadii.radius8px),
       child: TextFormField(
         onTap: () {},

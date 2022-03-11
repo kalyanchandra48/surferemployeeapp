@@ -39,6 +39,8 @@ class ContainerColors {
   static Color holidayWidgetGolden = const Color(0xffEED682);
   static Color pinkShade = const Color(0xffFF529C);
   static Color bgBlueShadow = const Color(0xffBEE5FF);
+  static Color unSelectedBgColor = const Color(0xff05113C).withOpacity(0.1);
+  static Color selectedBgColor = const Color(0xff1849D8).withOpacity(0.1);
 }
 
 class IconColors {
@@ -55,7 +57,8 @@ class DividerColors {
 class BorderColor {
   static Color takenLeavesBlue = const Color(0xff54B5F7).withOpacity(0.2);
   static Color holidayGolden = const Color(0xffEED682).withOpacity(0.3);
-  static Color textField = const Color(0xff05113C).withOpacity(0.06);
+  static Color borderprimarygrey = const Color(0xff05113C).withOpacity(0.06);
+  static Color bordersecondaryBlue = const Color(0xff1849D8).withOpacity(0.1);
 }
 
 // IT Request Status BG Color
