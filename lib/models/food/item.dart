@@ -3,6 +3,7 @@ import 'dart:convert';
 class Item {
   String id;
   String name;
+  int count;
   String quantity;
   String amount;
   String category;
@@ -10,6 +11,7 @@ class Item {
   Item({
     required this.id,
     required this.name,
+    required this.count,
     required this.quantity,
     required this.amount,
     required this.category,
@@ -19,6 +21,7 @@ class Item {
   Item copyWith({
     String? id,
     String? name,
+    int? count,
     String? quantity,
     String? amount,
     String? category,
@@ -27,6 +30,7 @@ class Item {
     return Item(
       id: id ?? this.id,
       name: name ?? this.name,
+      count: count ?? this.count,
       quantity: quantity ?? this.quantity,
       amount: amount ?? this.amount,
       category: category ?? this.category,
@@ -38,6 +42,7 @@ class Item {
     return {
       'id': id,
       'name': name,
+      'count': count,
       'quantity': quantity,
       'amount': amount,
       'category': category,
@@ -49,6 +54,7 @@ class Item {
     return Item(
       id: map['id'] ?? '',
       name: map['name'] ?? '',
+      count: map['count']?.toInt() ?? 0,
       quantity: map['quantity'] ?? '',
       amount: map['amount'] ?? '',
       category: map['category'] ?? '',
@@ -62,7 +68,7 @@ class Item {
 
   @override
   String toString() {
-    return 'Item(id: $id, name: $name, quantity: $quantity, amount: $amount, category: $category, imageUrl: $imageUrl)';
+    return 'Item(id: $id, name: $name, count: $count, quantity: $quantity, amount: $amount, category: $category, imageUrl: $imageUrl)';
   }
 
   @override
@@ -72,6 +78,7 @@ class Item {
     return other is Item &&
         other.id == id &&
         other.name == name &&
+        other.count == count &&
         other.quantity == quantity &&
         other.amount == amount &&
         other.category == category &&
@@ -82,6 +89,7 @@ class Item {
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
+        count.hashCode ^
         quantity.hashCode ^
         amount.hashCode ^
         category.hashCode ^
