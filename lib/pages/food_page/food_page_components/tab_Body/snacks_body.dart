@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:employee_app/models/food/item.dart';
 
-class SnacksTabBody extends StatelessWidget {
-  SnacksTabBody({Key? key}) : super(key: key);
+class SnacksTabBody extends StatefulWidget {
+  @override
+  _SnacksTabBodyState createState() => _SnacksTabBodyState();
+}
 
+class _SnacksTabBodyState extends State<SnacksTabBody> {
   List<Item> items = [
     Item(
         id: '',
@@ -80,9 +83,11 @@ class SnacksTabBody extends StatelessWidget {
                   ),
                   Spacer(),
                   AddQuantityButton(),
-                  /*  InkWell(
+                  /*InkWell(
                     onTap: () {
-                      print('It is Working');
+                      setState(() {
+                        AddQuantityButton();
+                      });
                     },
                     child: Container(
                       padding:
@@ -114,6 +119,8 @@ class AddQuantityButton extends StatefulWidget {
 
 class _AddQuantityButtonState extends State<AddQuantityButton> {
   @override
+  int quantity = 1;
+  List<int> quantities = [];
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
@@ -122,22 +129,44 @@ class _AddQuantityButtonState extends State<AddQuantityButton> {
         color: ContainerColors.bluelight,
       ),
       child: Row(children: [
-        Text(
-          '-',
-          style: AppFonts.smallTextBB.copyWith(
-            color: TextColors.surfblue,
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              if (quantity > 0) {
+                quantity = quantity - 1;
+                quantities.removeLast();
+                print(quantities);
+              }
+            });
+          },
+          child: Text(
+            '-',
+            style: AppFonts.smallTextBB.copyWith(
+              color: TextColors.surfblue,
+            ),
           ),
         ),
         SizedBox(width: 10),
-        Text('0',
+        Text(quantity.toString(),
             style: AppFonts.smallTextBB.copyWith(
               color: TextColors.surfblue,
             )),
         SizedBox(width: 10),
-        Text(
-          '+',
-          style: AppFonts.smallTextBB.copyWith(
-            color: TextColors.surfblue,
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              if (quantity >= 0) {
+                quantity = quantity + 1;
+                quantities.add(quantity);
+                print(quantities);
+              }
+            });
+          },
+          child: Text(
+            '+',
+            style: AppFonts.smallTextBB.copyWith(
+              color: TextColors.surfblue,
+            ),
           ),
         ),
       ]),
