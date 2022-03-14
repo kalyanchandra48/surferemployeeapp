@@ -3,16 +3,16 @@ import 'dart:convert';
 class Item {
   String id;
   String name;
-  int count;
-  String quantity;
+  int orderQty;
+  int availableQty;
   String amount;
   String category;
   String imageUrl;
   Item({
     required this.id,
     required this.name,
-    required this.count,
-    required this.quantity,
+    required this.orderQty,
+    required this.availableQty,
     required this.amount,
     required this.category,
     required this.imageUrl,
@@ -21,8 +21,8 @@ class Item {
   Item copyWith({
     String? id,
     String? name,
-    int? count,
-    String? quantity,
+    int? orderQty,
+    int? availableQty,
     String? amount,
     String? category,
     String? imageUrl,
@@ -30,8 +30,8 @@ class Item {
     return Item(
       id: id ?? this.id,
       name: name ?? this.name,
-      count: count ?? this.count,
-      quantity: quantity ?? this.quantity,
+      orderQty: orderQty ?? this.orderQty,
+      availableQty: availableQty ?? this.availableQty,
       amount: amount ?? this.amount,
       category: category ?? this.category,
       imageUrl: imageUrl ?? this.imageUrl,
@@ -42,8 +42,8 @@ class Item {
     return {
       'id': id,
       'name': name,
-      'count': count,
-      'quantity': quantity,
+      'orderQty': orderQty,
+      'availableQty': availableQty,
       'amount': amount,
       'category': category,
       'imageUrl': imageUrl,
@@ -54,8 +54,8 @@ class Item {
     return Item(
       id: map['id'] ?? '',
       name: map['name'] ?? '',
-      count: map['count']?.toInt() ?? 0,
-      quantity: map['quantity'] ?? '',
+      orderQty: map['orderQty']?.toInt() ?? 0,
+      availableQty: map['availableQty']?.toInt() ?? 0,
       amount: map['amount'] ?? '',
       category: map['category'] ?? '',
       imageUrl: map['imageUrl'] ?? '',
@@ -68,7 +68,7 @@ class Item {
 
   @override
   String toString() {
-    return 'Item(id: $id, name: $name, count: $count, quantity: $quantity, amount: $amount, category: $category, imageUrl: $imageUrl)';
+    return 'Item(id: $id, name: $name, orderQty: $orderQty, availableQty: $availableQty, amount: $amount, category: $category, imageUrl: $imageUrl)';
   }
 
   @override
@@ -78,8 +78,8 @@ class Item {
     return other is Item &&
         other.id == id &&
         other.name == name &&
-        other.count == count &&
-        other.quantity == quantity &&
+        other.orderQty == orderQty &&
+        other.availableQty == availableQty &&
         other.amount == amount &&
         other.category == category &&
         other.imageUrl == imageUrl;
@@ -89,8 +89,8 @@ class Item {
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
-        count.hashCode ^
-        quantity.hashCode ^
+        orderQty.hashCode ^
+        availableQty.hashCode ^
         amount.hashCode ^
         category.hashCode ^
         imageUrl.hashCode;
