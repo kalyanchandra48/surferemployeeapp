@@ -13,21 +13,20 @@ class _SnacksTabBodyState extends State<SnacksTabBody> {
         id: '',
         name: 'Coke',
         quantity: '1',
+        count: 0,
         amount: '\$30',
         category: '',
         imageUrl:
-            'https://imageio.forbes.com/specials-images/imageserve/1189255149/An-American-multinational-corporation-and-manufacturer-of---/960x0.jpg?fit=bounds&format=jpg&width=960',
-        count: 0),
+            'https://imageio.forbes.com/specials-images/imageserve/1189255149/An-American-multinational-corporation-and-manufacturer-of---/960x0.jpg?fit=bounds&format=jpg&width=960'),
     Item(
-      id: '',
-      name: 'Special Chicken Dum Hyderbadi Biriyani with raita',
-      quantity: '1',
-      amount: '\$115',
-      category: '',
-      imageUrl:
-          'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg',
-      count: 0,
-    )
+        id: '',
+        name: 'Special Chicken Dum Hyderbadi Biriyani with raita',
+        quantity: '1',
+        amount: '\$115',
+        count: 0,
+        category: '',
+        imageUrl:
+            'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg')
   ];
   @override
   Widget build(BuildContext context) {
@@ -84,34 +83,56 @@ class _SnacksTabBodyState extends State<SnacksTabBody> {
                       ],
                     ),
                   ),
-                  const Spacer(),
-                  AddQuantityButton(),
-                  /*InkWell(
-                    onTap: () {
-                      setState(() {
-                        AddQuantityButton();
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                      //  height: 24,
-                      // width: 56,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: ContainerColors.bluelight,
-                      ),
-                      child: Text('+ Add',
-                          style: AppFonts.smallText12.copyWith(
-                              color: TextColors.surfblue,
-                              fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  AnimatedCrossFade(
+                    duration: const Duration(seconds: 1),
+                    firstChild: DefaultAddButton(
+                      item: items[index],
                     ),
-                  ),*/
+                    secondChild: AddQuantityButton(),
+                    crossFadeState: items[index].count == 0
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                  ),
                 ],
               ),
             );
           }),
     ]);
+  }
+}
+
+class DefaultAddButton extends StatefulWidget {
+  Item item;
+  DefaultAddButton({required this.item});
+  @override
+  _DefaultAddButtonState createState() => _DefaultAddButtonState();
+}
+
+class _DefaultAddButtonState extends State<DefaultAddButton> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // print(items[index].name);
+        setState(() {
+          widget.item.count = widget.item.count + 1;
+          print(widget.item.count);
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+        //  height: 24,
+        // width: 56,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: ContainerColors.bluelight,
+        ),
+        child: Text('+ Add',
+            style: AppFonts.smallText12.copyWith(
+                color: TextColors.surfblue, fontWeight: FontWeight.bold)),
+      ),
+    );
   }
 }
 
@@ -123,10 +144,9 @@ class AddQuantityButton extends StatefulWidget {
 class _AddQuantityButtonState extends State<AddQuantityButton> {
   @override
   int quantity = 1;
-  List<int> quantities = [];
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+      //padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         color: ContainerColors.bluelight,
@@ -135,40 +155,49 @@ class _AddQuantityButtonState extends State<AddQuantityButton> {
         GestureDetector(
           onTap: () {
             setState(() {
-              if (quantity > 0) {
+              if (quantity > 1) {
                 quantity = quantity - 1;
-                quantities.removeLast();
-                print(quantities);
+                print(quantity);
               }
             });
           },
-          child: Text(
-            '-',
-            style: AppFonts.smallTextBB.copyWith(
-              color: TextColors.surfblue,
-            ),
-          ),
+          child: Container(
+              color: Colors.transparent,
+              width: 30,
+              height: 30,
+              child: Center(
+                child: Text(
+                  '-',
+                  style: AppFonts.smallTextBB.copyWith(
+                    color: TextColors.surfblue,
+                  ),
+                ),
+              )),
         ),
-        SizedBox(width: 10),
         Text(quantity.toString(),
             style: AppFonts.smallTextBB.copyWith(
               color: TextColors.surfblue,
             )),
-        SizedBox(width: 10),
         GestureDetector(
           onTap: () {
             setState(() {
               if (quantity >= 0) {
                 quantity = quantity + 1;
-                quantities.add(quantity);
-                print(quantities);
+                print(quantity);
               }
             });
           },
-          child: Text(
-            '+',
-            style: AppFonts.smallTextBB.copyWith(
-              color: TextColors.surfblue,
+          child: Container(
+            width: 30,
+            color: Colors.transparent,
+            height: 30,
+            child: Center(
+              child: Text(
+                '+',
+                style: AppFonts.smallTextBB.copyWith(
+                  color: TextColors.surfblue,
+                ),
+              ),
             ),
           ),
         ),
