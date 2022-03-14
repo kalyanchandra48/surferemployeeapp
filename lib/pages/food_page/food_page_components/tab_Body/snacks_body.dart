@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:employee_app/models/food/item.dart';
+import 'default_add_button.dart';
+import 'add_quantity_button.dart';
 
 class SnacksTabBody extends StatefulWidget {
   @override
@@ -101,7 +103,7 @@ class _SnacksTabBodyState extends State<SnacksTabBody> {
     ]);
   }
 }
-
+/*
 class DefaultAddButton extends StatefulWidget {
   Item item;
   DefaultAddButton({required this.item});
@@ -204,4 +206,4 @@ class _AddQuantityButtonState extends State<AddQuantityButton> {
       ]),
     );
   }
-}
+}*/
