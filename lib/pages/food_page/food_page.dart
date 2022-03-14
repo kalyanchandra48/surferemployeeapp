@@ -1,8 +1,7 @@
 import 'package:employee_app/common_widgets/common_widgets_component.dart';
-import 'package:employee_app/pages/food_page.dart/food_page_components.dart/food_page_panel_body.dart';
+import 'package:employee_app/pages/food_page/food_page_components/food_page_panel_body.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-
 import '../../styles/styles.dart';
 
 class FoodPage extends StatefulWidget {
@@ -63,7 +62,7 @@ class _FoodPageState extends State<FoodPage> with TickerProviderStateMixin {
               controller: _panelController,
               maxHeight: 900,
               minHeight: MediaQuery.of(context).size.height / 1.8,
-              defaultPanelState: PanelState.OPEN,
+              defaultPanelState: PanelState.CLOSED,
               borderRadius: BorderRadii.radius24px,
               panel: const FoodPagePanelBody(),
               onPanelOpened: () {

@@ -1,4 +1,4 @@
-import 'package:employee_app/pages/food_page.dart/food_page.dart';
+import 'package:employee_app/pages/food_page/food_page.dart';
 import 'package:employee_app/pages/it_request_page/it_request_page.dart';
 import 'package:employee_app/pages/leaves_page/leaves.dart';
 import 'package:employee_app/pages/payslips_page/payslips_page.dart';

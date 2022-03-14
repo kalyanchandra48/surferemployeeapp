@@ -35,7 +35,7 @@ class _InputDatePickerWidgetState extends State<InputDatePickerWidget> {
               // Use a SafeArea widget to avoid system overlaps.
               child: SafeArea(
                 top: false,
-                child: child,
+                child:child,
               ),
             ));
   }

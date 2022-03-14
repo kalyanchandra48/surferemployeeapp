@@ -46,6 +46,7 @@ class ContainerColors {
 class IconColors {
   static const Color primaryColor = Color(0xffFFFFFF);
   static Color secondaryColor = const Color(0xff05113C).withOpacity(0.5);
+  static const Color surfblue = const Color(0xff54B5F7);
 }
 
 class DividerColors {

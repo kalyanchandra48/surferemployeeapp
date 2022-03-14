@@ -10,7 +10,11 @@ class AppFonts {
       fontSize: fontSize,
     ));
   }
-
+ 
+  static final foodNameHeader = getAppFont(
+      fontWeight: FontWeight.bold,
+      color: TextColors.secondaryColor,
+      fontSize: 14);
   static final appHeaderBlack = getAppFont(
       fontWeight: FontWeight.w900,
       color: TextColors.appHeaderBlack,
