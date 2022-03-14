@@ -9,21 +9,21 @@ class SnacksTabBody extends StatelessWidget {
     Item(
         id: '',
         name: 'Coke',
-        quantity: '1',
+        availableQty: 1,
         amount: '\$30',
         category: '',
         imageUrl:
             'https://imageio.forbes.com/specials-images/imageserve/1189255149/An-American-multinational-corporation-and-manufacturer-of---/960x0.jpg?fit=bounds&format=jpg&width=960',
-        count: 0),
+        orderQty: 0),
     Item(
       id: '',
       name: 'Special Chicken Dum Hyderbadi Biriyani with raita',
-      quantity: '1',
+      availableQty: 1,
       amount: '\$115',
       category: '',
       imageUrl:
           'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg',
-      count: 0,
+      orderQty: 0,
     )
   ];
   @override
