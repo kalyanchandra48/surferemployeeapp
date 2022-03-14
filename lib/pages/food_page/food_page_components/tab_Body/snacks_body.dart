@@ -12,8 +12,8 @@ class _SnacksTabBodyState extends State<SnacksTabBody> {
     Item(
         id: '',
         name: 'Coke',
-        quantity: '1',
-        count: 0,
+        orderQty: 0,
+        availableQty: 1,
         amount: '\$30',
         category: '',
         imageUrl:
@@ -21,9 +21,9 @@ class _SnacksTabBodyState extends State<SnacksTabBody> {
     Item(
         id: '',
         name: 'Special Chicken Dum Hyderbadi Biriyani with raita',
-        quantity: '1',
+        availableQty: 1,
         amount: '\$115',
-        count: 0,
+        orderQty: 0,
         category: '',
         imageUrl:
             'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg')
@@ -90,7 +90,7 @@ class _SnacksTabBodyState extends State<SnacksTabBody> {
                       item: items[index],
                     ),
                     secondChild: AddQuantityButton(),
-                    crossFadeState: items[index].count == 0
+                    crossFadeState: items[index].orderQty == 0
                         ? CrossFadeState.showFirst
                         : CrossFadeState.showSecond,
                   ),
@@ -116,8 +116,8 @@ class _DefaultAddButtonState extends State<DefaultAddButton> {
       onTap: () {
         // print(items[index].name);
         setState(() {
-          widget.item.count = widget.item.count + 1;
-          print(widget.item.count);
+          widget.item.orderQty = widget.item.orderQty + 1;
+          print(widget.item.orderQty);
         });
       },
       child: Container(
@@ -143,7 +143,7 @@ class AddQuantityButton extends StatefulWidget {
 
 class _AddQuantityButtonState extends State<AddQuantityButton> {
   @override
-  int quantity = 1;
+  int availableQty = 1;
   Widget build(BuildContext context) {
     return Container(
       //padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
@@ -155,9 +155,9 @@ class _AddQuantityButtonState extends State<AddQuantityButton> {
         GestureDetector(
           onTap: () {
             setState(() {
-              if (quantity > 1) {
-                quantity = quantity - 1;
-                print(quantity);
+              if (availableQty > 1) {
+                availableQty = availableQty - 1;
+                print(availableQty);
               }
             });
           },
@@ -174,16 +174,16 @@ class _AddQuantityButtonState extends State<AddQuantityButton> {
                 ),
               )),
         ),
-        Text(quantity.toString(),
+        Text(availableQty.toString(),
             style: AppFonts.smallTextBB.copyWith(
               color: TextColors.surfblue,
             )),
         GestureDetector(
           onTap: () {
             setState(() {
-              if (quantity >= 0) {
-                quantity = quantity + 1;
-                print(quantity);
+              if (availableQty >= 1 && availableQty < 15) {
+                availableQty = availableQty + 1;
+                print(availableQty);
               }
             });
           },
