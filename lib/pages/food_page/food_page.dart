@@ -1,5 +1,6 @@
 import 'package:employee_app/common_widgets/common_widgets_component.dart';
 import 'package:employee_app/pages/food_page/food_page_components/food_page_panel_body.dart';
+import 'package:employee_app/pages/food_page/food_page_components/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../../styles/styles.dart';
@@ -50,34 +51,59 @@ class _FoodPageState extends State<FoodPage> with TickerProviderStateMixin {
               innerShadeColor: ContainerColors.yellowShadelight,
               outerShadeColor: ContainerColors.yellowShade,
             ),
-            SlidingUpPanel(
-              boxShadow: [
-                BoxShadow(
-                    color: const Color(0xff05113C).withOpacity(0.3),
-                    spreadRadius: 20,
-                    blurRadius: 15),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                SlidingUpPanel(
+                  boxShadow: [
+                    BoxShadow(
+                        color: const Color(0xff05113C).withOpacity(0.3),
+                        spreadRadius: 20,
+                        blurRadius: 15),
+                  ],
+                  parallaxEnabled: true,
+                  parallaxOffset: 1,
+                  controller: _panelController,
+                  maxHeight: 900,
+                  minHeight: MediaQuery.of(context).size.height / 1.8,
+                  defaultPanelState: PanelState.OPEN,
+                  borderRadius: BorderRadii.radius24px,
+                  panel: const FoodPagePanelBody(),
+                  onPanelOpened: () {
+                    _controller.reset();
+                    setState(() {
+                      crossFade = true;
+                    });
+                  },
+                  onPanelSlide: (d) {
+                    _controller.forward();
+                    setState(() {
+                      crossFade = false;
+                    });
+                  },
+                ),
+                Positioned(
+                  bottom: 20,
+                  child: GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadii.radius24px),
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return CheckoutSheet();
+                        },
+                      );
+                    },
+                    child: NavigationButton(
+                        buttonColor: ButtonColors.nextButton,
+                        text: 'Place Order',
+                        buttonTextStyle: AppFonts.buttonTextBB),
+                  ),
+                ),
               ],
-              parallaxEnabled: true,
-              parallaxOffset: 1,
-              controller: _panelController,
-              maxHeight: 900,
-              minHeight: MediaQuery.of(context).size.height / 1.8,
-              defaultPanelState: PanelState.CLOSED,
-              borderRadius: BorderRadii.radius24px,
-              panel: const FoodPagePanelBody(),
-              onPanelOpened: () {
-                _controller.reset();
-                setState(() {
-                  crossFade = true;
-                });
-              },
-              onPanelSlide: (d) {
-                _controller.forward();
-                setState(() {
-                  crossFade = false;
-                });
-              },
-            )
+            ),
           ],
         ),
       ),

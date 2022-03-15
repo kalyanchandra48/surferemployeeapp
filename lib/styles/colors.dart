@@ -23,7 +23,7 @@ class TextColors {
 
 class ButtonColors {
   static Color disableButton = Colors.grey.withOpacity(0.3);
-  static const Color nextButton = Color(0xff19E18A);
+  static const Color nextButton = Color(0xff1EF999);
   static const Color themeButton = Color(0xff1849D8);
 }
 
@@ -41,6 +41,7 @@ class ContainerColors {
   static Color bgBlueShadow = const Color(0xffBEE5FF);
   static Color unSelectedBgColor = const Color(0xff05113C).withOpacity(0.1);
   static Color selectedBgColor = const Color(0xff1849D8).withOpacity(0.1);
+  static Color greyContainer =  const Color(0xffD6D6D6);
 }
 
 class IconColors {
