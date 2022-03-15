@@ -4,7 +4,6 @@ import 'package:employee_app/models/food/item.dart';
 import 'default_add_button.dart';
 import 'add_quantity_button.dart';
 import 'package:provider/provider.dart';
-import 'changing_widget.dart';
 import 'package:employee_app/common_widgets/navigation_button.dart';
 
 class SnacksTabBody extends StatefulWidget {
@@ -83,7 +82,7 @@ class _SnacksTabBodyState extends State<SnacksTabBody> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: 180,
+                            width: 170,
                             child: Text(items[index].name,
                                 style: AppFonts.foodNameHeader),
                           ),
