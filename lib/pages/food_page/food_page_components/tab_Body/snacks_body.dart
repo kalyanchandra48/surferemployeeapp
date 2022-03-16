@@ -34,78 +34,74 @@ class _SnacksTabBodyState extends State<SnacksTabBody> {
   ];
   @override
   Widget build(BuildContext context) {
-    return
-        /* ChangeNotifierProvider(
-      create: (context) => ChangingWidget(),
-      child:*/
-        ListView.separated(
-            padding: EdgeInsets.all(24),
-            physics: ClampingScrollPhysics(),
-            itemCount: items.length,
-            shrinkWrap: true,
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 15,
-              );
-            },
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                padding: EdgeInsets.all(16),
-                //  height: 84,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xff000000).withOpacity(0.08),
-                      blurRadius: 84,
-                      spreadRadius: 0,
-                    ),
-                  ],
-                  color: Colors.white,
+    return ListView.separated(
+        padding: EdgeInsets.all(24),
+        physics: ClampingScrollPhysics(),
+        itemCount: items.length,
+        shrinkWrap: true,
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(
+            height: 15,
+          );
+        },
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            padding: EdgeInsets.all(16),
+            //  height: 84,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xff000000).withOpacity(0.08),
+                  blurRadius: 84,
+                  spreadRadius: 0,
                 ),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 54,
-                      width: 54,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: NetworkImage(items[index].imageUrl),
-                        ),
-                      ),
+              ],
+              color: Colors.white,
+            ),
+            child: Row(
+              children: [
+                Container(
+                  height: 54,
+                  width: 54,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(items[index].imageUrl),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 14, top: 6),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 170,
-                            child: Text(items[index].name,
-                                style: AppFonts.foodNameHeader),
-                          ),
-                          SizedBox(height: 2),
-                          Text(items[index].amount, style: AppFonts.hintText14),
-                        ],
-                      ),
-                    ),
-                    Spacer(),
-                    //    DefaultAddButton(),
-                    AnimatedCrossFade(
-                      duration: const Duration(seconds: 1),
-                      firstChild: DefaultAddButton(
-                        item: items[index],
-                      ),
-                      secondChild: AddQuantityButton(),
-                      crossFadeState: items[index].orderQty == 0
-                          ? CrossFadeState.showFirst
-                          : CrossFadeState.showSecond,
-                    ),
-                  ],
+                  ),
                 ),
-              );
-            });
+                Padding(
+                  padding: EdgeInsets.only(left: 14, top: 6),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 170,
+                        child: Text(items[index].name,
+                            style: AppFonts.foodNameHeader),
+                      ),
+                      SizedBox(height: 2),
+                      Text(items[index].amount, style: AppFonts.hintText14),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                //    DefaultAddButton(),
+                AnimatedCrossFade(
+                  duration: const Duration(seconds: 1),
+                  firstChild: DefaultAddButton(
+                    item: items[index],
+                  ),
+                  secondChild: AddQuantityButton(),
+                  crossFadeState: items[index].orderQty == 0
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
