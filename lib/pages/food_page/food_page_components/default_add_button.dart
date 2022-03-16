@@ -16,12 +16,10 @@ class _DefaultAddButtonState extends State<DefaultAddButton> {
       onTap: () {
         // print(items[index].name);
         setState(() {
-          widget.item.orderQty = widget.item.orderQty + 1;
-          print(widget.item.orderQty);
         });
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         //  height: 24,
         // width: 56,
         decoration: BoxDecoration(

@@ -3,6 +3,7 @@ import 'package:employee_app/common_widgets/textfield_widget.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'time_selector_widget.dart';
 
 import 'leave_date_time_widget.dart';
 
@@ -14,6 +15,10 @@ class ApplyLeaveBottomSheetBody extends StatelessWidget {
   final TextEditingController _reasonTextController = TextEditingController();
   final TextEditingController _descriptionTextController =
       TextEditingController();
+  final TextEditingController startdateController = TextEditingController();
+  final TextEditingController starttimeController = TextEditingController();
+  final TextEditingController enddateController = TextEditingController();
+  final TextEditingController endtimeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -73,10 +78,12 @@ class ApplyLeaveBottomSheetBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     LeaveDateTimeWidget(
+                      controller: startdateController,
                       hintText: 'Start Date',
                       width: MediaQuery.of(context).size.width / 2,
                     ),
-                    LeaveDateTimeWidget(
+                    TimeSelectorWidget(
+                      controller: starttimeController,
                       hintText: 'Start Time',
                       width: MediaQuery.of(context).size.width / 3,
                     ),
@@ -89,10 +96,12 @@ class ApplyLeaveBottomSheetBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     LeaveDateTimeWidget(
+                      controller: enddateController,
                       hintText: 'End Date',
                       width: MediaQuery.of(context).size.width / 2,
                     ),
-                    LeaveDateTimeWidget(
+                    TimeSelectorWidget(
+                      controller: endtimeController,
                       hintText: 'End Time',
                       width: MediaQuery.of(context).size.width / 3,
                     ),
