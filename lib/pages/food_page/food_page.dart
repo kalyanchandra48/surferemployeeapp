@@ -3,7 +3,6 @@ import 'package:employee_app/pages/food_page/food_page_components/food_page_pane
 import 'package:employee_app/pages/food_page/food_page_components/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import '../../styles/styles.dart';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({Key? key}) : super(key: key);

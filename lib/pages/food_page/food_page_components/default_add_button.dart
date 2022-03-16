@@ -21,7 +21,7 @@ class _DefaultAddButtonState extends State<DefaultAddButton> {
         });
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         //  height: 24,
         // width: 56,
         decoration: BoxDecoration(

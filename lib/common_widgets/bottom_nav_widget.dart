@@ -1,4 +1,3 @@
-import 'package:employee_app/common_widgets/background_grid_lines.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +10,7 @@ class BottomNavBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       height: 92,
       decoration: BoxDecoration(
           color: AppColors.bottomNavColor,
