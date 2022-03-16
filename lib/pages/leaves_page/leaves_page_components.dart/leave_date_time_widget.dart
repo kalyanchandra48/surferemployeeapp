@@ -55,7 +55,6 @@ class _LeaveDateTimeWidgetState extends State<LeaveDateTimeWidget> {
           borderRadius: BorderRadii.radius8px),
       child: TextFormField(
         onTap: () {
-          // if (widget.hintText == 'Start Date') {
             _showDialog(CupertinoDatePicker(
                 initialDateTime: DateTime.now(),
                 maximumDate: DateTime(2100),
@@ -64,7 +63,6 @@ class _LeaveDateTimeWidgetState extends State<LeaveDateTimeWidget> {
                 onDateTimeChanged: (DateTime date) {
                   widget.controller.text = DateFormat('dd/MM/yy').format(date);
                 }));
-         // }
         },
         controller: widget.controller,
         //controller: ,
