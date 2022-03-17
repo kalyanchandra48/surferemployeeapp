@@ -8,23 +8,32 @@ import 'dart:async';
 
 import 'leave_date_time_widget.dart';
 
-class ApplyLeaveBottomSheetBody extends StatelessWidget {
+class ApplyLeaveBottomSheetBody extends StatefulWidget {
   ApplyLeaveBottomSheetBody({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<ApplyLeaveBottomSheetBody> createState() =>
+      _ApplyLeaveBottomSheetBodyState();
+}
+
+class _ApplyLeaveBottomSheetBodyState extends State<ApplyLeaveBottomSheetBody> {
   final TextEditingController _reasonTextController = TextEditingController();
+
   final TextEditingController _descriptionTextController =
       TextEditingController();
-  final TextEditingController startdateController = TextEditingController();
-  final TextEditingController starttimeController = TextEditingController();
-  final TextEditingController enddateController = TextEditingController();
-  final TextEditingController endtimeController = TextEditingController();
-<<<<<<< HEAD
-=======
 
->>>>>>> a40488a401b4ee7f57043000c00db44cc67d1538
+  final TextEditingController startdateController = TextEditingController();
+
+  final TextEditingController starttimeController = TextEditingController();
+
+  final TextEditingController enddateController = TextEditingController();
+
+  final TextEditingController endtimeController = TextEditingController();
+
   final StreamController<bool> _stream = StreamController<bool>.broadcast();
+
   bool checkRequestFields() {
     if (_descriptionTextController.text.length > 20 &&
         _reasonTextController.text.length > 6) {
@@ -34,7 +43,6 @@ class ApplyLeaveBottomSheetBody extends StatelessWidget {
     }
   }
 
-
   @override
   void dispose() {
     startdateController.dispose();
@@ -43,6 +51,7 @@ class ApplyLeaveBottomSheetBody extends StatelessWidget {
     starttimeController.dispose();
     _reasonTextController.dispose();
     _descriptionTextController.dispose();
+    super.dispose();
   }
 
   @override
