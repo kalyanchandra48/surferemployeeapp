@@ -107,10 +107,12 @@ class ThemeAppBar extends StatelessWidget {
                       },
                     );
                   },
-                  child: SvgPicture.asset(
-                    'assets/add_button.svg',
-                    color: Colors.white,
-                  )),
+                  child: header == 'Food'
+                      ? SvgPicture.asset('assets/food_history.svg')
+                      : SvgPicture.asset(
+                          'assets/add_button.svg',
+                          color: Colors.white,
+                        )),
             ),
             AnimatedAlign(
               alignment: crossFade == true

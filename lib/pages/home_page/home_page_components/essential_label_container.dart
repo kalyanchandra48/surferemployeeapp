@@ -27,9 +27,7 @@ class EssentialLabelWidget extends StatelessWidget {
       tag: heroTag,
       child: Container(
         padding: const EdgeInsets.all(24),
-
         width: MediaQuery.of(context).size.width / 2.4,
-        //width: 159,
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
             color: outerShade,
@@ -55,7 +53,7 @@ class EssentialLabelWidget extends StatelessWidget {
                   style: AppFonts.mediumTextBB,
                 ),
                 const SizedBox(
-                  height: 2,
+                  height:4,
                 ),
                 Text(
                   labelText,

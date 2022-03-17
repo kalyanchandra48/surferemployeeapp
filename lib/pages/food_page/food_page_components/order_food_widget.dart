@@ -9,10 +9,10 @@ class OrderFoodWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-        physics: const ClampingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(vertical: 24),
+        physics: NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.symmetric(vertical: 24),
         shrinkWrap: true,
-        itemCount: 3,
+        itemCount: 5,
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(height: 15);
         },

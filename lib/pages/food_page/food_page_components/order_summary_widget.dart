@@ -10,11 +10,14 @@ class OrderSummaryWidget extends StatelessWidget {
   final String formatted = formatter.format(now);
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
-      //      height: 222,
-      decoration: const BoxDecoration(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+      decoration: BoxDecoration(
         boxShadow: [
+          const BoxShadow(
+            color: Color(0xffF0D47D),
+          ),
           BoxShadow(
+            color: ContainerColors.yellowShadelight,
             spreadRadius: 0,
             blurRadius: 1,
             offset: Offset(0, 0), // changes position of shadow

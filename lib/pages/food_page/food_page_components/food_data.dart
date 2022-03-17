@@ -29,5 +29,14 @@ List<Item> foodItem() {
         category: 'Chocolates',
         imageUrl:
             'https://i2.wp.com/karissasvegankitchen.com/wp-content/uploads/2019/03/c-vegan-chocolate-bars-4-500x500.jpg'),
+    Item(
+        id: '233323',
+        name: 'Chocolate Milk Shake With Icecream',
+        orderQty: 0,
+        availableQty: 5,
+        amount: '20',
+        category: 'Beverages',
+        imageUrl:
+            'https://simplyblendedsmoothies.com/wp-content/uploads/2018/11/Chocolate-Milkshake-this-is-the-perfect-chocolate-milkshake-recipe.jpg'),
   ];
 }
