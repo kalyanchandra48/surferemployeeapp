@@ -2,7 +2,7 @@ import 'package:employee_app/common_widgets/common_widgets_component.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'it_request_page_components/it_request_page_body.dart';
-import 'it_request_page_components/it_request_sheet.dart';
+import 'it_request_page_components/apply_it_request.dart';
 
 class ITRequestPage extends StatefulWidget {
   const ITRequestPage({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _ITRequestPageState extends State<ITRequestPage>
         preferredSize: const Size.fromHeight(90),
         child: ThemeAppBar(
           herotag: 'ITRequest',
-          bottomSheetBody: const ITRequestSheet(),
+          bottomSheetBody: const ApplyITRequestBottomSheet(),
           crossFade: crossFade,
           header: 'IT requests',
           subHeader: '2 pending',

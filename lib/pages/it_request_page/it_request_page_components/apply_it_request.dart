@@ -9,16 +9,17 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../models/response.dart';
 
-class ITRequestSheet extends StatefulWidget {
-  const ITRequestSheet({
+class ApplyITRequestBottomSheet extends StatefulWidget {
+  const ApplyITRequestBottomSheet({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<ITRequestSheet> createState() => _ITRequestSheetState();
+  State<ApplyITRequestBottomSheet> createState() =>
+      _ApplyITRequestBottomSheetState();
 }
 
-class _ITRequestSheetState extends State<ITRequestSheet> {
+class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
   List<String> requestType = ['Gitlab', 'Ios Developer', 'Accessories'];
   Future<String> text = ITRequestService.fetchRequestType();
   @override
