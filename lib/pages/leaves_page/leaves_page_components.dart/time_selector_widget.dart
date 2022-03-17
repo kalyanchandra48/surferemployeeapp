@@ -56,9 +56,11 @@ class _TimeSelectorWidgetState extends State<TimeSelectorWidget> {
         onTap: () {
           _showDialog(
             CupertinoDatePicker(
+              use24hFormat: true,
               mode: CupertinoDatePickerMode.time,
               onDateTimeChanged: (value) {
-                widget.controller.text = DateFormat('h:mm aa').format(value);
+                widget.controller.text = DateFormat('HH:mm ').format(value) +
+                    (DateTime.now().timeZoneName);
               },
               initialDateTime: DateTime.now(),
             ),

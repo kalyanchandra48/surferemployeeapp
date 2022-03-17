@@ -20,6 +20,10 @@ class ApplyLeaveBottomSheetBody extends StatelessWidget {
   final TextEditingController starttimeController = TextEditingController();
   final TextEditingController enddateController = TextEditingController();
   final TextEditingController endtimeController = TextEditingController();
+<<<<<<< HEAD
+=======
+
+>>>>>>> a40488a401b4ee7f57043000c00db44cc67d1538
   final StreamController<bool> _stream = StreamController<bool>.broadcast();
   bool checkRequestFields() {
     if (_descriptionTextController.text.length > 20 &&
@@ -29,6 +33,7 @@ class ApplyLeaveBottomSheetBody extends StatelessWidget {
       return false;
     }
   }
+
 
   @override
   void dispose() {
