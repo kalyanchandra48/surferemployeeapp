@@ -1,31 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:employee_app/styles/styles.dart';
 
-class AddQuantityButton extends StatefulWidget {
-  @override
-  _AddQuantityButtonState createState() => _AddQuantityButtonState();
-}
+class AddQuantityButton extends StatelessWidget {
+  final Function addButton;
+  final Function removeButton;
+  AddQuantityButton(
+      {Key? key, required this.addButton, required this.removeButton})
+      : super(key: key);
 
-class _AddQuantityButtonState extends State<AddQuantityButton> {
   @override
-  int availableQty = 1;
+  int availableQty = 0;
   Widget build(BuildContext context) {
     return Container(
-      //padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         color: ContainerColors.bluelight,
       ),
       child: Row(children: [
         GestureDetector(
-          onTap: () {
-            setState(() {
-              if (availableQty > 1) {
-                availableQty = availableQty - 1;
-                print(availableQty);
-              }
-            });
-          },
+          onTap: removeButton(),
           child: Container(
               color: Colors.transparent,
               width: 30,
@@ -44,14 +37,7 @@ class _AddQuantityButtonState extends State<AddQuantityButton> {
               color: TextColors.surfblue,
             )),
         GestureDetector(
-          onTap: () {
-            setState(() {
-              if (availableQty >= 1 && availableQty < 15) {
-                availableQty = availableQty + 1;
-                print(availableQty);
-              }
-            });
-          },
+          onTap: addButton(),
           child: Container(
             width: 30,
             color: Colors.transparent,

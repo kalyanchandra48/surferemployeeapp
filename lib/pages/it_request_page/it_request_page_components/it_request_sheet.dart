@@ -61,8 +61,6 @@ class _ITRequestSheetState extends State<ITRequestSheet> {
       child: FutureBuilder<String>(
         future: text,
         builder: (context, snapshot) {
-          print('this is data ${snapshot.data}');
-
           return Stack(
             alignment: Alignment.bottomCenter,
             children: [

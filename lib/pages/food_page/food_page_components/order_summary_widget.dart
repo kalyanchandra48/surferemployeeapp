@@ -10,9 +10,9 @@ class OrderSummaryWidget extends StatelessWidget {
   final String formatted = formatter.format(now);
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
       //      height: 222,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
             spreadRadius: 0,
@@ -84,8 +84,8 @@ class OrderSummaryWidget extends StatelessWidget {
               );
             },
           ),
-          DottedLine(),
-          SizedBox(height: 15),
+          const DottedLine(),
+          const SizedBox(height: 15),
           Row(children: [
             Text(
               'Total',

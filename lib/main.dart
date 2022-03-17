@@ -1,5 +1,6 @@
 import 'package:employee_app/models/auth_status.dart';
 import 'package:employee_app/models/leaves.dart';
+import 'package:employee_app/provider/my_cart_provider.dart';
 import 'package:employee_app/pages/login_page/login_page.dart';
 import 'package:employee_app/services/auth.dart';
 import 'package:employee_app/services/calendar_events.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
             message: 'verification yet to be started',
           ),
         ),
+        ChangeNotifierProvider(create: (_) => MyCart())
       ],
       child: MaterialApp(
         theme: ThemeData.from(colorScheme: ColorScheme.light()).copyWith(

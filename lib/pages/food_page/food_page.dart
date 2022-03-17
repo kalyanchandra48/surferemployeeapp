@@ -1,7 +1,9 @@
 import 'package:employee_app/common_widgets/common_widgets_component.dart';
 import 'package:employee_app/pages/food_page/food_page_components/food_page_panel_body.dart';
-import 'package:employee_app/pages/food_page/food_page_components/bottom_sheet.dart';
+import 'package:employee_app/pages/food_page/food_page_components/checkout_bottomsheet.dart';
+import 'package:employee_app/provider/my_cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class FoodPage extends StatefulWidget {
