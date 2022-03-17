@@ -61,7 +61,7 @@ class _LeaveDateTimeWidgetState extends State<LeaveDateTimeWidget> {
                 minimumDate: DateTime(1990),
                 mode: CupertinoDatePickerMode.date,
                 onDateTimeChanged: (DateTime date) {
-                  widget.controller.text = DateFormat('dd/MM/yy').format(date);
+                  widget.controller.text = DateFormat('dd MMMM yyyy').format(date);
                 }));
         },
         controller: widget.controller,
