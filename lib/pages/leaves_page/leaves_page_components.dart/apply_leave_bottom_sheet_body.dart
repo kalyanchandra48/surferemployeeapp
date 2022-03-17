@@ -36,6 +36,10 @@ class _ApplyLeaveBottomSheetBodyState extends State<ApplyLeaveBottomSheetBody> {
 
   bool checkRequestFields() {
     if (_descriptionTextController.text.length > 20 &&
+        startdateController.text.length > 6 &&
+        starttimeController.text.length > 6 &&
+        enddateController.text.length > 6 &&
+        endtimeController.text.length > 6 &&
         _reasonTextController.text.length > 6) {
       return true;
     } else {

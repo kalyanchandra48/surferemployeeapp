@@ -54,15 +54,17 @@ class _LeaveDateTimeWidgetState extends State<LeaveDateTimeWidget> {
           border: Border.all(color: BorderColor.borderprimarygrey, width: 1.5),
           borderRadius: BorderRadii.radius8px),
       child: TextFormField(
+        readOnly: true,
         onTap: () {
-            _showDialog(CupertinoDatePicker(
-                initialDateTime: DateTime.now(),
-                maximumDate: DateTime(2100),
-                minimumDate: DateTime(1990),
-                mode: CupertinoDatePickerMode.date,
-                onDateTimeChanged: (DateTime date) {
-                  widget.controller.text = DateFormat('dd MMMM yyyy').format(date);
-                }));
+          _showDialog(CupertinoDatePicker(
+              initialDateTime: DateTime.now(),
+              maximumDate: DateTime(2100),
+              minimumDate: DateTime(1990),
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (DateTime date) {
+                widget.controller.text =
+                    DateFormat('dd MMMM yyyy').format(date);
+              }));
         },
         controller: widget.controller,
         //controller: ,

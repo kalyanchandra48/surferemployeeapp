@@ -24,7 +24,7 @@ class CalendarService {
             "c_84r0ih1jnlek013pcsn51b0n68@group.calendar.google.com";
         Events result = await calendar.events.list(
           calendarId,
-          q: 'joel',
+          q: 'kalyan',
         );
         List<Leaves> userLeaves = [];
         print(result.items![0].summary);
@@ -40,8 +40,12 @@ class CalendarService {
           );
         }
         for (var element in userLeaves) {
-          event.writeTxn((isar) => isar.leavess.put(element));
+          await event.writeTxn((event) async {
+            await event.leavess.put(element);
+          });
         }
+        final lea = await event.leavess.where().findAll();
+        print('this is lea $lea');
         return result;
       });
 
