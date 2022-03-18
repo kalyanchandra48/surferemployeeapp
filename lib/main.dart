@@ -42,8 +42,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _cs.obtainCredentials(isar);
-    fetchleaves();
+    //_cs.obtainCredentials(isar);
+    //fetchleaves();
 
     return MultiProvider(
       providers: [

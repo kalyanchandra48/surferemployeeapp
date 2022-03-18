@@ -52,6 +52,7 @@ class _LeaveDateTimeWidgetState extends State<LeaveDateTimeWidget> {
           border: Border.all(color: BorderColor.borderprimarygrey, width: 1.5),
           borderRadius: BorderRadii.radius8px),
       child: TextFormField(
+        readOnly: true,
         onTap: () {
           _showDialog(CupertinoDatePicker(
               initialDateTime: DateTime.now(),
