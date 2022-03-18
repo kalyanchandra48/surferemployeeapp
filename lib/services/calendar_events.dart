@@ -35,11 +35,11 @@ class CalendarService {
       print(enddate);
       EventDateTime start = new EventDateTime();
       start.dateTime = startdate;
-      // start.timeZone = "UTC+01:30";
+      start.timeZone = "GMT+05:30";
       event.start = start;
       EventDateTime end = new EventDateTime();
       end.dateTime = enddate;
-      // end.timeZone = "UTC+01:30";
+      end.timeZone = "GMT+05:30";
       event.end = end;
       try {
         calendar.events.insert(event, calendarId).then((value) {
