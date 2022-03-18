@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:employee_app/styles/styles.dart';
-import 'package:intl/intl.dart';
-import 'package:dotted_line/dotted_line.dart';
+import './food_page_components.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
   @override
@@ -10,7 +8,7 @@ class OrderSummaryWidget extends StatelessWidget {
   final String formatted = formatter.format(now);
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
       decoration: BoxDecoration(
         boxShadow: [
           const BoxShadow(

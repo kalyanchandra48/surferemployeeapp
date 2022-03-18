@@ -13,4 +13,19 @@ class IsarInstance {
       inspector: true,
     );
   }
+
+//   static Future<List<Leaves>> getLeaveData() async {
+//     final dir = await getApplicationSupportDirectory(); // path_provider package
+//     final isar = await Isar.open(
+//       schemas: [
+//         LeavesSchema,
+//       ],
+//       directory: dir.path,
+//       inspector: true,
+//     );
+//     final List<Leaves> leaves = await isar.leavess.where().findAll();
+//     print('LEAVE FROM TEST FUNTION');
+//     print(leaves);
+//     return leaves;
+//   }
 }

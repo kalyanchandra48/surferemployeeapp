@@ -2,11 +2,16 @@ import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class BottomNavBarWidget extends StatelessWidget {
+class BottomNavBarWidget extends StatefulWidget {
   const BottomNavBarWidget({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<BottomNavBarWidget> createState() => _BottomNavBarWidgetState();
+}
+
+class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(

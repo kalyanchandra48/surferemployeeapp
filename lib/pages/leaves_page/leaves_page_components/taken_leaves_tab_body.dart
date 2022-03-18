@@ -1,12 +1,5 @@
-import 'package:employee_app/models/leaves.dart';
-import 'package:employee_app/services/calendar_events.dart';
-import 'package:employee_app/services/isar.dart';
-import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
-
-import 'multiple_days_leave_info_widget.dart';
-import 'one_day_leave_info_widget.dart';
+import 'leaves_page_components.dart';
 
 class TakenLeavesTabBody extends StatelessWidget {
   const TakenLeavesTabBody({Key? key}) : super(key: key);

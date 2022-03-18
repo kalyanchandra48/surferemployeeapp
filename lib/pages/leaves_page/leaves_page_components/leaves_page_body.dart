@@ -1,8 +1,5 @@
-import 'package:employee_app/common_widgets/tab_delegate.dart';
-import 'package:employee_app/pages/leaves_page/leaves_page_components.dart/overview_tab_body.dart';
-import 'package:employee_app/pages/leaves_page/leaves_page_components.dart/taken_leaves_tab_body.dart';
 import 'package:flutter/material.dart';
-import 'holidays_tab_body.dart';
+import './leaves_page_components.dart';
 
 class LeavesPageBody extends StatefulWidget {
   const LeavesPageBody({Key? key}) : super(key: key);

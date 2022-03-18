@@ -1,8 +1,5 @@
-import 'package:employee_app/pages/leaves_page/leaves_page_components.dart/multiple_days_leave_info_widget.dart';
-import 'package:employee_app/pages/leaves_page/leaves_page_components.dart/one_day_leave_info_widget.dart';
-import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import './leaves_page_components.dart';
 
 class HolidaysTabBody extends StatelessWidget {
   const HolidaysTabBody({Key? key}) : super(key: key);

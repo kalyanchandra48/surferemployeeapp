@@ -36,11 +36,13 @@ class MyApp extends StatelessWidget {
   final CalendarService _cs = locator<CalendarService>();
   fetchleaves() async {
     final myLeaves = await isar.leavess.where().findAll();
+    print(myLeaves);
+    return myLeaves;
   }
 
   @override
   Widget build(BuildContext context) {
-//    _cs.obtainCredentials(isar);
+    _cs.obtainCredentials(isar);
     fetchleaves();
 
     return MultiProvider(

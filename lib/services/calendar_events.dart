@@ -40,8 +40,10 @@ class CalendarService {
           );
         }
         for (var element in userLeaves) {
-          event.writeTxn((isar) => isar.leavess.put(element));
+          await event.writeTxn((isar) async => await isar.leavess.put(element));
         }
+        final leav = await event.leavess.where().findAll();
+        print('this leaves $leav');
         return result;
       });
 

@@ -1,15 +1,9 @@
-import 'package:employee_app/common_widgets/navigation_button.dart';
-import 'package:employee_app/common_widgets/textfield_widget.dart';
-import 'package:employee_app/styles/styles.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'time_selector_widget.dart';
 import 'dart:async';
-
-import 'leave_date_time_widget.dart';
+import 'package:flutter/material.dart';
+import 'leaves_page_components.dart';
 
 class ApplyLeaveBottomSheetBody extends StatefulWidget {
-  ApplyLeaveBottomSheetBody({
+  const ApplyLeaveBottomSheetBody({
     Key? key,
   }) : super(key: key);
 

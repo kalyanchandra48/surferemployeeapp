@@ -1,16 +1,12 @@
-import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
-
+import './leaves_page_components.dart';
 import 'package:intl/intl.dart';
 
-class LeaveDateTimeWidget extends StatefulWidget {
+class TimeSelectorWidget extends StatefulWidget {
   final String hintText;
   final double width;
   final TextEditingController controller;
-
-  const LeaveDateTimeWidget({
+  const TimeSelectorWidget({
     required this.hintText,
     required this.width,
     required this.controller,
@@ -18,10 +14,10 @@ class LeaveDateTimeWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _LeaveDateTimeWidgetState createState() => _LeaveDateTimeWidgetState();
+  _TimeSelectorWidgetState createState() => _TimeSelectorWidgetState();
 }
 
-class _LeaveDateTimeWidgetState extends State<LeaveDateTimeWidget> {
+class _TimeSelectorWidgetState extends State<TimeSelectorWidget> {
   void _showDialog(Widget child) {
     showCupertinoModalPopup<void>(
         context: context,
@@ -55,17 +51,19 @@ class _LeaveDateTimeWidgetState extends State<LeaveDateTimeWidget> {
           borderRadius: BorderRadii.radius8px),
       child: TextFormField(
         onTap: () {
-            _showDialog(CupertinoDatePicker(
-                initialDateTime: DateTime.now(),
-                maximumDate: DateTime(2100),
-                minimumDate: DateTime(1990),
-                mode: CupertinoDatePickerMode.date,
-                onDateTimeChanged: (DateTime date) {
-                  widget.controller.text = DateFormat('dd MMMM yyyy').format(date);
-                }));
+          _showDialog(
+            CupertinoDatePicker(
+              use24hFormat: true,
+              mode: CupertinoDatePickerMode.time,
+              onDateTimeChanged: (value) {
+                widget.controller.text = DateFormat('HH:mm ').format(value) +
+                    (DateTime.now().timeZoneName);
+              },
+              initialDateTime: DateTime.now(),
+            ),
+          );
         },
         controller: widget.controller,
-        //controller: ,
         style: AppFonts.smallText12.copyWith(
           fontSize: 16,
           color: TextColors.secondaryColor,
@@ -73,10 +71,6 @@ class _LeaveDateTimeWidgetState extends State<LeaveDateTimeWidget> {
         textCapitalization: TextCapitalization.sentences,
         maxLines: 1,
         decoration: InputDecoration(
-            // suffixIcon: const Icon(
-            //   Icons.keyboard_arrow_down,
-            //   color: Colors.black,
-            // ),
             border: InputBorder.none,
             hintText: widget.hintText,
             hintStyle: AppFonts.hintText14.copyWith(fontSize: 16)),

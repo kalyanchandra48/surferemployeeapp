@@ -1,22 +1,16 @@
-import 'package:employee_app/common_widgets/background_grid_lines.dart';
-import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
-import 'leaves_info_widget.dart';
+import './leaves_page_components.dart';
 
 class OverviewTabBody extends StatelessWidget {
   OverviewTabBody({Key? key}) : super(key: key);
-  List<String> currentvalue = ['6', '10', '15', '2', '3', '18'];
+  final List<String> currentvalue = ['6', '10', '15', '2', '3', '18'];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //height: MediaQuery.of(context).size.height,
       padding: const EdgeInsets.symmetric(horizontal: 22),
-      //color: Colors.red,
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        //mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const SizedBox(

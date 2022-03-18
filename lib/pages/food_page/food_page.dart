@@ -1,10 +1,5 @@
-import 'package:employee_app/common_widgets/common_widgets_component.dart';
-import 'package:employee_app/pages/food_page/food_page_components/food_page_panel_body.dart';
 import 'package:flutter/material.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:employee_app/pages/food_page/food_page_components/food_history_sheet.dart';
-
-import 'food_page_components/checkout_sheet.dart';
+import './food_page_components/food_page_components.dart';
 
 class FoodPage extends StatefulWidget {
   const FoodPage({Key? key}) : super(key: key);
