@@ -5,6 +5,7 @@ import 'package:isar/isar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer';
 import 'package:intl/intl.dart';
+import 'dart:async';
 
 class CalendarService {
   static const _scopes = [
@@ -44,17 +45,13 @@ class CalendarService {
       try {
         calendar.events.insert(event, calendarId).then((value) {
           print("ADDEDDD_________________${value.status}");
-          if (value.status == "confirmed") {
-            log('Event added in google calendar');
-          } else {
-            log("Unable to add event in google calendar");
-          }
         });
       } catch (e) {
         log('Error creating event $e');
       }
     });
   }
+
 
   Future<Events> obtainCredentials(Isar event) async =>
       await clientViaUserConsent(
@@ -87,6 +84,10 @@ class CalendarService {
             await event.leavess.put(element);
           });
         }
+        Stream<List<Leaves>> getLeaves = (() async* {
+          await event.leavess.where().findAll();
+        })();
+        print(userLeaves);
         final lea = await event.leavess.where().findAll();
         print('this is lea $lea');
         return result;

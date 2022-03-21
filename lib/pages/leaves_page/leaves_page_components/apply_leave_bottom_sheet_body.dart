@@ -21,15 +21,10 @@ class _ApplyLeaveBottomSheetBodyState extends State<ApplyLeaveBottomSheetBody> {
       TextEditingController();
 
   final TextEditingController startdateController = TextEditingController();
-
   final TextEditingController starttimeController = TextEditingController();
-
   final TextEditingController enddateController = TextEditingController();
-
   final TextEditingController endtimeController = TextEditingController();
-
   final StreamController<bool> _stream = StreamController<bool>.broadcast();
-
   bool checkRequestFields() {
     if (_descriptionTextController.text.length > 20 &&
         startdateController.text.length > 6 &&

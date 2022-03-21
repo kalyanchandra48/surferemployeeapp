@@ -4,7 +4,7 @@ import './leaves_page_components.dart';
 class OverviewTabBody extends StatelessWidget {
   OverviewTabBody({Key? key}) : super(key: key);
   List<String> currentvalue = ['6', '10', '15', '2', '3', '18'];
-  List<String> selectingYears = ['2021', '2020', '2019'];
+  List<String> selectingYears = ['2021'];
   @override
   Widget build(BuildContext context) {
     return Container(
