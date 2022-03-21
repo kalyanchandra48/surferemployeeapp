@@ -1,4 +1,5 @@
 import 'package:employee_app/models/leaves.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:isar/isar.dart';
@@ -9,6 +10,7 @@ class CalendarService {
     CalendarApi.calendarScope,
     CalendarApi.calendarEventsScope
   ];
+  final storage = FlutterSecureStorage();
   var clientId = ClientId(
       '325425263810-48ootrrsk65jfsmme71ck085tf1e2h5f.apps.googleusercontent.com',
       '');
@@ -39,11 +41,15 @@ class CalendarService {
                 fromDate: e.end!.date ?? DateTime.now()),
           );
         }
-        for (var element in userLeaves) {
-          await event.writeTxn((event) async {
-            await event.leavess.put(element);
-          });
-        }
+        userLeaves.forEach((element) async {
+          await event.leavess.where().findAll();
+        });
+
+        // for (var element in userLeaves) {
+        //   await event.writeTxn((event) async {
+        //     await event.leavess.put(element);
+        //   });
+        // }
         final lea = await event.leavess.where().findAll();
         print('this is lea $lea');
         return result;

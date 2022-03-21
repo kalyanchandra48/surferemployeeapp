@@ -17,7 +17,7 @@ extension GetLeavesCollection on Isar {
 final LeavesSchema = CollectionSchema(
   name: 'Leaves',
   schema:
-      '{"name":"Leaves","idName":"id","properties":[{"name":"category","type":"String"},{"name":"description","type":"String"},{"name":"fromDate","type":"Long"},{"name":"hashCode","type":"Long"},{"name":"leaveId","type":"String"},{"name":"title","type":"String"},{"name":"toDate","type":"Long"}],"indexes":[],"links":[]}',
+      '{"name":"Leaves","idName":"id","properties":[{"name":"category","type":"String"},{"name":"description","type":"String"},{"name":"fromDate","type":"Long"},{"name":"hashCode","type":"Long"},{"name":"leaveID","type":"String"},{"name":"title","type":"String"},{"name":"toDate","type":"Long"}],"indexes":[],"links":[]}',
   nativeAdapter: const _LeavesNativeAdapter(),
   webAdapter: const _LeavesWebAdapter(),
   idName: 'id',
@@ -26,7 +26,7 @@ final LeavesSchema = CollectionSchema(
     'description': 1,
     'fromDate': 2,
     'hashCode': 3,
-    'leaveId': 4,
+    'leaveID': 4,
     'title': 5,
     'toDate': 6
   },
@@ -60,7 +60,7 @@ class _LeavesWebAdapter extends IsarWebTypeAdapter<Leaves> {
         jsObj, 'fromDate', object.fromDate.toUtc().millisecondsSinceEpoch);
     IsarNative.jsObjectSet(jsObj, 'hashCode', object.hashCode);
     IsarNative.jsObjectSet(jsObj, 'id', object.id);
-    IsarNative.jsObjectSet(jsObj, 'leaveId', object.leaveId);
+    IsarNative.jsObjectSet(jsObj, 'leaveID', object.leaveId);
     IsarNative.jsObjectSet(jsObj, 'title', object.title);
     IsarNative.jsObjectSet(
         jsObj, 'toDate', object.toDate.toUtc().millisecondsSinceEpoch);
@@ -78,7 +78,7 @@ class _LeavesWebAdapter extends IsarWebTypeAdapter<Leaves> {
                   isUtc: true)
               .toLocal()
           : DateTime.fromMillisecondsSinceEpoch(0),
-      leaveId: IsarNative.jsObjectGet(jsObj, 'leaveId') ?? '',
+      leaveId: IsarNative.jsObjectGet(jsObj, 'leaveID') ?? '',
       title: IsarNative.jsObjectGet(jsObj, 'title') ?? '',
       toDate: IsarNative.jsObjectGet(jsObj, 'toDate') != null
           ? DateTime.fromMillisecondsSinceEpoch(
@@ -87,7 +87,7 @@ class _LeavesWebAdapter extends IsarWebTypeAdapter<Leaves> {
               .toLocal()
           : DateTime.fromMillisecondsSinceEpoch(0),
     );
-    object.id = IsarNative.jsObjectGet(jsObj, 'id') ?? double.negativeInfinity;
+    object.id = IsarNative.jsObjectGet(jsObj, 'id');
     return object;
   }
 
@@ -109,10 +109,9 @@ class _LeavesWebAdapter extends IsarWebTypeAdapter<Leaves> {
         return (IsarNative.jsObjectGet(jsObj, 'hashCode') ??
             double.negativeInfinity) as P;
       case 'id':
-        return (IsarNative.jsObjectGet(jsObj, 'id') ?? double.negativeInfinity)
-            as P;
-      case 'leaveId':
-        return (IsarNative.jsObjectGet(jsObj, 'leaveId') ?? '') as P;
+        return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
+      case 'leaveID':
+        return (IsarNative.jsObjectGet(jsObj, 'leaveID') ?? '') as P;
       case 'title':
         return (IsarNative.jsObjectGet(jsObj, 'title') ?? '') as P;
       case 'toDate':
@@ -149,8 +148,8 @@ class _LeavesNativeAdapter extends IsarNativeTypeAdapter<Leaves> {
     final value3 = object.hashCode;
     final _hashCode = value3;
     final value4 = object.leaveId;
-    final _leaveId = IsarBinaryWriter.utf8Encoder.convert(value4);
-    dynamicSize += (_leaveId.length) as int;
+    final _leaveID = IsarBinaryWriter.utf8Encoder.convert(value4);
+    dynamicSize += (_leaveID.length) as int;
     final value5 = object.title;
     final _title = IsarBinaryWriter.utf8Encoder.convert(value5);
     dynamicSize += (_title.length) as int;
@@ -166,7 +165,7 @@ class _LeavesNativeAdapter extends IsarNativeTypeAdapter<Leaves> {
     writer.writeBytes(offsets[1], _description);
     writer.writeDateTime(offsets[2], _fromDate);
     writer.writeLong(offsets[3], _hashCode);
-    writer.writeBytes(offsets[4], _leaveId);
+    writer.writeBytes(offsets[4], _leaveID);
     writer.writeBytes(offsets[5], _title);
     writer.writeDateTime(offsets[6], _toDate);
   }
@@ -222,7 +221,7 @@ extension LeavesQueryWhereSort on QueryBuilder<Leaves, Leaves, QWhere> {
 }
 
 extension LeavesQueryWhere on QueryBuilder<Leaves, Leaves, QWhereClause> {
-  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idEqualTo(int id) {
+  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idEqualTo(int? id) {
     return addWhereClauseInternal(WhereClause(
       indexName: null,
       lower: [id],
@@ -232,7 +231,7 @@ extension LeavesQueryWhere on QueryBuilder<Leaves, Leaves, QWhereClause> {
     ));
   }
 
-  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idNotEqualTo(int id) {
+  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idNotEqualTo(int? id) {
     if (whereSortInternal == Sort.asc) {
       return addWhereClauseInternal(WhereClause(
         indexName: null,
@@ -257,7 +256,7 @@ extension LeavesQueryWhere on QueryBuilder<Leaves, Leaves, QWhereClause> {
   }
 
   QueryBuilder<Leaves, Leaves, QAfterWhereClause> idGreaterThan(
-    int id, {
+    int? id, {
     bool include = false,
   }) {
     return addWhereClauseInternal(WhereClause(
@@ -268,7 +267,7 @@ extension LeavesQueryWhere on QueryBuilder<Leaves, Leaves, QWhereClause> {
   }
 
   QueryBuilder<Leaves, Leaves, QAfterWhereClause> idLessThan(
-    int id, {
+    int? id, {
     bool include = false,
   }) {
     return addWhereClauseInternal(WhereClause(
@@ -279,8 +278,8 @@ extension LeavesQueryWhere on QueryBuilder<Leaves, Leaves, QWhereClause> {
   }
 
   QueryBuilder<Leaves, Leaves, QAfterWhereClause> idBetween(
-    int lowerId,
-    int upperId, {
+    int? lowerId,
+    int? upperId, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -597,7 +596,15 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
     ));
   }
 
-  QueryBuilder<Leaves, Leaves, QAfterFilterCondition> idEqualTo(int value) {
+  QueryBuilder<Leaves, Leaves, QAfterFilterCondition> idIsNull() {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'id',
+      value: null,
+    ));
+  }
+
+  QueryBuilder<Leaves, Leaves, QAfterFilterCondition> idEqualTo(int? value) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.eq,
       property: 'id',
@@ -606,7 +613,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
   }
 
   QueryBuilder<Leaves, Leaves, QAfterFilterCondition> idGreaterThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return addFilterConditionInternal(FilterCondition(
@@ -618,7 +625,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
   }
 
   QueryBuilder<Leaves, Leaves, QAfterFilterCondition> idLessThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return addFilterConditionInternal(FilterCondition(
@@ -630,8 +637,8 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
   }
 
   QueryBuilder<Leaves, Leaves, QAfterFilterCondition> idBetween(
-    int lower,
-    int upper, {
+    int? lower,
+    int? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -650,7 +657,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
   }) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.eq,
-      property: 'leaveId',
+      property: 'leaveID',
       value: value,
       caseSensitive: caseSensitive,
     ));
@@ -664,7 +671,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.gt,
       include: include,
-      property: 'leaveId',
+      property: 'leaveID',
       value: value,
       caseSensitive: caseSensitive,
     ));
@@ -678,7 +685,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.lt,
       include: include,
-      property: 'leaveId',
+      property: 'leaveID',
       value: value,
       caseSensitive: caseSensitive,
     ));
@@ -692,7 +699,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
     bool includeUpper = true,
   }) {
     return addFilterConditionInternal(FilterCondition.between(
-      property: 'leaveId',
+      property: 'leaveID',
       lower: lower,
       includeLower: includeLower,
       upper: upper,
@@ -707,7 +714,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
   }) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.startsWith,
-      property: 'leaveId',
+      property: 'leaveID',
       value: value,
       caseSensitive: caseSensitive,
     ));
@@ -719,7 +726,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
   }) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.endsWith,
-      property: 'leaveId',
+      property: 'leaveID',
       value: value,
       caseSensitive: caseSensitive,
     ));
@@ -730,7 +737,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
       {bool caseSensitive = true}) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.contains,
-      property: 'leaveId',
+      property: 'leaveID',
       value: value,
       caseSensitive: caseSensitive,
     ));
@@ -741,7 +748,7 @@ extension LeavesQueryFilter on QueryBuilder<Leaves, Leaves, QFilterCondition> {
       {bool caseSensitive = true}) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.matches,
-      property: 'leaveId',
+      property: 'leaveID',
       value: pattern,
       caseSensitive: caseSensitive,
     ));
@@ -943,11 +950,11 @@ extension LeavesQueryWhereSortBy on QueryBuilder<Leaves, Leaves, QSortBy> {
   }
 
   QueryBuilder<Leaves, Leaves, QAfterSortBy> sortByLeaveId() {
-    return addSortByInternal('leaveId', Sort.asc);
+    return addSortByInternal('leaveID', Sort.asc);
   }
 
   QueryBuilder<Leaves, Leaves, QAfterSortBy> sortByLeaveIdDesc() {
-    return addSortByInternal('leaveId', Sort.desc);
+    return addSortByInternal('leaveID', Sort.desc);
   }
 
   QueryBuilder<Leaves, Leaves, QAfterSortBy> sortByTitle() {
@@ -1010,11 +1017,11 @@ extension LeavesQueryWhereSortThenBy
   }
 
   QueryBuilder<Leaves, Leaves, QAfterSortBy> thenByLeaveId() {
-    return addSortByInternal('leaveId', Sort.asc);
+    return addSortByInternal('leaveID', Sort.asc);
   }
 
   QueryBuilder<Leaves, Leaves, QAfterSortBy> thenByLeaveIdDesc() {
-    return addSortByInternal('leaveId', Sort.desc);
+    return addSortByInternal('leaveID', Sort.desc);
   }
 
   QueryBuilder<Leaves, Leaves, QAfterSortBy> thenByTitle() {
@@ -1059,7 +1066,7 @@ extension LeavesQueryWhereDistinct on QueryBuilder<Leaves, Leaves, QDistinct> {
 
   QueryBuilder<Leaves, Leaves, QDistinct> distinctByLeaveId(
       {bool caseSensitive = true}) {
-    return addDistinctByInternal('leaveId', caseSensitive: caseSensitive);
+    return addDistinctByInternal('leaveID', caseSensitive: caseSensitive);
   }
 
   QueryBuilder<Leaves, Leaves, QDistinct> distinctByTitle(
@@ -1089,12 +1096,12 @@ extension LeavesQueryProperty on QueryBuilder<Leaves, Leaves, QQueryProperty> {
     return addPropertyNameInternal('hashCode');
   }
 
-  QueryBuilder<Leaves, int, QQueryOperations> idProperty() {
+  QueryBuilder<Leaves, int?, QQueryOperations> idProperty() {
     return addPropertyNameInternal('id');
   }
 
   QueryBuilder<Leaves, String, QQueryOperations> leaveIdProperty() {
-    return addPropertyNameInternal('leaveId');
+    return addPropertyNameInternal('leaveID');
   }
 
   QueryBuilder<Leaves, String, QQueryOperations> titleProperty() {

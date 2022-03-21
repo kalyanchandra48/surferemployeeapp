@@ -4,13 +4,20 @@ part 'leaves.g.dart';
 
 @Collection()
 class Leaves {
-  int id = Isar.autoIncrement;
+  @Id()
+  int? id;
+  @Name('leaveID')
   String leaveId;
+  @Name('title')
   String title;
+  @Name('description')
   String description;
+  @Name('category')
   String category;
   // it can be either Vacation India and can also be Holidays in India
+  @Name('toDate')
   DateTime toDate;
+  @Name('fromDate')
   DateTime fromDate;
 
   Leaves({

@@ -1,5 +1,6 @@
 import 'package:employee_app/models/auth_status.dart';
 import 'package:employee_app/models/leaves.dart';
+import 'package:employee_app/provider/app_view_model.dart';
 import 'package:employee_app/provider/my_cart_provider.dart';
 import 'package:employee_app/pages/login_page/login_page.dart';
 import 'package:employee_app/services/auth.dart';
@@ -42,7 +43,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //_cs.obtainCredentials(isar);
+    _cs.obtainCredentials(isar);
+
+    AppViewModel viewModel = AppViewModel(isar);
     //fetchleaves();
 
     return MultiProvider(

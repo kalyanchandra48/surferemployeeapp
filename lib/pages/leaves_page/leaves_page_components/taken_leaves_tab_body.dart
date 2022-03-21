@@ -1,11 +1,20 @@
+import 'package:employee_app/models/leaves.dart';
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 import 'leaves_page_components.dart';
-
 import 'package:employee_app/services/locator.dart';
+
 class TakenLeavesTabBody extends StatelessWidget {
-  const TakenLeavesTabBody({Key? key}) : super(key: key);
+  Isar? isar;
+
+  TakenLeavesTabBody({Key? key, this.isar}) : super(key: key);
+  IsarCollection<Leaves>? collection;
+
+  List<Leaves>? myLeaves = [];
+
   @override
   Widget build(BuildContext context) {
+    print(isar?.getCollection('Leaves'));
     return ListView.separated(
         shrinkWrap: true,
         itemCount: 3,

@@ -20,7 +20,7 @@ class _LeavesPageBodyState extends State<LeavesPageBody>
 
   List<Widget> tabBody = <Widget>[
     OverviewTabBody(),
-    const TakenLeavesTabBody(),
+    TakenLeavesTabBody(),
     const HolidaysTabBody(),
   ];
 
