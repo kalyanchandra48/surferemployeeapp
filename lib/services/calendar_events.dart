@@ -4,6 +4,9 @@ import 'package:googleapis/calendar/v3.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:isar/isar.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:developer';
+import 'package:intl/intl.dart';
+import 'dart:async';
 
 class CalendarService {
   static const _scopes = [
@@ -14,6 +17,42 @@ class CalendarService {
   var clientId = ClientId(
       '325425263810-48ootrrsk65jfsmme71ck085tf1e2h5f.apps.googleusercontent.com',
       '');
+
+  insert(reason, description, starttime, endtime) async {
+    var clientId = ClientId(
+        '325425263810-48ootrrsk65jfsmme71ck085tf1e2h5f.apps.googleusercontent.com');
+    await clientViaUserConsent(
+      clientId,
+      _scopes,
+      _prompt,
+    ).then((AuthClient client) async {
+      var calendar = CalendarApi(client);
+      String calendarId = "kalyan@surfboard.se";
+      Event event = Event();
+      event.summary = reason;
+      event.description = description;
+      DateFormat dateFormat = DateFormat("dd MMMM yyyy HH:mm");
+      DateTime startdate = dateFormat.parse(starttime);
+      DateTime enddate = dateFormat.parse(endtime);
+      print(startdate);
+      print(enddate);
+      EventDateTime start = new EventDateTime();
+      start.dateTime = startdate;
+      start.timeZone = "GMT+05:30";
+      event.start = start;
+      EventDateTime end = new EventDateTime();
+      end.dateTime = enddate;
+      end.timeZone = "GMT+05:30";
+      event.end = end;
+      try {
+        calendar.events.insert(event, calendarId).then((value) {
+          print("ADDEDDD_________________${value.status}");
+        });
+      } catch (e) {
+        log('Error creating event $e');
+      }
+    });
+  }
 
   Future<Events> obtainCredentials(Isar event) async =>
       await clientViaUserConsent(
@@ -41,15 +80,15 @@ class CalendarService {
                 fromDate: e.end!.date ?? DateTime.now()),
           );
         }
-        userLeaves.forEach((element) async {
-          await event.leavess.where().findAll();
-        });
-
-        // for (var element in userLeaves) {
-        //   await event.writeTxn((event) async {
-        //     await event.leavess.put(element);
-        //   });
-        // }
+        for (var element in userLeaves) {
+          await event.writeTxn((event) async {
+            await event.leavess.put(element);
+          });
+        }
+        // Stream<List<Leaves>> getLeaves = (() async* {
+        //   await event.leavess.where().findAll();
+        // })();
+        print(userLeaves);
         final lea = await event.leavess.where().findAll();
         print('this is lea $lea');
         return result;

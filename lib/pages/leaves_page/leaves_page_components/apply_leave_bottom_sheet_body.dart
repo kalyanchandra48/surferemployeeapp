@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'leaves_page_components.dart';
+import 'package:employee_app/services/calendar_events.dart';
+import 'package:intl/intl.dart';
 
 class ApplyLeaveBottomSheetBody extends StatefulWidget {
   const ApplyLeaveBottomSheetBody({
@@ -19,15 +21,10 @@ class _ApplyLeaveBottomSheetBodyState extends State<ApplyLeaveBottomSheetBody> {
       TextEditingController();
 
   final TextEditingController startdateController = TextEditingController();
-
   final TextEditingController starttimeController = TextEditingController();
-
   final TextEditingController enddateController = TextEditingController();
-
   final TextEditingController endtimeController = TextEditingController();
-
   final StreamController<bool> _stream = StreamController<bool>.broadcast();
-
   bool checkRequestFields() {
     if (_descriptionTextController.text.length > 20 &&
         startdateController.text.length > 6 &&
@@ -52,6 +49,10 @@ class _ApplyLeaveBottomSheetBodyState extends State<ApplyLeaveBottomSheetBody> {
     super.dispose();
   }
 
+  String starttime = '';
+  String endtime = '';
+  DateFormat dateFormat = DateFormat("dd MMMM yyyy HH:mm");
+  CalendarService calendarService = CalendarService();
   @override
   Widget build(BuildContext context) {
     Timer.periodic(
@@ -170,7 +171,20 @@ class _ApplyLeaveBottomSheetBodyState extends State<ApplyLeaveBottomSheetBody> {
                 stream: _stream.stream,
                 builder: (context, snapshot) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      String starttime =
+                          startdateController.text +' ' + starttimeController.text;
+                      String endtime =
+                          enddateController.text + ' ' + endtimeController.text;
+                      if (snapshot.data == true) {
+                        calendarService.insert(
+                          _reasonTextController.text,
+                          _descriptionTextController.text,
+                          starttime,
+                          endtime,
+                        );
+                      }
+                    },
                     child: NavigationButton(
                         buttonColor: snapshot.data == true
                             ? ButtonColors.nextButton

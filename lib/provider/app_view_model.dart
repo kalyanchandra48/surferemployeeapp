@@ -4,7 +4,7 @@ import 'package:isar/isar.dart';
 
 class AppViewModel extends ViewModel {
   AppViewModel(this.isar);
-  late TakenLeavesTabBody takenLeave = TakenLeavesTabBody(isar: isar);
+  // late TakenLeavesTabBody takenLeave = TakenLeavesTabBody(isar);
   Isar? isar;
 }
 

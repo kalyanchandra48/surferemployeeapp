@@ -13,6 +13,7 @@ class BottomNavBarWidget extends StatefulWidget {
 
 class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   @override
+  bool click = false;
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
@@ -24,12 +25,20 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
-            onTap: () {},
-            child: Container(
+            onTap: () {
+              setState(() {
+                click = !click;
+              });
+            },
+            child: AnimatedContainer(
               height: 52,
               width: 52,
+              curve: Curves.fastLinearToSlowEaseIn,
+              duration: const Duration(seconds: 1),
               decoration: BoxDecoration(
-                  color: IconColors.primaryColor,
+                  color: click
+                      ? ContainerColors.surfblue
+                      : ContainerColors.whiteContainer,
                   borderRadius: BorderRadii.radius12px,
                   boxShadow: [
                     BoxShadow(
@@ -46,9 +55,10 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
               ),
             ),
           ),
-          Container(
+          AnimatedContainer(
             height: 52,
             width: 52,
+            duration: const Duration(seconds: 1),
             decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.1),
                 border:
@@ -60,9 +70,10 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
               fit: BoxFit.scaleDown,
             ),
           ),
-          Container(
+          AnimatedContainer(
             height: 52,
             width: 52,
+            duration: const Duration(seconds: 1),
             decoration: BoxDecoration(
                 border:
                     Border.all(color: Colors.white.withOpacity(0.1), width: 2),
