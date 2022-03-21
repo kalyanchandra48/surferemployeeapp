@@ -24,7 +24,7 @@ void main() async {
     inspector: true,
   );
 
-  setupLocator();
+  setupLocator(isar);
   runApp(MyApp(
     isar: isar,
   ));
@@ -57,6 +57,8 @@ class MyApp extends StatelessWidget {
             message: 'verification yet to be started',
           ),
         ),
+        StreamProvider<AppViewModel>.value(
+            value: null, initialData: AppViewModel(isar)),
         ChangeNotifierProvider(create: (_) => MyCart())
       ],
       child: MaterialApp(
