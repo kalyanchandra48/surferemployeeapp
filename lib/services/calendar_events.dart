@@ -85,12 +85,53 @@ class CalendarService {
             await event.leavess.put(element);
           });
         }
-        // Stream<List<Leaves>> getLeaves = (() async* {
-        //   await event.leavess.where().findAll();
-        // })();
-        print(userLeaves);
         final lea = await event.leavess.where().findAll();
         print('this is lea $lea');
+        return result;
+      });
+  Future<Events> getIndiaHolidays(Isar isar) async =>
+      await clientViaUserConsent(
+        clientId,
+        _scopes,
+        _prompt,
+      ).then((AuthClient client) async {
+        var calendar = CalendarApi(client);
+        String calendarId = "en.indian#holiday@group.v.calendar.google.com";
+        Events result = await calendar.events.list(calendarId);
+        List<Leaves> indiaLeaves = [];
+        for (var e in result.items!) {
+          indiaLeaves.add(
+            Leaves(
+                leaveId: e.id ?? '',
+                title: e.summary ?? '',
+                description: e.description ?? '',
+                category: 'Holidays in India',
+                toDate: e.end!.date ?? DateTime.now(),
+                fromDate: e.end!.date ?? DateTime.now()),
+          );
+        }
+        for (var element in indiaLeaves) {
+          await isar.writeTxn((isar) async {
+            await isar.leavess.put(element);
+          });
+        }
+
+        /* final india = await isar.leavess
+            .buildQuery(
+              filter: FilterGroup.and([
+                FilterCondition(
+                  type: ConditionType.contains,
+                  property: 'category',
+                  value: 'Holidays in India',
+                  caseSensitive: false,
+                ),
+              ]),
+            )
+            .findAll();
+
+        print('categoised india leaves are ${india}');
+	*/
+        print(indiaLeaves);
         return result;
       });
 

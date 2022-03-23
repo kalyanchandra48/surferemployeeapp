@@ -43,7 +43,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _cs.obtainCredentials(isar);
+//    _cs.obtainCredentials(isar);
+    _cs.getIndiaHolidays(isar);
 
     AppViewModel viewModel = AppViewModel(isar);
     //fetchleaves();

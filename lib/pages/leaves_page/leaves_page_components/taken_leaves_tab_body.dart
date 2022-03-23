@@ -3,6 +3,7 @@ import 'package:employee_app/provider/app_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'leaves_page_components.dart';
+import 'package:intl/intl.dart';
 
 class TakenLeavesTabBody extends StatelessWidget {
   const TakenLeavesTabBody({Key? key}) : super(key: key);
@@ -10,8 +11,8 @@ class TakenLeavesTabBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppViewModel viewModel = Provider.of<AppViewModel>(context);
-    return StreamBuilder<List<Leaves>>(
-        stream: viewModel.getLeaves(),
+    return StreamBuilder<dynamic>(
+        stream: viewModel.getuserLeaves(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Center(
@@ -24,17 +25,23 @@ class TakenLeavesTabBody extends StatelessWidget {
           if (snapshot.hasData) {
             return ListView.separated(
                 shrinkWrap: true,
+                reverse: true,
                 itemCount: snapshot.data!.length,
                 padding: const EdgeInsets.only(
-                    left: 24, top: 4, right: 24, bottom: 40),
+                    left: 24, top: 0, right: 24, bottom: 40),
                 separatorBuilder: (BuildContext context, int index) {
                   return const SizedBox(height: 10);
                 },
                 itemBuilder: (BuildContext context, int index) {
+                  String monthname = DateFormat('MMMM yyyy')
+                      .format(snapshot.data![index].toDate);
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('August 2021', style: AppFonts.mediumTextBB),
+                      (snapshot.data![index].toDate ==
+                              snapshot.data![index].toDate)
+                          ? Text(monthname, style: AppFonts.foodNameHeader)
+                          : SizedBox.shrink(),
                       const SizedBox(
                         height: 20,
                       ),

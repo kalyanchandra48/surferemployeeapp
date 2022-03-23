@@ -6,10 +6,35 @@ import '../models/leaves.dart';
 
 class AppViewModel extends ViewModel {
   AppViewModel(this.isar);
-  // late TakenLeavesTabBody takenLeave = TakenLeavesTabBody(isar);
   Isar isar;
-  Stream<List<Leaves>> getLeaves() async* {
-    yield await isar.leavess.where().findAll();
+
+  Stream<dynamic> getuserLeaves() async* {
+    final userLeaves = await isar.leavess
+        .buildQuery(
+          filter: FilterGroup.and([
+            FilterCondition(
+              type: ConditionType.contains,
+              property: 'category',
+              value: 'Vacation - India',
+            ),
+          ]),
+        )
+        .findAll();
+    yield userLeaves;
+  }
+
+  Stream<List<Leaves>> getIndiaLeaves() async* {
+    final hol = await isar.leavess
+      ..buildQuery(
+        filter: FilterGroup.and([
+          FilterCondition(
+            type: ConditionType.contains,
+            property: 'category',
+            value: 'Holidays in India',
+          ),
+        ]),
+      ).findAll();
+    yield hol as List<Leaves>;
   }
 }
 
