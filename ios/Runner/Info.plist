@@ -27,17 +27,26 @@
 			<string>com.surfboard.employee-app</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.88259146899-5m6jh1gp88fmajp3dfni9vi05ftkifso</string>
+				<string>com.googleusercontent.apps.325425263810-48ootrrsk65jfsmme71ck085tf1e2h5f
+</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
+		</dict>
 	</array>
-	<key>LSApplicationQueriesSchemes</key>
-    <array>
-    <string>https</string>
-    <string>http</string>
-    </array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>http</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -34,7 +34,9 @@ class _LeavesPageBodyState extends State<LeavesPageBody>
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      TabBarDelegate(text: tabText, controller: _leavesTabController),
+      TabBarDelegate(
+          text: tabText,
+          controller: _leavesTabController),
       Expanded(
         child: TabBarView(
           controller: _leavesTabController,

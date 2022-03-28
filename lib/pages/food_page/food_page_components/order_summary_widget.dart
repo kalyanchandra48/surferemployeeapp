@@ -11,18 +11,16 @@ class OrderSummaryWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
       decoration: BoxDecoration(
         boxShadow: [
-          const BoxShadow(
+           BoxShadow(
             color: Color(0xffF0D47D),
           ),
           BoxShadow(
-            color: ContainerColors.yellowShadelight,
-            spreadRadius: 0,
-            blurRadius: 1,
-            offset: Offset(0, 0), // changes position of shadow
+          color: ContainerColors.yellowShadelight,
+            spreadRadius: -9,
+            blurRadius:20,
           ),
         ],
         borderRadius: BorderRadii.radius12px,
-        color: Color(0xffFEEFC0),
       ),
       child: Column(
         children: [

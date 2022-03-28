@@ -25,7 +25,7 @@ class TabBarDelegate extends StatelessWidget {
       indicatorWeight: 4,
       labelPadding: const EdgeInsets.only(right: 16),
       indicatorColor: Colors.blue.shade800,
-      indicatorSize: TabBarIndicatorSize.label,
+      indicatorSize: TabBarIndicatorSize.tab,
       labelColor: TextColors.activeTabTextColor,
       unselectedLabelColor: TextColors.inActiveTabTextColor,
       controller: controller,

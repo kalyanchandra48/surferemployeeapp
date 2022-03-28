@@ -15,12 +15,12 @@ class CalendarService {
   ];
   final storage = FlutterSecureStorage();
   var clientId = ClientId(
-      '325425263810-48ootrrsk65jfsmme71ck085tf1e2h5f.apps.googleusercontent.com',
+      '262376380793-358ine20bstbhc4fp5qghmmj9kf9sqa2.apps.googleusercontent.com'
       '');
 
   insert(reason, description, starttime, endtime) async {
     var clientId = ClientId(
-        '325425263810-48ootrrsk65jfsmme71ck085tf1e2h5f.apps.googleusercontent.com');
+        '262376380793-358ine20bstbhc4fp5qghmmj9kf9sqa2.apps.googleusercontent.com');
     await clientViaUserConsent(
       clientId,
       _scopes,
@@ -68,7 +68,6 @@ class CalendarService {
           q: 'kalyan',
         );
         List<Leaves> userLeaves = [];
-        print(result.items![0].summary);
         for (var e in result.items!) {
           userLeaves.add(
             Leaves(
@@ -89,7 +88,7 @@ class CalendarService {
         print('this is lea $lea');
         return result;
       });
-  Future<Events> getIndiaHolidays(Isar isar) async =>
+  /* Future<Events> getIndiaHolidays(Isar isar) async =>
       await clientViaUserConsent(
         clientId,
         _scopes,
@@ -133,7 +132,7 @@ class CalendarService {
 	*/
         print(indiaLeaves);
         return result;
-      });
+      });*/
 
   void _prompt(String url) async {
     if (await canLaunch(url)) {

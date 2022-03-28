@@ -8,33 +8,32 @@ class AppViewModel extends ViewModel {
   AppViewModel(this.isar);
   Isar isar;
 
-  Stream<dynamic> getuserLeaves() async* {
-    final userLeaves = await isar.leavess
-        .buildQuery(
-          filter: FilterGroup.and([
-            FilterCondition(
-              type: ConditionType.contains,
-              property: 'category',
-              value: 'Vacation - India',
-            ),
-          ]),
-        )
-        .findAll();
-    yield userLeaves;
+  Stream<List<Leaves>> getuserLeaves() {
+    Query<Leaves> leavesQuery = isar.leavess.buildQuery(
+      filter: FilterGroup.and([
+        FilterCondition(
+          type: ConditionType.contains,
+          property: 'category',
+          value: 'Vacation - India',
+        ),
+      ]),
+    );
+    Stream<List<Leaves>> userLeaves = leavesQuery.watch(initialReturn: true);
+    return userLeaves;
   }
 
-  Stream<List<Leaves>> getIndiaLeaves() async* {
-    final hol = await isar.leavess
-      ..buildQuery(
-        filter: FilterGroup.and([
-          FilterCondition(
-            type: ConditionType.contains,
-            property: 'category',
-            value: 'Holidays in India',
-          ),
-        ]),
-      ).findAll();
-    yield hol as List<Leaves>;
+  Stream<List<Leaves>> getIndiaLeaves() {
+    Query<Leaves> holQuery = isar.leavess.buildQuery(
+      filter: FilterGroup.and([
+        FilterCondition(
+          type: ConditionType.contains,
+          property: 'category',
+          value: 'Holidays in India',
+        ),
+      ]),
+    );
+    Stream<List<Leaves>> hol = holQuery.watch(initialReturn: true);
+    return hol;
   }
 }
 

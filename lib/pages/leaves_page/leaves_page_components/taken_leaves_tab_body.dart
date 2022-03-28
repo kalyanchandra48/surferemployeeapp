@@ -11,7 +11,7 @@ class TakenLeavesTabBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppViewModel viewModel = Provider.of<AppViewModel>(context);
-    return StreamBuilder<dynamic>(
+    return StreamBuilder<List<Leaves>>(
         stream: viewModel.getuserLeaves(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
