@@ -4,6 +4,7 @@ import 'package:employee_app/provider/app_view_model.dart';
 import 'package:employee_app/provider/my_cart_provider.dart';
 import 'package:employee_app/pages/login_page/login_page.dart';
 import 'package:employee_app/services/auth.dart';
+import 'package:employee_app/services/user_service.dart';
 import 'package:employee_app/services/calendar_events.dart';
 import 'package:employee_app/services/locator.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
 
     AppViewModel viewModel = AppViewModel(isar);
     //fetchleaves();
-
+    UserService.setUserCustomClaims();
     return MultiProvider(
       providers: [
         StreamProvider<AuthStatus>.value(

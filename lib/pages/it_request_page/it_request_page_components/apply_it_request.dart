@@ -46,7 +46,7 @@ class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
   String selectedType = '';
   List<Map<bool, String>> priority = [];
   Future<String> types = ITRequestService.fetchRequestType();
-
+  List _selectedIndexs = [];
   @override
   Widget build(BuildContext context) {
     Timer.periodic(
@@ -235,29 +235,44 @@ class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (BuildContext context, int index) {
+                          final _isSelected =
+                              _selectedIndexs.contains(requestPriority[index]);
                           return GestureDetector(
                             onTap: () {
+                              if (_selectedIndexs.length >= 1) {
+                                _selectedIndexs.removeLast();
+                              }
                               setState(() {
-                                priorityChipBg =
-                                    ContainerColors.selectedBgColor;
-                                chipBorderColor =
-                                    BorderColor.bordersecondaryBlue;
-                                chipTextStyle = AppFonts.mediumTextBB.copyWith(
-                                    color: TextColors.themeColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w900);
+                                if (_isSelected) {
+                                  _selectedIndexs
+                                      .remove(requestPriority[index]);
+                                } else {
+                                  _selectedIndexs.add(requestPriority[index]);
+                                }
+                                print(_selectedIndexs);
+                                print(_selectedIndexs.first);
                               });
                             },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 25, vertical: 10),
                               decoration: BoxDecoration(
-                                  color: priorityChipBg,
+                                  color: _isSelected
+                                      ? ContainerColors.selectedBgColor
+                                      : priorityChipBg,
                                   borderRadius: BorderRadii.radius8px,
-                                  border: Border.all(color: chipBorderColor)),
+                                  border: Border.all(
+                                      color: _isSelected
+                                          ? BorderColor.bordersecondaryBlue
+                                          : chipBorderColor)),
                               child: Text(
                                 requestPriority[index],
-                                style: chipTextStyle,
+                                style: _isSelected
+                                    ? AppFonts.mediumTextBB.copyWith(
+                                        color: TextColors.themeColor,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w900)
+                                    : chipTextStyle,
                               ),
                             ),
                           );
@@ -282,7 +297,7 @@ class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
                       onTap: () {
                         ITRequestService.postITRequest(PostRequest(
                             description: descriptionController.text,
-                            priority: 'High',
+                            priority: _selectedIndexs.first,
                             requestType: dropDownvalue.toString()));
                       },
                       child: NavigationButton(

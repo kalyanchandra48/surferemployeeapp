@@ -11,7 +11,12 @@ class FireFunctionsHttpsCaller {
     final response =
         await http.post(uri, body: data, headers: await _generateHeader());
     if (response.statusCode != 200) {
-      print("An error has occured");
+	    print('Error has occured with the request');
+	    print(response.body);
+	    print(response.statusCode);
+    }
+    else{
+	    print(response.body);
     }
     final body = response.body;
     return body;

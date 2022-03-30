@@ -17,7 +17,7 @@ class ITRequestService {
     final response = await FireFunctionsHttpsCaller.get(Uri.parse(
         'https://us-central1-employee-app-57d9a.cloudfunctions.net/functions/itRequests/types'));
     String requestType = response;
-    print('this is response $response');
+    print('this is response ${response.body}');
 
     return requestType;
   }

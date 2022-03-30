@@ -1,6 +1,8 @@
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:employee_app/services/auth.dart';
+import 'package:employee_app/services/locator.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
   const BottomNavBarWidget({
@@ -70,19 +72,25 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
               fit: BoxFit.scaleDown,
             ),
           ),
-          AnimatedContainer(
-            height: 52,
-            width: 52,
-            duration: const Duration(seconds: 1),
-            decoration: BoxDecoration(
-                border:
-                    Border.all(color: Colors.white.withOpacity(0.1), width: 2),
-                color: Colors.white.withOpacity(0.1),
-                borderRadius: BorderRadii.radius12px),
-            child: SvgPicture.asset(
-              'assets/happy_emoji_inactive.svg',
-              height: 32,
-              fit: BoxFit.scaleDown,
+          GestureDetector(
+            onTap: () {
+              final AuthService _auth = locator<AuthService>();
+              _auth.signOut();
+            },
+            child: AnimatedContainer(
+              height: 52,
+              width: 52,
+              duration: const Duration(seconds: 1),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Colors.white.withOpacity(0.1), width: 2),
+                  color: Colors.white.withOpacity(0.1),
+                  borderRadius: BorderRadii.radius12px),
+              child: SvgPicture.asset(
+                'assets/happy_emoji_inactive.svg',
+                height: 32,
+                fit: BoxFit.scaleDown,
+              ),
             ),
           )
         ],
