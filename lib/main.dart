@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:employee_app/models/food/item.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,11 +21,12 @@ void main() async {
   final isar = await Isar.open(
     schemas: [
       LeavesSchema,
+      ItemSchema,
     ],
     directory: dir.path,
     inspector: true,
   );
-
+  print(await isar.items.where().findAll());
   setupLocator(isar);
   runApp(MyApp(
     isar: isar,
@@ -49,7 +51,6 @@ class MyApp extends StatelessWidget {
 
     AppViewModel viewModel = AppViewModel(isar);
     //fetchleaves();
-    UserService.setUserCustomClaims();
     return MultiProvider(
       providers: [
         StreamProvider<AuthStatus>.value(

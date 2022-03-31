@@ -43,7 +43,7 @@ class FoodInfoWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 170,
+                  width: 160,
                   child: Text(foodItem.name, style: AppFonts.foodNameHeader),
                 ),
                 const SizedBox(height: 2),

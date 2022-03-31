@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:employee_app/styles/styles.dart';
+import 'package:employee_app/models/food/item.dart';
 
-class AddQuantityButton extends StatelessWidget {
-  final Function addButton;
-  final Function removeButton;
-  AddQuantityButton(
-      {Key? key, required this.addButton, required this.removeButton})
-      : super(key: key);
+class AddQuantityButton extends StatefulWidget {
+  late Item foodItem;
+  late Function qtyUpdater;
+  AddQuantityButton({
+    required this.foodItem,
+    required this.qtyUpdater,
+  });
+  @override
+  _AddQuantityButtonState createState() => _AddQuantityButtonState();
+}
+
+class _AddQuantityButtonState extends State<AddQuantityButton> {
+  void sub() {
+    setState(() {
+      if (widget.foodItem.orderQty > 0) widget.qtyUpdater(-1);
+    });
+  }
+
+  void add() {
+    setState(() {
+      if (widget.foodItem.availableQty > widget.foodItem.orderQty)
+        widget.qtyUpdater(1);
+    });
+  }
 
   @override
-  int availableQty = 0;
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -18,7 +36,7 @@ class AddQuantityButton extends StatelessWidget {
       ),
       child: Row(children: [
         GestureDetector(
-          onTap: removeButton(),
+          onTap: sub,
           child: Container(
               color: Colors.transparent,
               width: 30,
@@ -32,12 +50,12 @@ class AddQuantityButton extends StatelessWidget {
                 ),
               )),
         ),
-        Text(availableQty.toString(),
+        Text(widget.foodItem.orderQty.toString(),
             style: AppFonts.smallTextBB.copyWith(
               color: TextColors.surfblue,
             )),
         GestureDetector(
-          onTap: addButton(),
+          onTap: add,
           child: Container(
             width: 30,
             color: Colors.transparent,

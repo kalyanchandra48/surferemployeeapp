@@ -26,20 +26,16 @@ class _FoodItemListState extends State<FoodItemList> {
           );
         },
         itemBuilder: (BuildContext context, int index) {
-          int avalableQty = widget.foodItem[index].availableQty;
           return FoodInfoWidget(
             foodItem: widget.foodItem[index],
             actionWidget: AddQuantityButton(
-              removeButton: () {
-                // setState(() {
-                //   if (widget.foodItem[index].availableQty > 0) {
-                //     avalableQty = avalableQty - 1;
-                //     print(avalableQty);
-                //   }
-                // });
-              },
-              addButton: () {},
-            ),
+                foodItem: widget.foodItem[index],
+                qtyUpdater: (int number) {
+                  widget.foodItem[index].orderQty =
+                      widget.foodItem[index].orderQty + number;
+                  //  firstWhere(() => e.itemId == e.itemId));
+                  print(cartItem);
+                }),
           );
         });
   }

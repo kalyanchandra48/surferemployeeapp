@@ -1,6 +1,7 @@
 import 'package:employee_app/models/leaves.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:employee_app/models/food/item.dart';
 
 class IsarInstance {
   static initialiseIsar() async {
@@ -8,6 +9,7 @@ class IsarInstance {
     final isar = await Isar.open(
       schemas: [
         LeavesSchema,
+        ItemSchema,
       ],
       directory: dir.path,
       inspector: true,

@@ -1,15 +1,27 @@
 import 'dart:convert';
+import 'package:isar/isar.dart';
+part 'item.g.dart';
 
+@Collection()
 class Item {
-  String id;
+  @Id()
+  int? id;
+  @Name('itemId')
+  String itemId;
+  @Name('name')
   String name;
+  @Name('orderQty')
   int orderQty;
+  @Name('availableQty')
   int availableQty;
+  @Name('amount')
   String amount;
+  @Name('category')
   String category;
+  @Name('imageUrl')
   String imageUrl;
   Item({
-    required this.id,
+    required this.itemId,
     required this.name,
     required this.orderQty,
     required this.availableQty,
@@ -19,7 +31,7 @@ class Item {
   });
 
   Item copyWith({
-    String? id,
+    String? itemId,
     String? name,
     int? orderQty,
     int? availableQty,
@@ -28,7 +40,7 @@ class Item {
     String? imageUrl,
   }) {
     return Item(
-      id: id ?? this.id,
+      itemId: itemId ?? this.itemId,
       name: name ?? this.name,
       orderQty: orderQty ?? this.orderQty,
       availableQty: availableQty ?? this.availableQty,
@@ -40,7 +52,7 @@ class Item {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      'itemId': itemId,
       'name': name,
       'orderQty': orderQty,
       'availableQty': availableQty,
@@ -52,7 +64,7 @@ class Item {
 
   factory Item.fromMap(Map<String, dynamic> map) {
     return Item(
-      id: map['id'] ?? '',
+      itemId: map['itemId'] ?? '',
       name: map['name'] ?? '',
       orderQty: map['orderQty']?.toInt() ?? 0,
       availableQty: map['availableQty']?.toInt() ?? 0,
@@ -68,7 +80,7 @@ class Item {
 
   @override
   String toString() {
-    return 'Item(id: $id, name: $name, orderQty: $orderQty, availableQty: $availableQty, amount: $amount, category: $category, imageUrl: $imageUrl)';
+    return 'Item(itemId: $itemId, name: $name, orderQty: $orderQty, availableQty: $availableQty, amount: $amount, category: $category, imageUrl: $imageUrl)';
   }
 
   @override
@@ -76,7 +88,7 @@ class Item {
     if (identical(this, other)) return true;
 
     return other is Item &&
-        other.id == id &&
+        other.itemId == itemId &&
         other.name == name &&
         other.orderQty == orderQty &&
         other.availableQty == availableQty &&
@@ -87,7 +99,7 @@ class Item {
 
   @override
   int get hashCode {
-    return id.hashCode ^
+    return itemId.hashCode ^
         name.hashCode ^
         orderQty.hashCode ^
         availableQty.hashCode ^
