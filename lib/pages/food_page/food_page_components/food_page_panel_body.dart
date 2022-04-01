@@ -46,7 +46,6 @@ class _FoodPagePanelBodyState extends State<FoodPagePanelBody>
           child: TabBarView(
             controller: _foodCategoryTabController,
             children: tabBody,
-            //children: tabBody.map((e) => e).toList(),
           ),
         ),
       ],
