@@ -41,8 +41,10 @@ class ContainerColors {
   static Color bgBlueShadow = const Color(0xffBEE5FF);
   static Color unSelectedBgColor = const Color(0xff05113C).withOpacity(0.1);
   static Color selectedBgColor = const Color(0xff1849D8).withOpacity(0.1);
-  static Color greyContainer =  const Color(0xffD6D6D6);
+  static Color greyContainer = const Color(0xffD6D6D6);
   static Color whiteContainer = Color(0xffFFFFFF);
+  static Color green = Color(0xff19E18A);
+  static Color yellowThick = Color(0xffFB7034).withOpacity(0.5);
 }
 
 class IconColors {

@@ -13,6 +13,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:employee_app/models/food/item.dart';
+import 'package:employee_app/pages/carousel_page/carousel_screens.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -95,7 +96,7 @@ class MyApp extends StatelessWidget {
         //   }
         // },
         //home: const BottomNav(),
-        home: LoginPage(),
+        home: IntroScreens(),
       ),
     );
   }
