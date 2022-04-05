@@ -1,96 +1,105 @@
-import 'package:employee_app/common_widgets/input_textfield_widget.dart';
+import 'package:employee_app/common_widgets/background_grid_lines.dart';
 import 'package:employee_app/common_widgets/navigation_button.dart';
 import 'package:employee_app/pages/bottom_nav/bottom_nav.dart';
-import 'package:employee_app/pages/login_page/login_page.dart';
 import 'package:employee_app/pages/personal_details_page/personal_details_page_components/personal_details_page_components.dart';
-import 'package:employee_app/services/auth.dart';
-import 'package:employee_app/services/locator.dart';
 import 'package:flutter/material.dart';
 
 class GeneralDetailsPage extends StatelessWidget {
-  GeneralDetailsPage({Key? key}) : super(key: key);
-  final AuthService _auth = locator<AuthService>();
-  final TextEditingController _pfTextController = TextEditingController();
-  final TextEditingController _insuranceTextController =
-      TextEditingController();
+  const GeneralDetailsPage({Key? key}) : super(key: key);
+  // final AuthService _auth = locator<AuthService>();
+  // final TextEditingController _pfTextController = TextEditingController();
+  // final TextEditingController _insuranceTextController =
+  //     TextEditingController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.appthemeColor,
-        floatingActionButton: GestureDetector(
-          onTap: () async {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const BottomNav(),
-                ),
-                (route) => false);
-          },
-          child: NavigationButton(
-            text: 'Let\'s Go',
-            buttonColor: ButtonColors.nextButton,
-            buttonTextStyle: AppFonts.buttonTextBB,
-          ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 30,
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: AppColors.appthemeColor,
+            floatingActionButton: GestureDetector(
+              onTap: () async {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BottomNav(),
+                    ),
+                    (route) => false);
+              },
+              child: NavigationButton(
+                text: 'Let\'s Go',
+                buttonColor: ButtonColors.nextButton,
+                buttonTextStyle: AppFonts.buttonTextBB,
               ),
-              SizedBox(
-                height: 65,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Profile',
-                      style: AppFonts.appHeaderBlack
-                          .copyWith(color: TextColors.primaryColor),
+            ),
+            body: CustomPaint(
+              painter: BackgroundGridLines(heightGap: 30, widthGap: 15),
+              child: Column(children: const [ProfileAppBar()]),
+            )));
+  }
+}
+
+class ProfileAppBar extends StatelessWidget {
+  const ProfileAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.only(left: 5, top: 49, bottom: 23),
+        height: 140,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(24),
+            bottomRight: Radius.circular(24),
+          ),
+          color: ContainerColors.white,
+        ),
+        child: Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios_outlined),
+            ),
+            Container(
+                height: 68,
+                width: 68,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: ContainerColors.yellowShade,
                     ),
-                    Text(
-                      'Add your general details',
-                      style: AppFonts.appSubHeader,
-                    ),
+                    BoxShadow(
+                      color: ContainerColors.yellowShadelight,
+                      spreadRadius: -13,
+                      blurRadius: 10.0,
+                    )
                   ],
+                  shape: BoxShape.circle,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                'Personal Details',
-                style: AppFonts.mediumTextBB
-                    .copyWith(color: TextColors.primaryColor),
-              ),
-              InputTextFieldWidget(
-                fieldName: 'PF_FIELD',
-                labelText: 'PF Number',
-                keyboardType: TextInputType.number,
-                textController: _pfTextController,
-                textFieldColor: ContainerColors.primaryTextField,
-                labelColor: Colors.white,
-              ),
-              InputTextFieldWidget(
-                fieldName: 'INSURANCE_FIELD',
-                labelText: 'Insurance Number',
-                textController: _insuranceTextController,
-                keyboardType: TextInputType.number,
-                textFieldColor: ContainerColors.primaryTextField,
-                labelColor: Colors.white,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+                child: Center(
+                  child: Image.asset("assets/Telescope.png"),
+                )),
+            const SizedBox(width: 9),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Profile photo',
+                  style: AppFonts.appHeaderBlack,
+                ),
+                Text(
+                  'Add your profile photo (2/2)',
+                  style: AppFonts.hintText14,
+                )
+              ],
+            )
+          ],
+        ));
   }
 }

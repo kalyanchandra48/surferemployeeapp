@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:employee_app/common_widgets/input_textfield_widget.dart';
 import 'package:employee_app/common_widgets/navigation_button.dart';
 import 'package:employee_app/models/auth_status.dart';
 import 'package:employee_app/pages/personal_details_page/personal_details_page.dart';
@@ -49,20 +48,20 @@ class LoginPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              InputTextFieldWidget(
-                  labelText: 'Email',
-                  textController: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  textFieldColor: const Color(0xff1849D8).withOpacity(0.05),
-                  labelColor: Colors.black,
-                  fieldName: 'EMAIL_ID'),
-              InputTextFieldWidget(
-                  labelText: 'Password',
-                  labelColor: Colors.black,
-                  textController: _passwordController,
-                  keyboardType: TextInputType.emailAddress,
-                  textFieldColor: const Color(0xff1849D8).withOpacity(0.05),
-                  fieldName: 'PASSWORD'),
+              // InputTextFieldWidget(
+              //     labelText: 'Email',
+              //     textController: _emailController,
+              //     keyboardType: TextInputType.emailAddress,
+              //     textFieldColor: const Color(0xff1849D8).withOpacity(0.05),
+              //     labelColor: Colors.black,
+              //     fieldName: 'EMAIL_ID'),
+              // InputTextFieldWidget(
+              //     labelText: 'Password',
+              //     labelColor: Colors.black,
+              //     textController: _passwordController,
+              //     keyboardType: TextInputType.emailAddress,
+              //     textFieldColor: const Color(0xff1849D8).withOpacity(0.05),
+              //     fieldName: 'PASSWORD'),
               const SizedBox(
                 height: 50,
               ),

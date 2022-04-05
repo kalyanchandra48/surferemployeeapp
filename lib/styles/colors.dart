@@ -11,14 +11,15 @@ class TextColors {
   static const Color secondaryColor = Color(0xff05113C);
   static const Color themeColor = Color(0xff1849D8);
   static const Color appHeaderBlack = Color(0xff000000);
-  static Color labelTextGrey = Color(0xff000000).withOpacity(0.5);
+  static Color labelTextGrey = const Color(0xff000000).withOpacity(0.5);
   static Color subHeadingGrey = Colors.grey;
   static Color activeTabTextColor = Colors.black;
-  static Color inActiveTabTextColor = Color(0xff05113C).withOpacity(0.5);
+  static Color inActiveTabTextColor = const Color(0xff05113C).withOpacity(0.5);
   static Color surfblue = const Color(0xff54B5F7);
   static Color holidayWidgetGoldenText = const Color(0xffD7AE1D);
   static Color hintText = const Color(0xff05113C).withOpacity(0.5);
   static Color disableButtonText = const Color(0xff05113C).withOpacity(0.3);
+  static Color hintDull = const Color(0xffFFFFFF).withOpacity(0.5);
 }
 
 class ButtonColors {
@@ -28,7 +29,7 @@ class ButtonColors {
 }
 
 class ContainerColors {
-  static Color primaryTextField = Colors.white.withOpacity(0.1);
+  static Color primaryTextField = const Color(0xff466DE0);
   static Color secondaryTextField = const Color(0xff05113C);
   static Color yellowShade = const Color(0xffF1D682);
   static Color yellowShadelight = const Color(0xffFCEFC5);
@@ -42,15 +43,18 @@ class ContainerColors {
   static Color unSelectedBgColor = const Color(0xff05113C).withOpacity(0.1);
   static Color selectedBgColor = const Color(0xff1849D8).withOpacity(0.1);
   static Color greyContainer = const Color(0xffD6D6D6);
-  static Color whiteContainer = Color(0xffFFFFFF);
-  static Color green = Color(0xff19E18A);
-  static Color yellowThick = Color(0xffFB7034).withOpacity(0.5);
+  static Color whiteContainer = const Color(0xffFFFFFF);
+  static Color green = const Color(0xff19E18A);
+  static Color yellowThick = const Color(0xffFB7034).withOpacity(0.5);
+  static Color secondaryTextFieldOpacity =
+      const Color(0xff05113C).withOpacity(0.5);
+  static Color white = const Color(0xffFFFFFF);
 }
 
 class IconColors {
   static const Color primaryColor = Color(0xffFFFFFF);
   static Color secondaryColor = const Color(0xff05113C).withOpacity(0.5);
-  static const Color surfblue = const Color(0xff54B5F7);
+  static const Color surfblue = Color(0xff54B5F7);
 }
 
 class DividerColors {

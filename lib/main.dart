@@ -2,9 +2,7 @@ import 'package:employee_app/models/auth_status.dart';
 import 'package:employee_app/models/leaves.dart';
 import 'package:employee_app/provider/app_view_model.dart';
 import 'package:employee_app/provider/my_cart_provider.dart';
-import 'package:employee_app/pages/login_page/login_page.dart';
 import 'package:employee_app/services/auth.dart';
-import 'package:employee_app/services/user_service.dart';
 import 'package:employee_app/services/calendar_events.dart';
 import 'package:employee_app/services/locator.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -66,7 +64,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => MyCart())
       ],
       child: MaterialApp(
-        theme: ThemeData.from(colorScheme: ColorScheme.light()).copyWith(
+        theme: ThemeData.from(colorScheme: const ColorScheme.light()).copyWith(
             pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
             TargetPlatform.android: ZoomPageTransitionsBuilder(),
@@ -96,7 +94,7 @@ class MyApp extends StatelessWidget {
         //   }
         // },
         //home: const BottomNav(),
-        home: IntroScreens(),
+        home: const IntroScreens(),
       ),
     );
   }

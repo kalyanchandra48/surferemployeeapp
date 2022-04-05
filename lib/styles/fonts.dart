@@ -10,7 +10,7 @@ class AppFonts {
       fontSize: fontSize,
     ));
   }
- 
+
   static final foodNameHeader = getAppFont(
       fontWeight: FontWeight.bold,
       color: TextColors.secondaryColor,
@@ -24,6 +24,10 @@ class AppFonts {
       fontWeight: FontWeight.normal,
       color: TextColors.primaryColor,
       fontSize: 16);
+  static final whiteheader = getAppFont(
+      fontWeight: FontWeight.bold,
+      color: TextColors.primaryColor,
+      fontSize: 12);
 
   static final mediumTextBB = getAppFont(
       fontWeight: FontWeight.bold,
@@ -48,6 +52,11 @@ class AppFonts {
     fontWeight: FontWeight.bold,
     color: TextColors.secondaryColor,
     fontSize: 16,
+  );
+  static final hintText13 = getAppFont(
+    fontWeight: FontWeight.normal,
+    color: TextColors.hintDull,
+    fontSize: 13,
   );
   static final hintText14 = getAppFont(
     fontWeight: FontWeight.normal,
