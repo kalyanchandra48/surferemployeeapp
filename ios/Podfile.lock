@@ -135,6 +135,11 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
+  - image_cropper (0.0.4):
+    - Flutter
+    - TOCropViewController (~> 2.6.1)
+  - image_picker_ios (0.0.1):
+    - Flutter
   - isar_flutter_libs (1.0.0):
     - Flutter
   - leveldb-library (1.22.1)
@@ -143,9 +148,12 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - open_file (0.0.1):
+    - Flutter
   - path_provider_ios (0.0.1):
     - Flutter
   - PromisesObjC (2.0.0)
+  - TOCropViewController (2.6.1)
   - url_launcher_ios (0.0.1):
     - Flutter
 
@@ -161,7 +169,10 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
+  - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
+  - open_file (from `.symlinks/plugins/open_file/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
@@ -185,6 +196,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - TOCropViewController
 
 EXTERNAL SOURCES:
   cloud_functions:
@@ -201,8 +213,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
+  image_cropper:
+    :path: ".symlinks/plugins/image_cropper/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   isar_flutter_libs:
     :path: ".symlinks/plugins/isar_flutter_libs/ios"
+  open_file:
+    :path: ".symlinks/plugins/open_file/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
   url_launcher_ios:
@@ -231,11 +249,15 @@ SPEC CHECKSUMS:
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  image_cropper: 60c2789d1f1a78c873235d4319ca0c34a69f2d98
+  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   isar_flutter_libs: 5a34aebdd82e388db81dad8dd26786a642bb5b90
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
 PODFILE CHECKSUM: 576d0ebc655c94710f9d92be133dc0b138913a26

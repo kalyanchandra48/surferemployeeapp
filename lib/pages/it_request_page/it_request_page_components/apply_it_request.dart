@@ -46,7 +46,7 @@ class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
   String selectedType = '';
   List<Map<bool, String>> priority = [];
   Future<String> types = ITRequestService.fetchRequestType();
-  List _selectedIndexs = [];
+  final List _selectedIndexs = [];
   @override
   Widget build(BuildContext context) {
     Timer.periodic(
@@ -160,10 +160,9 @@ class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
                                   }).toList(),
                                 )),
                           ]),
-                      secondChild: Container(
+                      secondChild: SizedBox(
                           height: 30,
                           width: MediaQuery.of(context).size.width,
-                          color: ContainerColors.primaryTextField,
                           child: Column(
                             children: [
                               Row(
@@ -239,7 +238,7 @@ class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
                               _selectedIndexs.contains(requestPriority[index]);
                           return GestureDetector(
                             onTap: () {
-                              if (_selectedIndexs.length >= 1) {
+                              if (_selectedIndexs.isNotEmpty) {
                                 _selectedIndexs.removeLast();
                               }
                               setState(() {

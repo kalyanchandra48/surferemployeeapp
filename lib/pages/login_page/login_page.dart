@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:employee_app/common_widgets/navigation_button.dart';
 import 'package:employee_app/models/auth_status.dart';
-import 'package:employee_app/pages/personal_details_page/personal_details_page.dart';
 import 'package:employee_app/services/auth.dart';
 import 'package:employee_app/services/locator.dart';
 import 'package:employee_app/styles/styles.dart';
@@ -11,8 +10,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  //final TextEditingController _emailController = TextEditingController();
+  //final TextEditingController _passwordController = TextEditingController();
   final AuthService _auth = locator<AuthService>();
   @override
   Widget build(BuildContext context) {

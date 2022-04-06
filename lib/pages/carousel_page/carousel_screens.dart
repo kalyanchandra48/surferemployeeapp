@@ -1,10 +1,16 @@
+import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:employee_app/pages/food_page/food_page_components/food_page_components.dart';
+import 'package:employee_app/services/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
-import '../personal_details_page/personal_details_page.dart';
+import '../../models/auth_status.dart';
+import '../../services/auth.dart';
+import '../../services/locator.dart';
+import '../personal_details_page/profile_info_page.dart';
 import 'carousel_screen_components/carousel_components.dart';
 
 class IntroScreens extends StatefulWidget {
@@ -19,11 +25,23 @@ class _IntroScreensState extends State<IntroScreens> {
     const FirstScreen(),
     const SecondScreen(),
   ];
-
+  final AuthService _auth = locator<AuthService>();
   static var current = 0;
 
   @override
   Widget build(BuildContext context) {
+    final AuthStatus _status = Provider.of<AuthStatus>(context);
+
+    if (_status.status == AUTH_STATUS.VERIFICATION_COMPLETED) {
+      Timer(const Duration(milliseconds: 100), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ProfileInfo(),
+          ),
+        );
+      });
+    }
     return Scaffold(
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -36,19 +54,21 @@ class _IntroScreensState extends State<IntroScreens> {
               color: ContainerColors.secondaryTextFieldOpacity,
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height / 8.5),
+          SizedBox(height: MediaQuery.of(context).size.height / 32),
           GestureDetector(
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const PersonalDetailPage(),
-                ),
-                (route) => false,
-              );
+            onTap: () async {
+              await _auth.signInWithGoogle();
+              // Navigator.pushAndRemoveUntil(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const ProfileInfo(),
+              //   ),
+              //   (route) => false,
+              // );
             },
             child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                 height: 56,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadii.radius5px,
@@ -73,7 +93,7 @@ class _IntroScreensState extends State<IntroScreens> {
             height: MediaQuery.of(context).size.height,
             autoPlay: false,
             enableInfiniteScroll: false,
-            viewportFraction: 1,
+            viewportFraction: 1.0,
             onPageChanged: (index, CarouselPageChangedReason reason) {
               setState(() {
                 current = index;

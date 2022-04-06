@@ -25,7 +25,8 @@ void main() async {
     directory: dir.path,
     inspector: true,
   );
-  print(await isar.items.where().findAll());
+
+  //print(await isar.items.where().findAll());
   setupLocator(isar);
   runApp(MyApp(
     isar: isar,
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
   final CalendarService _cs = locator<CalendarService>();
   fetchleaves() async {
     final myLeaves = await isar.leavess.where().findAll();
-    print(myLeaves);
+    // print(myLeaves);
     return myLeaves;
   }
 
