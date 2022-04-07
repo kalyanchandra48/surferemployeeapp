@@ -11,12 +11,11 @@ class FireFunctionsHttpsCaller {
     final response =
         await http.post(uri, body: data, headers: await _generateHeader());
     if (response.statusCode != 200) {
-	    print('Error has occured with the request');
-	    print(response.body);
-	    print(response.statusCode);
-    }
-    else{
-	    print(response.body);
+      print('Error has occured with the request');
+      print(response.body);
+      print(response.statusCode);
+    } else {
+      print(response.body);
     }
     final body = response.body;
     return body;
@@ -38,7 +37,7 @@ class ModelBlueprint {
 }
 
 Future<Map<String, String>> _generateHeader() async {
-  final user = await FirebaseAuth.instance.currentUser;
+  final user = FirebaseAuth.instance.currentUser;
   if (user == null) {
     print("Not Logged in");
   }

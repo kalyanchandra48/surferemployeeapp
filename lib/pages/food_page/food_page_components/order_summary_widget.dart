@@ -6,18 +6,19 @@ class OrderSummaryWidget extends StatelessWidget {
   static final DateTime now = DateTime.now();
   static final DateFormat formatter = DateFormat('dd MMMM yyyy, H:mm');
   final String formatted = formatter.format(now);
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
       decoration: BoxDecoration(
         boxShadow: [
-           BoxShadow(
+          const BoxShadow(
             color: Color(0xffF0D47D),
           ),
           BoxShadow(
-          color: ContainerColors.yellowShadelight,
+            color: ContainerColors.yellowShadelight,
             spreadRadius: -9,
-            blurRadius:20,
+            blurRadius: 20,
           ),
         ],
         borderRadius: BorderRadii.radius12px,
@@ -31,7 +32,7 @@ class OrderSummaryWidget extends StatelessWidget {
                 style: AppFonts.smallText12
                     .copyWith(color: TextColors.secondaryColor),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 '#130175288223',
                 style: AppFonts.smallText12
@@ -39,7 +40,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 7),
+          const SizedBox(height: 7),
           Row(
             children: [
               Text(
@@ -47,7 +48,7 @@ class OrderSummaryWidget extends StatelessWidget {
                 style: AppFonts.smallText12
                     .copyWith(color: TextColors.secondaryColor),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 formatted,
                 style: AppFonts.smallText12
@@ -55,15 +56,15 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16),
-          DottedLine(),
+          const SizedBox(height: 16),
+          const DottedLine(),
           ListView.separated(
-            physics: ClampingScrollPhysics(),
-            padding: EdgeInsets.symmetric(vertical: 15),
+            physics: const ClampingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(vertical: 15),
             shrinkWrap: true,
             itemCount: 3,
             separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(height: 8);
+              return const SizedBox(height: 8);
             },
             itemBuilder: (BuildContext context, int index) {
               return Row(
@@ -73,7 +74,7 @@ class OrderSummaryWidget extends StatelessWidget {
                     style: AppFonts.foodNameHeader
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     '\$20',
                     style: AppFonts.foodNameHeader
@@ -91,7 +92,7 @@ class OrderSummaryWidget extends StatelessWidget {
               style: AppFonts.mediumTextBB
                   .copyWith(color: TextColors.secondaryColor),
             ),
-            Spacer(),
+            const Spacer(),
             Text(
               '\$60',
               style: AppFonts.mediumTextBB

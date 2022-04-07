@@ -13,7 +13,7 @@ class CalendarService {
     CalendarApi.calendarScope,
     CalendarApi.calendarEventsScope
   ];
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   var clientId = ClientId(
       '262376380793-358ine20bstbhc4fp5qghmmj9kf9sqa2.apps.googleusercontent.com'
       '');
@@ -36,11 +36,11 @@ class CalendarService {
       DateTime enddate = dateFormat.parse(endtime);
       print(startdate);
       print(enddate);
-      EventDateTime start = new EventDateTime();
+      EventDateTime start = EventDateTime();
       start.dateTime = startdate;
       start.timeZone = "GMT+05:30";
       event.start = start;
-      EventDateTime end = new EventDateTime();
+      EventDateTime end = EventDateTime();
       end.dateTime = enddate;
       end.timeZone = "GMT+05:30";
       event.end = end;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:employee_app/styles/styles.dart';
 import 'order_summary_widget.dart';
 import 'package:employee_app/common_widgets/common_widgets_component.dart';
 import 'order_food_widget.dart';
@@ -9,9 +8,9 @@ class CheckoutSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.bottomCenter, children: [
       Container(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24),
         height: MediaQuery.of(context).size.height / 1.05,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadii.radius24px,
           color: Colors.white,
         ),
@@ -19,7 +18,7 @@ class CheckoutSheet extends StatelessWidget {
           alignment: Alignment.topCenter,
           children: [
             ListView(
-              padding: EdgeInsets.only(top: 24, bottom: 60),
+              padding: const EdgeInsets.only(top: 24, bottom: 60),
               //  physics: ClampingScrollPhysics(),
               children: [
                 /* Center(
@@ -38,10 +37,10 @@ class CheckoutSheet extends StatelessWidget {
                   style: AppFonts.largeTextBB,
                 ),
                 OrderFoodWidget(
-                  foodItem: [],
+                  foodItem: const [],
                 ),
                 Text('Order Information', style: AppFonts.mediumTextBB),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 OrderSummaryWidget(),
               ],
             ),
