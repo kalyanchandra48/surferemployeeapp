@@ -1,7 +1,6 @@
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 class InputDatePickerWidget extends StatefulWidget {
@@ -35,7 +34,7 @@ class _InputDatePickerWidgetState extends State<InputDatePickerWidget> {
               // Use a SafeArea widget to avoid system overlaps.
               child: SafeArea(
                 top: false,
-                child:child,
+                child: child,
               ),
             ));
   }

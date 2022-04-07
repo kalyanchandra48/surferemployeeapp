@@ -5,7 +5,7 @@ class TabBarDelegate extends StatelessWidget {
   final TabController? controller;
   final List<String> text;
 
-  TabBarDelegate({required this.controller, required this.text});
+  const TabBarDelegate({required this.controller, required this.text});
 
   // @override
   // double get minExtent => kToolbarHeight;
@@ -18,7 +18,7 @@ class TabBarDelegate extends StatelessWidget {
     BuildContext context,
   ) {
     return TabBar(
-      padding: EdgeInsets.only(top: 16, left: 24),
+      padding: const EdgeInsets.only(top: 16, left: 24),
       labelStyle: AppFonts.activeTabTextBB,
       unselectedLabelStyle: AppFonts.inActiveTabTextRB,
       isScrollable: true,

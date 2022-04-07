@@ -1,32 +1,31 @@
-import 'dart:async';
 import 'package:employee_app/common_widgets/navigation_button.dart';
-import 'package:employee_app/models/auth_status.dart';
 import 'package:employee_app/services/auth.dart';
 import 'package:employee_app/services/locator.dart';
 import 'package:employee_app/styles/styles.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   //final TextEditingController _emailController = TextEditingController();
   //final TextEditingController _passwordController = TextEditingController();
   final AuthService _auth = locator<AuthService>();
+
+  LoginPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    AuthStatus _status = Provider.of<AuthStatus>(context);
+    // AuthStatus _status = Provider.of<AuthStatus>(context);
 
-    if (_status.status == AUTH_STATUS.VERIFICATION_COMPLETED) {
-      Timer(const Duration(milliseconds: 100), () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PersonalDetailPage(),
-          ),
-        );
-      });
-    }
+    // if (_status.status == AUTH_STATUS.VERIFICATION_COMPLETED) {
+    //   Timer(const Duration(milliseconds: 100), () {
+    //     Navigator.pushReplacement(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (context) => PersonalDetailPage(),
+    //       ),
+    //     );
+    //   });
+    // }
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -66,12 +65,12 @@ class LoginPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PersonalDetailPage(),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => PersonalDetailPage(),
+                  //   ),
+                  // );
                 },
                 child: NavigationButton(
                   buttonColor: ButtonColors.themeButton,

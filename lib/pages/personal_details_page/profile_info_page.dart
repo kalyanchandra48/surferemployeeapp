@@ -1,7 +1,5 @@
 import 'package:employee_app/common_widgets/background_grid_lines.dart';
-//import 'package:employee_app/pages/personal_details_page/personal_details_page_components/personal_details_page_components.dart';
 import 'package:flutter/material.dart';
-
 import '../../common_widgets/input_textfield_widget.dart';
 import '../../common_widgets/navigation_button.dart';
 import '../../styles/styles.dart';

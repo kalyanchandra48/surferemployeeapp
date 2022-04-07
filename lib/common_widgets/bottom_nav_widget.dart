@@ -14,8 +14,8 @@ class BottomNavBarWidget extends StatefulWidget {
 }
 
 class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
-  @override
   bool click = false;
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
@@ -44,10 +44,10 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
                   borderRadius: BorderRadii.radius12px,
                   boxShadow: [
                     BoxShadow(
-                      offset: Offset(10, 10),
+                      offset: const Offset(10, 10),
                       spreadRadius: 5,
                       blurRadius: 12,
-                      color: Color(0xff000000).withOpacity(0.2),
+                      color: const Color(0xff000000).withOpacity(0.2),
                     ),
                   ]),
               child: SvgPicture.asset(

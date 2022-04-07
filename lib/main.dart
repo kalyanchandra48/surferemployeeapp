@@ -1,5 +1,6 @@
 import 'package:employee_app/models/auth_status.dart';
 import 'package:employee_app/models/leaves.dart';
+import 'package:employee_app/pages/splash_screen.dart';
 import 'package:employee_app/provider/app_view_model.dart';
 import 'package:employee_app/provider/my_cart_provider.dart';
 import 'package:employee_app/services/auth.dart';
@@ -11,7 +12,6 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:employee_app/models/food/item.dart';
-import 'package:employee_app/pages/carousel_page/carousel_screens.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -95,7 +95,7 @@ class MyApp extends StatelessWidget {
         //   }
         // },
         //home: const BottomNav(),
-        home: const IntroScreens(),
+        home: const SplashScreen(),
       ),
     );
   }

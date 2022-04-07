@@ -1,9 +1,6 @@
-import 'package:employee_app/provider/my_cart_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'order_summary_widget.dart';
 import 'package:employee_app/common_widgets/common_widgets_component.dart';
-import 'order_food_widget.dart';
 
 class CheckoutSheet extends StatelessWidget {
   @override
@@ -36,17 +33,17 @@ class CheckoutSheet extends StatelessWidget {
               'Your Order',
               style: AppFonts.largeTextBB,
             ),
-            Container(
-              height: 340,
-              color: Colors.white,
-            ),
+            // Container(
+            //   height: 340,
+            //   color: Colors.white,
+            // ),
             /*  OrderFoodWidget(
 			      foodItem:2,
               //  foodItem: value.selectedItem,
               ),
 	      */
             Text('Order Information', style: AppFonts.mediumTextBB),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             OrderSummaryWidget(),
           ],
         ),

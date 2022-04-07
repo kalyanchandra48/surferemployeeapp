@@ -1,4 +1,3 @@
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:employee_app/services/http.dart';
 
 class UserService {
