@@ -90,6 +90,7 @@ class _IntroScreensState extends State<IntroScreens> {
           FloatingActionButtonLocation.miniCenterDocked,
       body: CarouselSlider(
         options: CarouselOptions(
+            scrollPhysics: const ClampingScrollPhysics(),
             height: MediaQuery.of(context).size.height,
             autoPlay: false,
             enableInfiniteScroll: false,
