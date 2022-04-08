@@ -12,6 +12,15 @@ List<Item> foodItem() {
         imageUrl:
             'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg'),
     Item(
+        itemId: '123122343',
+        name: 'Chicken. Biryani',
+        orderQty: 0,
+        availableQty: 10,
+        amount: '300',
+        category: 'Lunch',
+        imageUrl:
+            'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg'),
+    Item(
         itemId: '233232323',
         name: 'Coke',
         orderQty: 0,

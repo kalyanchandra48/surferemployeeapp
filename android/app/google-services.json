@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "88259146899-vj0v60gp8guttslefb21dg1tq5d2asfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.surfboard.employee_app",
+            "certificate_hash": "2a5fe5b590fb53645732d6aeb3cb69324bb44871"
+          }
+        },
+        {
           "client_id": "88259146899-87uh7orjapu09lfk7514a6fl18ln2mlq.apps.googleusercontent.com",
           "client_type": 3
         }

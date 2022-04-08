@@ -7,12 +7,6 @@ class TabBarDelegate extends StatelessWidget {
 
   const TabBarDelegate({required this.controller, required this.text});
 
-  // @override
-  // double get minExtent => kToolbarHeight;
-
-  // @override
-  // double get maxExtent => kToolbarHeight;
-
   @override
   Widget build(
     BuildContext context,

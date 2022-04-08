@@ -11,7 +11,7 @@ class DefaultAddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTapFunction()
+      onTap: () => onTapFunction()
       // print(items[index].name);
       // setState(() {
       //   widget.foodItem.orderQty = widget.foodItem.orderQty + 1;

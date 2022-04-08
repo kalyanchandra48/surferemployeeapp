@@ -4,6 +4,8 @@ import 'package:employee_app/common_widgets/common_widgets_component.dart';
 import 'order_food_widget.dart';
 
 class CheckoutSheet extends StatelessWidget {
+  const CheckoutSheet({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.bottomCenter, children: [
@@ -36,8 +38,8 @@ class CheckoutSheet extends StatelessWidget {
                   'Your Order',
                   style: AppFonts.largeTextBB,
                 ),
-                OrderFoodWidget(
-                  foodItem: const [],
+                const OrderFoodWidget(
+                  foodItem: [],
                 ),
                 Text('Order Information', style: AppFonts.mediumTextBB),
                 const SizedBox(height: 20),

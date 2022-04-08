@@ -42,12 +42,11 @@ class _ProfileInfoState extends State<ProfileInfo> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         resizeToAvoidBottomInset: true,
         backgroundColor: AppColors.appthemeColor,
-        body: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: CustomPaint(
-              painter: BackgroundGridLines(heightGap: 30, widthGap: 15),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
+        body: CustomPaint(
+          painter: BackgroundGridLines(heightGap: 30, widthGap: 15),
+          child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     const ProfileAppBar(),

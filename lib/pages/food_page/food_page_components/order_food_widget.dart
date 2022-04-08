@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../models/food/item.dart';
 
 class OrderFoodWidget extends StatelessWidget {
-  List<Item> foodItem;
-  OrderFoodWidget({Key? key, required this.foodItem}) : super(key: key);
+  final List<Item> foodItem;
+  const OrderFoodWidget({Key? key, required this.foodItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

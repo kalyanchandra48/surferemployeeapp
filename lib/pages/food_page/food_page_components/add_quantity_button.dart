@@ -22,8 +22,9 @@ class _AddQuantityButtonState extends State<AddQuantityButton> {
 
   void add() {
     setState(() {
-      if (widget.foodItem.availableQty > widget.foodItem.orderQty)
+      if (widget.foodItem.availableQty > widget.foodItem.orderQty) {
         widget.qtyUpdater(1);
+      }
     });
   }
 
