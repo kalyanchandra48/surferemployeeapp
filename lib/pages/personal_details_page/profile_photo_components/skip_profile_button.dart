@@ -12,8 +12,13 @@ class SkipProfileButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const BottomNav()));
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const BottomNav(),
+            ),
+            (route) => false,
+          );
         },
         child: Container(
           height: 60,

@@ -17,7 +17,8 @@ class _ProfileInfoState extends State<ProfileInfo> {
 
   final TextEditingController _lastname = TextEditingController();
 
-  static String dropdownValue = 'Chennai';
+  bool isSelected = false;
+  late Color selectedOne = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -95,44 +96,78 @@ class _ProfileInfoState extends State<ProfileInfo> {
                               height: 8,
                             ),
                             Container(
-                              padding: const EdgeInsets.only(
-                                right: 12,
-                              ),
-                              height: 52,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadii.radius8px,
-                                  color: ContainerColors.primaryTextField),
-                              child: DropdownButton<String>(
-                                value: dropdownValue,
-                                icon: const Padding(
-                                  padding: EdgeInsets.only(left: 210),
-                                  child: Icon(Icons.expand_more_outlined,
-                                      color: Colors.white),
-                                ),
-                                style: AppFonts.mediumTextBB,
-                                underline: Container(
-                                  height: 0,
-                                  color: Colors.deepPurpleAccent,
-                                ),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    dropdownValue = newValue!;
-                                  });
-                                },
-                                items: <String>[
-                                  'Chennai',
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            12, 12, 0, 12),
-                                        child: Text(value)),
-                                  );
-                                }).toList(),
-                              ),
-                            ),
+                                height: 90,
+                                width: MediaQuery.of(context).size.width,
+                                color: Colors.transparent,
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) =>
+                                      GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        isSelected = !isSelected;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 70,
+                                      width: MediaQuery.of(context).size.width /
+                                          2.5,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 2,
+                                            color: isSelected
+                                                ? selectedOne
+                                                : Colors.transparent),
+                                        borderRadius: BorderRadii.radius8px,
+                                        color: ContainerColors.primaryTextField,
+                                      ),
+                                    ),
+                                  ),
+                                  separatorBuilder: (context, index) =>
+                                      const SizedBox(width: 30),
+                                  itemCount: 2,
+                                )),
+
+                            // Container(
+                            //   padding: const EdgeInsets.only(
+                            //     right: 12,
+                            //   ),
+                            //   height: 52,
+                            //   width: MediaQuery.of(context).size.width,
+                            //   decoration: BoxDecoration(
+                            //       borderRadius: BorderRadii.radius8px,
+                            //       color: ContainerColors.primaryTextField),
+                            //   child: DropdownButton<String>(
+                            //     value: dropdownValue,
+                            //     icon: const Padding(
+                            //       padding: EdgeInsets.only(left: 210),
+                            //       child: Icon(Icons.expand_more_outlined,
+                            //           color: Colors.white),
+                            //     ),
+                            //     style: AppFonts.mediumTextBB,
+                            //     underline: Container(
+                            //       height: 0,
+                            //       color: Colors.deepPurpleAccent,
+                            //     ),
+                            //     onChanged: (String? newValue) {
+                            //       setState(() {
+                            //         dropdownValue = newValue!;
+                            //       });
+                            //     },
+                            //     items: <String>[
+                            //       'Chennai',
+                            //     ].map<DropdownMenuItem<String>>((String value) {
+                            //       return DropdownMenuItem<String>(
+                            //         value: value,
+                            //         child: Padding(
+                            //             padding: const EdgeInsets.fromLTRB(
+                            //                 12, 12, 0, 12),
+                            //             child: Text(value)),
+                            //       );
+                            //     }).toList(),
+                            //   ),
+                            // ),
                           ]),
                     ),
                   ],
