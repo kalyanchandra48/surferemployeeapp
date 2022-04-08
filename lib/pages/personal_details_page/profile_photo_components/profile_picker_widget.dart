@@ -35,10 +35,10 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
         ),
         cropStyle: CropStyle.rectangle,
         compressQuality: 90,
-        androidUiSettings: const AndroidUiSettings(
-            toolbarTitle: 'Cropper',
-            toolbarColor: Colors.deepOrange,
-            toolbarWidgetColor: Colors.white,
+        androidUiSettings: AndroidUiSettings(
+            toolbarTitle: 'Crop Your Image',
+            toolbarColor: ContainerColors.surfblue,
+            toolbarWidgetColor: ContainerColors.bgBlueShadow,
             initAspectRatio: CropAspectRatioPreset.original,
             lockAspectRatio: false),
         iosUiSettings: const IOSUiSettings(
