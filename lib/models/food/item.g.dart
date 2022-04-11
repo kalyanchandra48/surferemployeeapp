@@ -80,7 +80,7 @@ class _ItemWebAdapter extends IsarWebTypeAdapter<Item> {
       orderQty:
           IsarNative.jsObjectGet(jsObj, 'orderQty') ?? double.negativeInfinity,
     );
-    object.id = IsarNative.jsObjectGet(jsObj, 'id') ?? double.negativeInfinity;
+    object.id = IsarNative.jsObjectGet(jsObj, 'id');
     return object;
   }
 
@@ -98,8 +98,7 @@ class _ItemWebAdapter extends IsarWebTypeAdapter<Item> {
         return (IsarNative.jsObjectGet(jsObj, 'hashCode') ??
             double.negativeInfinity) as P;
       case 'id':
-        return (IsarNative.jsObjectGet(jsObj, 'id') ?? double.negativeInfinity)
-            as P;
+        return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
       case 'imageUrl':
         return (IsarNative.jsObjectGet(jsObj, 'imageUrl') ?? '') as P;
       case 'itemId':
@@ -216,7 +215,7 @@ extension ItemQueryWhereSort on QueryBuilder<Item, Item, QWhere> {
 }
 
 extension ItemQueryWhere on QueryBuilder<Item, Item, QWhereClause> {
-  QueryBuilder<Item, Item, QAfterWhereClause> idEqualTo(int id) {
+  QueryBuilder<Item, Item, QAfterWhereClause> idEqualTo(int? id) {
     return addWhereClauseInternal(WhereClause(
       indexName: null,
       lower: [id],
@@ -226,7 +225,7 @@ extension ItemQueryWhere on QueryBuilder<Item, Item, QWhereClause> {
     ));
   }
 
-  QueryBuilder<Item, Item, QAfterWhereClause> idNotEqualTo(int id) {
+  QueryBuilder<Item, Item, QAfterWhereClause> idNotEqualTo(int? id) {
     if (whereSortInternal == Sort.asc) {
       return addWhereClauseInternal(WhereClause(
         indexName: null,
@@ -251,7 +250,7 @@ extension ItemQueryWhere on QueryBuilder<Item, Item, QWhereClause> {
   }
 
   QueryBuilder<Item, Item, QAfterWhereClause> idGreaterThan(
-    int id, {
+    int? id, {
     bool include = false,
   }) {
     return addWhereClauseInternal(WhereClause(
@@ -262,7 +261,7 @@ extension ItemQueryWhere on QueryBuilder<Item, Item, QWhereClause> {
   }
 
   QueryBuilder<Item, Item, QAfterWhereClause> idLessThan(
-    int id, {
+    int? id, {
     bool include = false,
   }) {
     return addWhereClauseInternal(WhereClause(
@@ -273,8 +272,8 @@ extension ItemQueryWhere on QueryBuilder<Item, Item, QWhereClause> {
   }
 
   QueryBuilder<Item, Item, QAfterWhereClause> idBetween(
-    int lowerId,
-    int upperId, {
+    int? lowerId,
+    int? upperId, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -587,7 +586,15 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
     ));
   }
 
-  QueryBuilder<Item, Item, QAfterFilterCondition> idEqualTo(int value) {
+  QueryBuilder<Item, Item, QAfterFilterCondition> idIsNull() {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.isNull,
+      property: 'id',
+      value: null,
+    ));
+  }
+
+  QueryBuilder<Item, Item, QAfterFilterCondition> idEqualTo(int? value) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.eq,
       property: 'id',
@@ -596,7 +603,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
   }
 
   QueryBuilder<Item, Item, QAfterFilterCondition> idGreaterThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return addFilterConditionInternal(FilterCondition(
@@ -608,7 +615,7 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
   }
 
   QueryBuilder<Item, Item, QAfterFilterCondition> idLessThan(
-    int value, {
+    int? value, {
     bool include = false,
   }) {
     return addFilterConditionInternal(FilterCondition(
@@ -620,8 +627,8 @@ extension ItemQueryFilter on QueryBuilder<Item, Item, QFilterCondition> {
   }
 
   QueryBuilder<Item, Item, QAfterFilterCondition> idBetween(
-    int lower,
-    int upper, {
+    int? lower,
+    int? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -1196,7 +1203,7 @@ extension ItemQueryProperty on QueryBuilder<Item, Item, QQueryProperty> {
     return addPropertyNameInternal('hashCode');
   }
 
-  QueryBuilder<Item, int, QQueryOperations> idProperty() {
+  QueryBuilder<Item, int?, QQueryOperations> idProperty() {
     return addPropertyNameInternal('id');
   }
 

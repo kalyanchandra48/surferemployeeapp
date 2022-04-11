@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:employee_app/common_widgets/background_grid_lines.dart';
+import 'package:employee_app/pages/personal_details_page/profile_photo_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../common_widgets/input_textfield_widget.dart';
 import '../../common_widgets/navigation_button.dart';
 import '../../styles/styles.dart';
-import 'profile_photo_page.dart';
 
 class ProfileInfo extends StatefulWidget {
   const ProfileInfo({Key? key}) : super(key: key);
@@ -19,25 +22,55 @@ class _ProfileInfoState extends State<ProfileInfo> {
 
   bool isSelected = false;
   late Color selectedOne = Colors.white;
+  late List<String> locations = ['Chennai', 'Sweden'];
+  late List<String> locationimages = [
+    'assets/chennai.svg',
+    'assets/stockholm.svg',
+  ];
+  int selected = 2;
+
+  late final locationChoose;
+  late String location = '';
+  final StreamController<bool> _stream = StreamController<bool>();
+
+  bool _validate() {
+    if (_lastname.text.length > 4 &&
+        _firstname.text.length > 3 &&
+        location.isNotEmpty) {
+      return true;
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
+    Timer.periodic(
+      const Duration(milliseconds: 10),
+      (Timer t) => _stream.add(_validate()),
+    );
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        floatingActionButton: GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfilePhotoPage()),
-            );
-          },
-          child: NavigationButton(
-            text: 'Next',
-            buttonColor: ButtonColors.nextButton,
-            buttonTextStyle: AppFonts.buttonTextBB,
+        floatingActionButton: StreamBuilder<Object>(
+          stream: _stream.stream,
+          builder: (context, snapshot) => GestureDetector(
+            onTap: () {
+              snapshot.data == true
+                  ? Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePhotoPage()))
+                  : null;
+            },
+            child: NavigationButton(
+              text: 'Next',
+              buttonColor: snapshot.data == true
+                  ? ButtonColors.nextButton
+                  : ButtonColors.disableButton,
+              buttonTextStyle: AppFonts.buttonTextBB,
+            ),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -54,7 +87,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                     Container(
                       width: MediaQuery.of(context).size.width,
                       margin:
-                          const EdgeInsets.only(left: 24, right: 24, top: 28),
+                          const EdgeInsets.only(left: 24, right: 23, top: 28),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -96,7 +129,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                               height: 8,
                             ),
                             Container(
-                                height: 90,
+                                height: 61,
                                 width: MediaQuery.of(context).size.width,
                                 color: Colors.transparent,
                                 child: ListView.separated(
@@ -106,68 +139,56 @@ class _ProfileInfoState extends State<ProfileInfo> {
                                       GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        isSelected = !isSelected;
+                                        selected = index;
+                                        location = locations[index];
                                       });
                                     },
                                     child: Container(
-                                      height: 70,
+                                      height: 50,
                                       width: MediaQuery.of(context).size.width /
                                           2.5,
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                             width: 2,
-                                            color: isSelected
+                                            color: selected == index
                                                 ? selectedOne
                                                 : Colors.transparent),
                                         borderRadius: BorderRadii.radius8px,
                                         color: ContainerColors.primaryTextField,
                                       ),
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            SvgPicture.asset(
+                                              locationimages[index],
+                                              height: 30,
+                                              width: 20,
+                                              color: selected == index
+                                                  ? TextColors.primaryColor
+                                                  : TextColors.hintDull,
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            Text(locations[index],
+                                                style: AppFonts.inputTextWR
+                                                    .copyWith(
+                                                        color: selected == index
+                                                            ? TextColors
+                                                                .primaryColor
+                                                            : TextColors
+                                                                .hintDull)),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   separatorBuilder: (context, index) =>
-                                      const SizedBox(width: 30),
+                                      const SizedBox(width: 27),
                                   itemCount: 2,
                                 )),
-
-                            // Container(
-                            //   padding: const EdgeInsets.only(
-                            //     right: 12,
-                            //   ),
-                            //   height: 52,
-                            //   width: MediaQuery.of(context).size.width,
-                            //   decoration: BoxDecoration(
-                            //       borderRadius: BorderRadii.radius8px,
-                            //       color: ContainerColors.primaryTextField),
-                            //   child: DropdownButton<String>(
-                            //     value: dropdownValue,
-                            //     icon: const Padding(
-                            //       padding: EdgeInsets.only(left: 210),
-                            //       child: Icon(Icons.expand_more_outlined,
-                            //           color: Colors.white),
-                            //     ),
-                            //     style: AppFonts.mediumTextBB,
-                            //     underline: Container(
-                            //       height: 0,
-                            //       color: Colors.deepPurpleAccent,
-                            //     ),
-                            //     onChanged: (String? newValue) {
-                            //       setState(() {
-                            //         dropdownValue = newValue!;
-                            //       });
-                            //     },
-                            //     items: <String>[
-                            //       'Chennai',
-                            //     ].map<DropdownMenuItem<String>>((String value) {
-                            //       return DropdownMenuItem<String>(
-                            //         value: value,
-                            //         child: Padding(
-                            //             padding: const EdgeInsets.fromLTRB(
-                            //                 12, 12, 0, 12),
-                            //             child: Text(value)),
-                            //       );
-                            //     }).toList(),
-                            //   ),
-                            // ),
                           ]),
                     ),
                   ],
@@ -189,6 +210,12 @@ class ProfileAppBar extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.only(left: 47, top: 40, bottom: 23),
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 44,
+              color: const Color(0xff000000).withOpacity(0.6),
+            ),
+          ],
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(24),
             bottomRight: Radius.circular(24),

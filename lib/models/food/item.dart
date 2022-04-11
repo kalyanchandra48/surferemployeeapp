@@ -5,7 +5,8 @@ part 'item.g.dart';
 @Collection()
 class Item {
   @Id()
-  int? id;
+  int? id = Isar.autoIncrement;
+
   @Name('itemId')
   String itemId;
   @Name('name')

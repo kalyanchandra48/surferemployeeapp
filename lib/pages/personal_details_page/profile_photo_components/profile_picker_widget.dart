@@ -19,12 +19,14 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
   XFile? image;
   late File imageFile;
   bool loading = false;
+  var _image;
 
   void _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         loading = true;
+        _image = File(imageFile.path);
       });
       imageFile = File(pickedFile.path);
       File croppedFile = (await ImageCropper().cropImage(
@@ -33,7 +35,7 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
           ratioX: 1.0,
           ratioY: 1.0,
         ),
-        cropStyle: CropStyle.rectangle,
+        cropStyle: CropStyle.circle,
         compressQuality: 90,
         androidUiSettings: AndroidUiSettings(
             toolbarTitle: 'Crop Your Image',
@@ -56,8 +58,8 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
         _pickImage();
       },
       child: Container(
-        height: 118,
-        width: 118,
+        height: 148,
+        width: 188,
         decoration: BoxDecoration(boxShadow: const [
           BoxShadow(
             color: Color(0xff0D2877),
@@ -67,18 +69,20 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
           )
         ], shape: BoxShape.circle, color: ContainerColors.white),
         child: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset(
-              "assets/profile_add_icon.png",
-              height: 28,
-              width: 28,
-            ),
-            const SizedBox(height: 6),
-            Text(
-              'Upload',
-              style: AppFonts.hintText14,
-            ),
-          ]),
+          child: _image != null
+              ? Image.file(_image)
+              : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Image.asset(
+                    "assets/profile_add_icon.png",
+                    height: 28,
+                    width: 28,
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    'Upload',
+                    style: AppFonts.hintText14,
+                  ),
+                ]),
         ),
       ),
     );

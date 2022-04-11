@@ -32,7 +32,6 @@ class InputTextFieldWidget extends StatelessWidget {
             color: textFieldColor, borderRadius: BorderRadius.circular(12)),
         child: Center(
           child: TextFormField(
-            // textCapitalization: TextCapitalization.characters,
             keyboardType: keyboardType,
             style:
                 AppFonts.inputTextWR.copyWith(color: TextColors.primaryColor),

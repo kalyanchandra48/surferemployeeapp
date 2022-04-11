@@ -12,6 +12,12 @@ class ProfileAppBar extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.only(left: 5, top: 40, bottom: 23),
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 44,
+              color: const Color(0xff000000).withOpacity(0.6),
+            ),
+          ],
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(24),
             bottomRight: Radius.circular(24),
@@ -27,24 +33,23 @@ class ProfileAppBar extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_ios_outlined),
             ),
             Container(
-                height: 68,
-                width: 68,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: ContainerColors.yellowShade,
-                    ),
-                    BoxShadow(
-                      color: ContainerColors.yellowShadelight,
-                      spreadRadius: -13,
-                      blurRadius: 10.0,
-                    )
-                  ],
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Image.asset("assets/Telescope.png"),
-                )),
+              height: 68,
+              width: 68,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: ContainerColors.yellowShade,
+                  ),
+                  BoxShadow(
+                    color: ContainerColors.yellowShadelight,
+                    spreadRadius: -13,
+                    blurRadius: 10.0,
+                  )
+                ],
+                shape: BoxShape.circle,
+              ),
+              child: Center(child: Image.asset("assets/Telescope.png")),
+            ),
             const SizedBox(width: 9),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

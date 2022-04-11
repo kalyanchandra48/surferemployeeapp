@@ -20,10 +20,10 @@ class _FoodPagePanelBodyState extends State<FoodPagePanelBody>
   @override
   void initState() {
     tabText = foodData!.map((e) => e.category).toSet().toList();
-    tabText.forEach((element) {
+    for (var element in tabText) {
       tabBody.add(FoodItemList(
           foodItem: foodData!.where((e) => e.category == element).toList()));
-    });
+    }
 
     _foodCategoryTabController =
         TabController(length: tabText.length, vsync: this);

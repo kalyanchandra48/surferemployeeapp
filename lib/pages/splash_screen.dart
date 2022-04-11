@@ -12,8 +12,11 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 2300), () {
       // 5s over, navigate to a new page
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const IntroScreens()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const IntroScreens()),
+        (route) => false,
+      );
     });
 
     return Scaffold(
