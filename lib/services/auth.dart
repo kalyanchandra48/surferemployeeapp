@@ -52,6 +52,7 @@ class AuthService {
         message: 'Signed out',
       ),
     );
+    // Navigator.push(context,MaterialPageRoute( builder: ((context) => IntroScreens()     )
 
     await _firebaseAuth.signOut();
   }

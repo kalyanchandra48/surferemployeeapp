@@ -19,15 +19,11 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
   XFile? image;
   late File imageFile;
   bool loading = false;
-  var _image;
+  dynamic _image;
 
   void _pickImage() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      setState(() {
-        loading = true;
-        _image = File(imageFile.path);
-      });
       imageFile = File(pickedFile.path);
       File croppedFile = (await ImageCropper().cropImage(
         sourcePath: imageFile.path,
@@ -48,6 +44,11 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
         ),
       ))!;
       croppedFile;
+      setState(() {
+        loading = true;
+        _image = File(croppedFile.path);
+        // print('CROPPED FILE PATH -=> $_image');
+      });
     }
   }
 
@@ -68,22 +69,29 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
             spreadRadius: 0,
           )
         ], shape: BoxShape.circle, color: ContainerColors.white),
-        child: Center(
-          child: _image != null
-              ? Image.file(_image)
-              : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Image.asset(
-                    "assets/profile_add_icon.png",
-                    height: 28,
-                    width: 28,
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    'Upload',
-                    style: AppFonts.hintText14,
-                  ),
-                ]),
-        ),
+        child: _image != null
+            ? Container(
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+                child: Image.file(
+                  _image,
+                  fit: BoxFit.cover,
+                ),
+              )
+            : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Image.asset(
+                  "assets/profile_add_icon.png",
+                  height: 28,
+                  width: 28,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'Upload',
+                  style: AppFonts.hintText14,
+                ),
+              ]),
       ),
     );
   }

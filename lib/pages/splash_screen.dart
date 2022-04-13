@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
         painter: BackgroundGridLines(heightGap: 30, widthGap: 15),
         child: const Center(
           child: RiveAnimation.asset(
-            'assets/e_wave.riv',
+            'assets/splashrive.riv',
           ),
         ),
       ),
