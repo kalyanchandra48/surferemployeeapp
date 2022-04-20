@@ -47,6 +47,7 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
       setState(() {
         loading = true;
         _image = File(croppedFile.path);
+
         // print('CROPPED FILE PATH -=> $_image');
       });
     }

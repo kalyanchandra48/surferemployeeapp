@@ -5,6 +5,7 @@ import 'package:employee_app/pages/food_page/food_page_components/food_page_comp
 import 'package:employee_app/services/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:isar/isar.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/auth_status.dart';

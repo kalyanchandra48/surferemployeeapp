@@ -1,92 +1,107 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:isar/isar.dart';
 
-import 'package:employee_app/models/user/order_details.dart';
+part 'user.g.dart';
 
-import '../leaves.dart';
-
+@Collection()
 class User {
-  String id;
-  String name;
+  @Id()
+  int? id = Isar.autoIncrement;
+  @Name('userid')
+  String userid;
+  @Name('firstname')
+  String firstname;
+  @Name('lastname')
+  String lastname;
+  @Name('location')
+  String location;
+  @Name('imageUrl')
   String imageUrl;
+  @Name('insuranceNum')
   String insuranceNum;
+  @Name('email')
   String email;
+  @Name('pfNum')
   String pfNum;
+  @Name('dob')
   String dob;
-  int leavesTaken;
-  List<OrderDetails> orderDetails;
-  List<Leaves> leaves;
+
+  // int leavesTaken;
+
+  // List<OrderDetails> orderDetails;
+
+  // List<Leaves> leaves;
   User({
-    required this.id,
-    required this.name,
+    this.id,
+    required this.userid,
+    required this.firstname,
+    required this.lastname,
+    required this.location,
     required this.imageUrl,
     required this.insuranceNum,
     required this.email,
     required this.pfNum,
     required this.dob,
-    required this.leavesTaken,
-    required this.orderDetails,
-    required this.leaves,
   });
 
   User copyWith({
-    String? id,
-    String? name,
+    int? id,
+    String? userid,
+    String? firstname,
+    String? lastname,
+    String? location,
     String? imageUrl,
     String? insuranceNum,
     String? email,
     String? pfNum,
     String? dob,
-    int? leavesTaken,
-    List<OrderDetails>? orderDetails,
-    List<Leaves>? leaves,
   }) {
     return User(
       id: id ?? this.id,
-      name: name ?? this.name,
+      userid: userid ?? this.userid,
+      firstname: firstname ?? this.firstname,
+      lastname: lastname ?? this.lastname,
+      location: location ?? this.location,
       imageUrl: imageUrl ?? this.imageUrl,
       insuranceNum: insuranceNum ?? this.insuranceNum,
       email: email ?? this.email,
       pfNum: pfNum ?? this.pfNum,
       dob: dob ?? this.dob,
-      leavesTaken: leavesTaken ?? this.leavesTaken,
-      orderDetails: orderDetails ?? this.orderDetails,
-      leaves: leaves ?? this.leaves,
     );
   }
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'id': id});
-    result.addAll({'name': name});
+    if (id != null) {
+      result.addAll({'id': id});
+    }
+    result.addAll({'userid': userid});
+    result.addAll({'firstname': firstname});
+    result.addAll({'lastname': lastname});
+    result.addAll({'location': location});
     result.addAll({'imageUrl': imageUrl});
     result.addAll({'insuranceNum': insuranceNum});
     result.addAll({'email': email});
     result.addAll({'pfNum': pfNum});
     result.addAll({'dob': dob});
-    result.addAll({'leavesTaken': leavesTaken});
-    result
-        .addAll({'orderDetails': orderDetails.map((x) => x.toMap()).toList()});
-    result.addAll({'leaves': leaves.map((x) => x.toMap()).toList()});
 
     return result;
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id'] ?? '',
-      name: map['name'] ?? '',
+      id: map['id']?.toInt(),
+      userid: map['userid'] ?? '',
+      firstname: map['firstname'] ?? '',
+      lastname: map['lastname'] ?? '',
+      location: map['location'] ?? '',
       imageUrl: map['imageUrl'] ?? '',
       insuranceNum: map['insuranceNum'] ?? '',
       email: map['email'] ?? '',
       pfNum: map['pfNum'] ?? '',
       dob: map['dob'] ?? '',
-      leavesTaken: map['leavesTaken']?.toInt() ?? 0,
-      orderDetails: List<OrderDetails>.from(
-          map['orderDetails']?.map((x) => OrderDetails.fromMap(x))),
-      leaves: List<Leaves>.from(map['leaves']?.map((x) => Leaves.fromMap(x))),
     );
   }
 
@@ -96,7 +111,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, imageUrl: $imageUrl, insuranceNum: $insuranceNum, email: $email, pfNum: $pfNum, dob: $dob, leavesTaken: $leavesTaken, orderDetails: $orderDetails, leaves: $leaves)';
+    return 'User(id: $id, userid: $userid, firstname: $firstname, lastname: $lastname, location: $location, imageUrl: $imageUrl, insuranceNum: $insuranceNum, email: $email, pfNum: $pfNum, dob: $dob)';
   }
 
   @override
@@ -105,28 +120,28 @@ class User {
 
     return other is User &&
         other.id == id &&
-        other.name == name &&
+        other.userid == userid &&
+        other.firstname == firstname &&
+        other.lastname == lastname &&
+        other.location == location &&
         other.imageUrl == imageUrl &&
         other.insuranceNum == insuranceNum &&
         other.email == email &&
         other.pfNum == pfNum &&
-        other.dob == dob &&
-        other.leavesTaken == leavesTaken &&
-        listEquals(other.orderDetails, orderDetails) &&
-        listEquals(other.leaves, leaves);
+        other.dob == dob;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        name.hashCode ^
+        userid.hashCode ^
+        firstname.hashCode ^
+        lastname.hashCode ^
+        location.hashCode ^
         imageUrl.hashCode ^
         insuranceNum.hashCode ^
         email.hashCode ^
         pfNum.hashCode ^
-        dob.hashCode ^
-        leavesTaken.hashCode ^
-        orderDetails.hashCode ^
-        leaves.hashCode;
+        dob.hashCode;
   }
 }

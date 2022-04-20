@@ -1,5 +1,6 @@
 import 'package:employee_app/models/auth_status.dart';
 import 'package:employee_app/models/leaves.dart';
+import 'package:employee_app/models/user/user.dart';
 import 'package:employee_app/pages/splash_screen.dart';
 import 'package:employee_app/provider/app_view_model.dart';
 import 'package:employee_app/provider/my_cart_provider.dart';
@@ -21,6 +22,7 @@ void main() async {
     schemas: [
       LeavesSchema,
       ItemSchema,
+      UserSchema,
     ],
     directory: dir.path,
     inspector: true,
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
   final Isar isar;
   final AuthService _auth = locator<AuthService>();
   final CalendarService _cs = locator<CalendarService>();
+
+ 
   fetchleaves() async {
     final myLeaves = await isar.leavess.where().findAll();
     // print(myLeaves);

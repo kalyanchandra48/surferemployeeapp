@@ -1,11 +1,15 @@
 import 'dart:async';
 
 import 'package:employee_app/common_widgets/background_grid_lines.dart';
-import 'package:employee_app/pages/personal_details_page/profile_photo_page.dart';
+import 'package:employee_app/models/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:isar/isar.dart';
 import '../../common_widgets/input_textfield_widget.dart';
 import '../../common_widgets/navigation_button.dart';
+import '../../models/user/user.dart';
+import '../../provider/app_view_model.dart';
+import '../../services/locator.dart';
 import '../../styles/styles.dart';
 
 class ProfileInfo extends StatefulWidget {
@@ -57,12 +61,19 @@ class _ProfileInfoState extends State<ProfileInfo> {
           stream: _stream.stream,
           builder: (context, snapshot) => GestureDetector(
             onTap: () {
-              snapshot.data == true
-                  ? Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfilePhotoPage()))
-                  : null;
+              final Isar _isar = locator<AppViewModel>().isar;
+              addToIsar(
+                _firstname.text,
+                _lastname.text,
+                location,
+                _isar,
+              );
+              // snapshot.data == true
+              //     ? Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => const ProfilePhotoPage()))
+              //     : null;
             },
             child: NavigationButton(
               text: 'Next',
@@ -198,6 +209,28 @@ class _ProfileInfoState extends State<ProfileInfo> {
       ),
     );
   }
+}
+
+addToIsar(
+    String _firstname, String _lastname, String location, Isar isar) async {
+  final updateDetails = User(
+      userid: '',
+      firstname: _firstname,
+      lastname: _lastname,
+      location: location,
+      imageUrl: '',
+      insuranceNum: '',
+      email: 'email',
+      pfNum: ' pfNum',
+      dob: 'dob');
+
+  await isar.writeTxn((isar) async {
+    isar.users.put(updateDetails);
+  });
+
+  isar.users.where().findAll().then((value) => value.forEach((element) {
+        print(element);
+      }));
 }
 
 class ProfileAppBar extends StatelessWidget {
