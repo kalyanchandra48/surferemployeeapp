@@ -38,5 +38,6 @@ class AppViewModel extends ViewModel {
 }
 
 abstract class ViewModel extends ChangeNotifier {
+  @override
   void dispose();
 }

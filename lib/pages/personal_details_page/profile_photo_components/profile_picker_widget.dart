@@ -60,7 +60,7 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
         _pickImage();
       },
       child: Container(
-        height: 148,
+        height: 158,
         width: 188,
         decoration: BoxDecoration(boxShadow: const [
           BoxShadow(
@@ -71,15 +71,9 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
           )
         ], shape: BoxShape.circle, color: ContainerColors.white),
         child: _image != null
-            ? Container(
-                decoration: const BoxDecoration(
-                  color: Colors.red,
-                  shape: BoxShape.circle,
-                ),
-                child: Image.file(
-                  _image,
-                  fit: BoxFit.cover,
-                ),
+            ? CircleAvatar(
+                radius: 90,
+                backgroundImage: FileImage(_image),
               )
             : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Image.asset(

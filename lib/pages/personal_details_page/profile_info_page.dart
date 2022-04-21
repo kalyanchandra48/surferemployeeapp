@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:employee_app/common_widgets/background_grid_lines.dart';
 import 'package:employee_app/models/user/user.dart';
+import 'package:employee_app/pages/personal_details_page/profile_photo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:isar/isar.dart';
@@ -33,7 +34,6 @@ class _ProfileInfoState extends State<ProfileInfo> {
   ];
   int selected = 2;
 
-  late final locationChoose;
   late String location = '';
   final StreamController<bool> _stream = StreamController<bool>();
 
@@ -62,18 +62,18 @@ class _ProfileInfoState extends State<ProfileInfo> {
           builder: (context, snapshot) => GestureDetector(
             onTap: () {
               final Isar _isar = locator<AppViewModel>().isar;
-              addToIsar(
-                _firstname.text,
-                _lastname.text,
-                location,
-                _isar,
-              );
-              // snapshot.data == true
-              //     ? Navigator.push(
-              //         context,
-              //         MaterialPageRoute(
-              //             builder: (context) => const ProfilePhotoPage()))
-              //     : null;
+              // addToIsar(
+              //   _firstname.text,
+              //   _lastname.text,
+              //   location,
+              //   _isar,
+              // );
+              snapshot.data == true
+                  ? Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePhotoPage()))
+                  : null;
             },
             child: NavigationButton(
               text: 'Next',
