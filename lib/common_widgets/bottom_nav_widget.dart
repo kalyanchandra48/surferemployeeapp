@@ -15,6 +15,8 @@ class BottomNavBarWidget extends StatefulWidget {
 
 class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   bool click = false;
+  double turns = 0.0;
+  double turns1 = 0.0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,47 +31,66 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
           GestureDetector(
             onTap: () {
               setState(() {
-                click = !click;
+                turns == 0.0 ? turns -= 1 : turns += 1;
+                //click = !click;
               });
             },
-            child: AnimatedContainer(
-              height: 52,
-              width: 52,
-              curve: Curves.fastLinearToSlowEaseIn,
-              duration: const Duration(seconds: 1),
-              decoration: BoxDecoration(
-                  color: click
-                      ? ContainerColors.surfblue
-                      : ContainerColors.whiteContainer,
-                  borderRadius: BorderRadii.radius12px,
-                  boxShadow: [
-                    BoxShadow(
-                      offset: const Offset(10, 10),
-                      spreadRadius: 5,
-                      blurRadius: 12,
-                      color: const Color(0xff000000).withOpacity(0.2),
-                    ),
-                  ]),
-              child: SvgPicture.asset(
-                'assets/home_active.svg',
-                height: 32,
-                fit: BoxFit.scaleDown,
+            child: AnimatedRotation(
+              curve: Curves.easeOutExpo,
+              turns: turns,
+              duration: const Duration(seconds: 3),
+              child: AnimatedContainer(
+                height: 52,
+                width: 52,
+                curve: Curves.fastLinearToSlowEaseIn,
+                duration: const Duration(seconds: 1),
+                decoration: BoxDecoration(
+                    color: click
+                        ? ContainerColors.surfblue
+                        : ContainerColors.whiteContainer,
+                    borderRadius: BorderRadii.radius12px,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(10, 10),
+                        spreadRadius: 5,
+                        blurRadius: 12,
+                        color: const Color(0xff000000).withOpacity(0.2),
+                      ),
+                    ]),
+                child: SvgPicture.asset(
+                  'assets/home_active.svg',
+                  height: 32,
+                  fit: BoxFit.scaleDown,
+                ),
               ),
             ),
           ),
-          AnimatedContainer(
-            height: 52,
-            width: 52,
-            duration: const Duration(seconds: 1),
-            decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                border:
-                    Border.all(color: Colors.white.withOpacity(0.1), width: 2),
-                borderRadius: BorderRadii.radius12px),
-            child: SvgPicture.asset(
-              'assets/people_inactive.svg',
-              height: 32,
-              fit: BoxFit.scaleDown,
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                turns1 == 0.0 ? turns1 -= 1 : turns1 += 1;
+                //click = !click;
+              });
+            },
+            child: AnimatedRotation(
+              curve: Curves.easeOutExpo,
+              turns: turns1,
+              duration: const Duration(seconds: 4),
+              child: AnimatedContainer(
+                height: 52,
+                width: 52,
+                duration: const Duration(seconds: 1),
+                decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.1),
+                    border: Border.all(
+                        color: Colors.white.withOpacity(0.1), width: 2),
+                    borderRadius: BorderRadii.radius12px),
+                child: SvgPicture.asset(
+                  'assets/people_inactive.svg',
+                  height: 32,
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
             ),
           ),
           GestureDetector(

@@ -6,20 +6,16 @@ part of 'leaves.dart';
 // IsarCollectionGenerator
 // **************************************************************************
 
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, unused_local_variable
 
 extension GetLeavesCollection on Isar {
-  IsarCollection<Leaves> get leavess {
-    return getCollection('Leaves');
-  }
+  IsarCollection<Leaves> get leavess => getCollection();
 }
 
-final LeavesSchema = CollectionSchema(
+const LeavesSchema = CollectionSchema(
   name: 'Leaves',
   schema:
       '{"name":"Leaves","idName":"id","properties":[{"name":"category","type":"String"},{"name":"description","type":"String"},{"name":"fromDate","type":"Long"},{"name":"hashCode","type":"Long"},{"name":"leaveID","type":"String"},{"name":"title","type":"String"},{"name":"toDate","type":"Long"}],"indexes":[],"links":[]}',
-  nativeAdapter: const _LeavesNativeAdapter(),
-  webAdapter: const _LeavesWebAdapter(),
   idName: 'id',
   propertyIds: {
     'category': 0,
@@ -32,262 +28,247 @@ final LeavesSchema = CollectionSchema(
   },
   listProperties: {},
   indexIds: {},
-  indexTypes: {},
+  indexValueTypes: {},
   linkIds: {},
-  backlinkIds: {},
-  linkedCollections: [],
-  getId: (obj) {
-    if (obj.id == Isar.autoIncrement) {
-      return null;
-    } else {
-      return obj.id;
-    }
-  },
-  setId: (obj, id) => obj.id = id,
-  getLinks: (obj) => [],
-  version: 2,
+  backlinkLinkNames: {},
+  getId: _leavesGetId,
+  setId: _leavesSetId,
+  getLinks: _leavesGetLinks,
+  attachLinks: _leavesAttachLinks,
+  serializeNative: _leavesSerializeNative,
+  deserializeNative: _leavesDeserializeNative,
+  deserializePropNative: _leavesDeserializePropNative,
+  serializeWeb: _leavesSerializeWeb,
+  deserializeWeb: _leavesDeserializeWeb,
+  deserializePropWeb: _leavesDeserializePropWeb,
+  version: 3,
 );
 
-class _LeavesWebAdapter extends IsarWebTypeAdapter<Leaves> {
-  const _LeavesWebAdapter();
-
-  @override
-  Object serialize(IsarCollection<Leaves> collection, Leaves object) {
-    final jsObj = IsarNative.newJsObject();
-    IsarNative.jsObjectSet(jsObj, 'category', object.category);
-    IsarNative.jsObjectSet(jsObj, 'description', object.description);
-    IsarNative.jsObjectSet(
-        jsObj, 'fromDate', object.fromDate.toUtc().millisecondsSinceEpoch);
-    IsarNative.jsObjectSet(jsObj, 'hashCode', object.hashCode);
-    IsarNative.jsObjectSet(jsObj, 'id', object.id);
-    IsarNative.jsObjectSet(jsObj, 'leaveID', object.leaveId);
-    IsarNative.jsObjectSet(jsObj, 'title', object.title);
-    IsarNative.jsObjectSet(
-        jsObj, 'toDate', object.toDate.toUtc().millisecondsSinceEpoch);
-    return jsObj;
+int? _leavesGetId(Leaves object) {
+  if (object.id == Isar.autoIncrement) {
+    return null;
+  } else {
+    return object.id;
   }
+}
 
-  @override
-  Leaves deserialize(IsarCollection<Leaves> collection, dynamic jsObj) {
-    final object = Leaves(
-      category: IsarNative.jsObjectGet(jsObj, 'category') ?? '',
-      description: IsarNative.jsObjectGet(jsObj, 'description') ?? '',
-      fromDate: IsarNative.jsObjectGet(jsObj, 'fromDate') != null
+void _leavesSetId(Leaves object, int id) {
+  object.id = id;
+}
+
+List<IsarLinkBase> _leavesGetLinks(Leaves object) {
+  return [];
+}
+
+void _leavesSerializeNative(
+    IsarCollection<Leaves> collection,
+    IsarRawObject rawObj,
+    Leaves object,
+    int staticSize,
+    List<int> offsets,
+    AdapterAlloc alloc) {
+  var dynamicSize = 0;
+  final value0 = object.category;
+  final _category = IsarBinaryWriter.utf8Encoder.convert(value0);
+  dynamicSize += (_category.length) as int;
+  final value1 = object.description;
+  final _description = IsarBinaryWriter.utf8Encoder.convert(value1);
+  dynamicSize += (_description.length) as int;
+  final value2 = object.fromDate;
+  final _fromDate = value2;
+  final value3 = object.hashCode;
+  final _hashCode = value3;
+  final value4 = object.leaveId;
+  final _leaveID = IsarBinaryWriter.utf8Encoder.convert(value4);
+  dynamicSize += (_leaveID.length) as int;
+  final value5 = object.title;
+  final _title = IsarBinaryWriter.utf8Encoder.convert(value5);
+  dynamicSize += (_title.length) as int;
+  final value6 = object.toDate;
+  final _toDate = value6;
+  final size = staticSize + dynamicSize;
+
+  rawObj.buffer = alloc(size);
+  rawObj.buffer_length = size;
+  final buffer = IsarNative.bufAsBytes(rawObj.buffer, size);
+  final writer = IsarBinaryWriter(buffer, staticSize);
+  writer.writeBytes(offsets[0], _category);
+  writer.writeBytes(offsets[1], _description);
+  writer.writeDateTime(offsets[2], _fromDate);
+  writer.writeLong(offsets[3], _hashCode);
+  writer.writeBytes(offsets[4], _leaveID);
+  writer.writeBytes(offsets[5], _title);
+  writer.writeDateTime(offsets[6], _toDate);
+}
+
+Leaves _leavesDeserializeNative(IsarCollection<Leaves> collection, int id,
+    IsarBinaryReader reader, List<int> offsets) {
+  final object = Leaves(
+    category: reader.readString(offsets[0]),
+    description: reader.readString(offsets[1]),
+    fromDate: reader.readDateTime(offsets[2]),
+    leaveId: reader.readString(offsets[4]),
+    title: reader.readString(offsets[5]),
+    toDate: reader.readDateTime(offsets[6]),
+  );
+  object.id = id;
+  return object;
+}
+
+P _leavesDeserializePropNative<P>(
+    int id, IsarBinaryReader reader, int propertyIndex, int offset) {
+  switch (propertyIndex) {
+    case -1:
+      return id as P;
+    case 0:
+      return (reader.readString(offset)) as P;
+    case 1:
+      return (reader.readString(offset)) as P;
+    case 2:
+      return (reader.readDateTime(offset)) as P;
+    case 3:
+      return (reader.readLong(offset)) as P;
+    case 4:
+      return (reader.readString(offset)) as P;
+    case 5:
+      return (reader.readString(offset)) as P;
+    case 6:
+      return (reader.readDateTime(offset)) as P;
+    default:
+      throw 'Illegal propertyIndex';
+  }
+}
+
+dynamic _leavesSerializeWeb(IsarCollection<Leaves> collection, Leaves object) {
+  final jsObj = IsarNative.newJsObject();
+  IsarNative.jsObjectSet(jsObj, 'category', object.category);
+  IsarNative.jsObjectSet(jsObj, 'description', object.description);
+  IsarNative.jsObjectSet(
+      jsObj, 'fromDate', object.fromDate.toUtc().millisecondsSinceEpoch);
+  IsarNative.jsObjectSet(jsObj, 'hashCode', object.hashCode);
+  IsarNative.jsObjectSet(jsObj, 'id', object.id);
+  IsarNative.jsObjectSet(jsObj, 'leaveID', object.leaveId);
+  IsarNative.jsObjectSet(jsObj, 'title', object.title);
+  IsarNative.jsObjectSet(
+      jsObj, 'toDate', object.toDate.toUtc().millisecondsSinceEpoch);
+  return jsObj;
+}
+
+Leaves _leavesDeserializeWeb(IsarCollection<Leaves> collection, dynamic jsObj) {
+  final object = Leaves(
+    category: IsarNative.jsObjectGet(jsObj, 'category') ?? '',
+    description: IsarNative.jsObjectGet(jsObj, 'description') ?? '',
+    fromDate: IsarNative.jsObjectGet(jsObj, 'fromDate') != null
+        ? DateTime.fromMillisecondsSinceEpoch(
+                IsarNative.jsObjectGet(jsObj, 'fromDate'),
+                isUtc: true)
+            .toLocal()
+        : DateTime.fromMillisecondsSinceEpoch(0),
+    leaveId: IsarNative.jsObjectGet(jsObj, 'leaveID') ?? '',
+    title: IsarNative.jsObjectGet(jsObj, 'title') ?? '',
+    toDate: IsarNative.jsObjectGet(jsObj, 'toDate') != null
+        ? DateTime.fromMillisecondsSinceEpoch(
+                IsarNative.jsObjectGet(jsObj, 'toDate'),
+                isUtc: true)
+            .toLocal()
+        : DateTime.fromMillisecondsSinceEpoch(0),
+  );
+  object.id = IsarNative.jsObjectGet(jsObj, 'id');
+  return object;
+}
+
+P _leavesDeserializePropWeb<P>(Object jsObj, String propertyName) {
+  switch (propertyName) {
+    case 'category':
+      return (IsarNative.jsObjectGet(jsObj, 'category') ?? '') as P;
+    case 'description':
+      return (IsarNative.jsObjectGet(jsObj, 'description') ?? '') as P;
+    case 'fromDate':
+      return (IsarNative.jsObjectGet(jsObj, 'fromDate') != null
           ? DateTime.fromMillisecondsSinceEpoch(
                   IsarNative.jsObjectGet(jsObj, 'fromDate'),
                   isUtc: true)
               .toLocal()
-          : DateTime.fromMillisecondsSinceEpoch(0),
-      leaveId: IsarNative.jsObjectGet(jsObj, 'leaveID') ?? '',
-      title: IsarNative.jsObjectGet(jsObj, 'title') ?? '',
-      toDate: IsarNative.jsObjectGet(jsObj, 'toDate') != null
+          : DateTime.fromMillisecondsSinceEpoch(0)) as P;
+    case 'hashCode':
+      return (IsarNative.jsObjectGet(jsObj, 'hashCode') ??
+          double.negativeInfinity) as P;
+    case 'id':
+      return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
+    case 'leaveID':
+      return (IsarNative.jsObjectGet(jsObj, 'leaveID') ?? '') as P;
+    case 'title':
+      return (IsarNative.jsObjectGet(jsObj, 'title') ?? '') as P;
+    case 'toDate':
+      return (IsarNative.jsObjectGet(jsObj, 'toDate') != null
           ? DateTime.fromMillisecondsSinceEpoch(
                   IsarNative.jsObjectGet(jsObj, 'toDate'),
                   isUtc: true)
               .toLocal()
-          : DateTime.fromMillisecondsSinceEpoch(0),
-    );
-    object.id = IsarNative.jsObjectGet(jsObj, 'id');
-    return object;
+          : DateTime.fromMillisecondsSinceEpoch(0)) as P;
+    default:
+      throw 'Illegal propertyName';
   }
-
-  @override
-  P deserializeProperty<P>(Object jsObj, String propertyName) {
-    switch (propertyName) {
-      case 'category':
-        return (IsarNative.jsObjectGet(jsObj, 'category') ?? '') as P;
-      case 'description':
-        return (IsarNative.jsObjectGet(jsObj, 'description') ?? '') as P;
-      case 'fromDate':
-        return (IsarNative.jsObjectGet(jsObj, 'fromDate') != null
-            ? DateTime.fromMillisecondsSinceEpoch(
-                    IsarNative.jsObjectGet(jsObj, 'fromDate'),
-                    isUtc: true)
-                .toLocal()
-            : DateTime.fromMillisecondsSinceEpoch(0)) as P;
-      case 'hashCode':
-        return (IsarNative.jsObjectGet(jsObj, 'hashCode') ??
-            double.negativeInfinity) as P;
-      case 'id':
-        return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
-      case 'leaveID':
-        return (IsarNative.jsObjectGet(jsObj, 'leaveID') ?? '') as P;
-      case 'title':
-        return (IsarNative.jsObjectGet(jsObj, 'title') ?? '') as P;
-      case 'toDate':
-        return (IsarNative.jsObjectGet(jsObj, 'toDate') != null
-            ? DateTime.fromMillisecondsSinceEpoch(
-                    IsarNative.jsObjectGet(jsObj, 'toDate'),
-                    isUtc: true)
-                .toLocal()
-            : DateTime.fromMillisecondsSinceEpoch(0)) as P;
-      default:
-        throw 'Illegal propertyName';
-    }
-  }
-
-  @override
-  void attachLinks(Isar isar, int id, Leaves object) {}
 }
 
-class _LeavesNativeAdapter extends IsarNativeTypeAdapter<Leaves> {
-  const _LeavesNativeAdapter();
-
-  @override
-  void serialize(IsarCollection<Leaves> collection, IsarRawObject rawObj,
-      Leaves object, int staticSize, List<int> offsets, AdapterAlloc alloc) {
-    var dynamicSize = 0;
-    final value0 = object.category;
-    final _category = IsarBinaryWriter.utf8Encoder.convert(value0);
-    dynamicSize += (_category.length) as int;
-    final value1 = object.description;
-    final _description = IsarBinaryWriter.utf8Encoder.convert(value1);
-    dynamicSize += (_description.length) as int;
-    final value2 = object.fromDate;
-    final _fromDate = value2;
-    final value3 = object.hashCode;
-    final _hashCode = value3;
-    final value4 = object.leaveId;
-    final _leaveID = IsarBinaryWriter.utf8Encoder.convert(value4);
-    dynamicSize += (_leaveID.length) as int;
-    final value5 = object.title;
-    final _title = IsarBinaryWriter.utf8Encoder.convert(value5);
-    dynamicSize += (_title.length) as int;
-    final value6 = object.toDate;
-    final _toDate = value6;
-    final size = staticSize + dynamicSize;
-
-    rawObj.buffer = alloc(size);
-    rawObj.buffer_length = size;
-    final buffer = IsarNative.bufAsBytes(rawObj.buffer, size);
-    final writer = IsarBinaryWriter(buffer, staticSize);
-    writer.writeBytes(offsets[0], _category);
-    writer.writeBytes(offsets[1], _description);
-    writer.writeDateTime(offsets[2], _fromDate);
-    writer.writeLong(offsets[3], _hashCode);
-    writer.writeBytes(offsets[4], _leaveID);
-    writer.writeBytes(offsets[5], _title);
-    writer.writeDateTime(offsets[6], _toDate);
-  }
-
-  @override
-  Leaves deserialize(IsarCollection<Leaves> collection, int id,
-      IsarBinaryReader reader, List<int> offsets) {
-    final object = Leaves(
-      category: reader.readString(offsets[0]),
-      description: reader.readString(offsets[1]),
-      fromDate: reader.readDateTime(offsets[2]),
-      leaveId: reader.readString(offsets[4]),
-      title: reader.readString(offsets[5]),
-      toDate: reader.readDateTime(offsets[6]),
-    );
-    object.id = id;
-    return object;
-  }
-
-  @override
-  P deserializeProperty<P>(
-      int id, IsarBinaryReader reader, int propertyIndex, int offset) {
-    switch (propertyIndex) {
-      case -1:
-        return id as P;
-      case 0:
-        return (reader.readString(offset)) as P;
-      case 1:
-        return (reader.readString(offset)) as P;
-      case 2:
-        return (reader.readDateTime(offset)) as P;
-      case 3:
-        return (reader.readLong(offset)) as P;
-      case 4:
-        return (reader.readString(offset)) as P;
-      case 5:
-        return (reader.readString(offset)) as P;
-      case 6:
-        return (reader.readDateTime(offset)) as P;
-      default:
-        throw 'Illegal propertyIndex';
-    }
-  }
-
-  @override
-  void attachLinks(Isar isar, int id, Leaves object) {}
-}
+void _leavesAttachLinks(IsarCollection col, int id, Leaves object) {}
 
 extension LeavesQueryWhereSort on QueryBuilder<Leaves, Leaves, QWhere> {
   QueryBuilder<Leaves, Leaves, QAfterWhere> anyId() {
-    return addWhereClauseInternal(const WhereClause(indexName: null));
+    return addWhereClauseInternal(const IdWhereClause.any());
   }
 }
 
 extension LeavesQueryWhere on QueryBuilder<Leaves, Leaves, QWhereClause> {
-  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idEqualTo(int? id) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [id],
+  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idEqualTo(int id) {
+    return addWhereClauseInternal(IdWhereClause.between(
+      lower: id,
       includeLower: true,
-      upper: [id],
+      upper: id,
       includeUpper: true,
     ));
   }
 
-  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idNotEqualTo(int? id) {
+  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idNotEqualTo(int id) {
     if (whereSortInternal == Sort.asc) {
-      return addWhereClauseInternal(WhereClause(
-        indexName: null,
-        upper: [id],
-        includeUpper: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: null,
-        lower: [id],
-        includeLower: false,
-      ));
+      return addWhereClauseInternal(
+        IdWhereClause.lessThan(upper: id, includeUpper: false),
+      ).addWhereClauseInternal(
+        IdWhereClause.greaterThan(lower: id, includeLower: false),
+      );
     } else {
-      return addWhereClauseInternal(WhereClause(
-        indexName: null,
-        lower: [id],
-        includeLower: false,
-      )).addWhereClauseInternal(WhereClause(
-        indexName: null,
-        upper: [id],
-        includeUpper: false,
-      ));
+      return addWhereClauseInternal(
+        IdWhereClause.greaterThan(lower: id, includeLower: false),
+      ).addWhereClauseInternal(
+        IdWhereClause.lessThan(upper: id, includeUpper: false),
+      );
     }
   }
 
-  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idGreaterThan(
-    int? id, {
-    bool include = false,
-  }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [id],
-      includeLower: include,
-    ));
+  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idGreaterThan(int id,
+      {bool include = false}) {
+    return addWhereClauseInternal(
+      IdWhereClause.greaterThan(lower: id, includeLower: include),
+    );
   }
 
-  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idLessThan(
-    int? id, {
-    bool include = false,
-  }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      upper: [id],
-      includeUpper: include,
-    ));
+  QueryBuilder<Leaves, Leaves, QAfterWhereClause> idLessThan(int id,
+      {bool include = false}) {
+    return addWhereClauseInternal(
+      IdWhereClause.lessThan(upper: id, includeUpper: include),
+    );
   }
 
   QueryBuilder<Leaves, Leaves, QAfterWhereClause> idBetween(
-    int? lowerId,
-    int? upperId, {
+    int lowerId,
+    int upperId, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
-    return addWhereClauseInternal(WhereClause(
-      indexName: null,
-      lower: [lowerId],
+    return addWhereClauseInternal(IdWhereClause.between(
+      lower: lowerId,
       includeLower: includeLower,
-      upper: [upperId],
+      upper: upperId,
       includeUpper: includeUpper,
     ));
   }

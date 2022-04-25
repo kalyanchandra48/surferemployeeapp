@@ -5,9 +5,9 @@ class FoodHistorySheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(24),
+      padding: const EdgeInsets.all(24),
       height: MediaQuery.of(context).size.height / 1.05,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadii.radius24px,
         color: Colors.white,
       ),

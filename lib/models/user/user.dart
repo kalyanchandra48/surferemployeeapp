@@ -7,9 +7,9 @@ part 'user.g.dart';
 @Collection()
 class User {
   @Id()
-  int? id = Isar.autoIncrement;
-  @Name('userid')
-  String userid;
+  int id;
+  @Name('userId')
+  String userId;
   @Name('firstname')
   String firstname;
   @Name('lastname')
@@ -26,15 +26,9 @@ class User {
   String pfNum;
   @Name('dob')
   String dob;
-
-  // int leavesTaken;
-
-  // List<OrderDetails> orderDetails;
-
-  // List<Leaves> leaves;
   User({
-    this.id,
-    required this.userid,
+    required this.id,
+    required this.userId,
     required this.firstname,
     required this.lastname,
     required this.location,
@@ -45,9 +39,15 @@ class User {
     required this.dob,
   });
 
+  // int leavesTaken;
+
+  // List<OrderDetails> orderDetails;
+
+  // List<Leaves> leaves;
+
   User copyWith({
     int? id,
-    String? userid,
+    String? userId,
     String? firstname,
     String? lastname,
     String? location,
@@ -59,7 +59,7 @@ class User {
   }) {
     return User(
       id: id ?? this.id,
-      userid: userid ?? this.userid,
+      userId: userId ?? this.userId,
       firstname: firstname ?? this.firstname,
       lastname: lastname ?? this.lastname,
       location: location ?? this.location,
@@ -74,10 +74,8 @@ class User {
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    if (id != null) {
-      result.addAll({'id': id});
-    }
-    result.addAll({'userid': userid});
+    result.addAll({'id': id});
+    result.addAll({'userId': userId});
     result.addAll({'firstname': firstname});
     result.addAll({'lastname': lastname});
     result.addAll({'location': location});
@@ -92,8 +90,8 @@ class User {
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id']?.toInt(),
-      userid: map['userid'] ?? '',
+      id: map['id']?.toInt() ?? 0,
+      userId: map['userId'] ?? '',
       firstname: map['firstname'] ?? '',
       lastname: map['lastname'] ?? '',
       location: map['location'] ?? '',
@@ -111,7 +109,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, userid: $userid, firstname: $firstname, lastname: $lastname, location: $location, imageUrl: $imageUrl, insuranceNum: $insuranceNum, email: $email, pfNum: $pfNum, dob: $dob)';
+    return 'User(id: $id, userId: $userId, firstname: $firstname, lastname: $lastname, location: $location, imageUrl: $imageUrl, insuranceNum: $insuranceNum, email: $email, pfNum: $pfNum, dob: $dob)';
   }
 
   @override
@@ -120,7 +118,7 @@ class User {
 
     return other is User &&
         other.id == id &&
-        other.userid == userid &&
+        other.userId == userId &&
         other.firstname == firstname &&
         other.lastname == lastname &&
         other.location == location &&
@@ -134,7 +132,7 @@ class User {
   @override
   int get hashCode {
     return id.hashCode ^
-        userid.hashCode ^
+        userId.hashCode ^
         firstname.hashCode ^
         lastname.hashCode ^
         location.hashCode ^

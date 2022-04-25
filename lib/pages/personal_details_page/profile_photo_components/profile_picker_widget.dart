@@ -1,9 +1,13 @@
 import 'dart:io';
 
+import 'package:employee_app/models/user/user.dart';
+import 'package:employee_app/provider/app_view_model.dart';
+import 'package:employee_app/services/locator.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:isar/isar.dart';
 
 class ProfilePickerWidget extends StatefulWidget {
   const ProfilePickerWidget({
@@ -15,13 +19,17 @@ class ProfilePickerWidget extends StatefulWidget {
 }
 
 class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
+  final Isar _isar = locator<AppViewModel>().isar;
   final ImagePicker _picker = ImagePicker();
   XFile? image;
   late File imageFile;
   bool loading = false;
   dynamic _image;
 
+  // User? isarUser = _isar.users.where().findFirst();
+
   void _pickImage() async {
+    User? user = await _isar.users.where().findFirst();
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       imageFile = File(pickedFile.path);
@@ -47,6 +55,7 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
       setState(() {
         loading = true;
         _image = File(croppedFile.path);
+        print(user!.id);
 
         // print('CROPPED FILE PATH -=> $_image');
       });

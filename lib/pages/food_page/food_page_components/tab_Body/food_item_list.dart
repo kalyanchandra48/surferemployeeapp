@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:employee_app/models/food/item.dart';
 import 'package:isar/isar.dart';
 
-late List filtered = [];
-
 class FoodItemList extends StatefulWidget {
   final List<Item> foodItem;
   late Isar isar;
@@ -21,16 +19,8 @@ class FoodItemList extends StatefulWidget {
 }
 
 class _FoodItemListState extends State<FoodItemList> {
-  //late Isar isar;
   late var filteredOrder;
 
-//	@override
-  /* add(filterOrder) async {
-    await isar.writeTxn((isar) async {
-      await isar.items.put(filteredOrder);
-    });
-  }
-  // */
   void _change(index) {
     widget.foodItem[index].orderQty = widget.foodItem[index].orderQty + 1;
 
@@ -38,6 +28,8 @@ class _FoodItemListState extends State<FoodItemList> {
 
     //print(widget.foodItem[index].orderQty);
   }
+
+  late final filtered = [];
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +60,11 @@ class _FoodItemListState extends State<FoodItemList> {
                   child: AddQuantityButton(
                       foodItem: widget.foodItem[index],
                       qtyUpdater: (int number) {
+//if orderQty>0 then add item in isar with id
+//isar.items.put('foodItem[index]')
+
+//next page - listen to item collection where quantity is greater than 0.
+
                         setState(() {
                           widget.foodItem[index].orderQty =
                               widget.foodItem[index].orderQty + number;
@@ -76,7 +73,8 @@ class _FoodItemListState extends State<FoodItemList> {
 
                         final filteredOrder = widget.cartItem.toSet();
                         filtered.add(filteredOrder);
-                        print(filtered);
+
+                        print('Filtered is $filtered');
                         //     add(filterOrder);
                       }))
             ]),

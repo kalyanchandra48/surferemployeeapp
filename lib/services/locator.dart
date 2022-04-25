@@ -1,6 +1,7 @@
 import 'package:employee_app/provider/app_view_model.dart';
 import 'package:employee_app/services/auth.dart';
 import 'package:employee_app/services/calendar_events.dart';
+import 'package:employee_app/services/user_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:isar/isar.dart';
 
@@ -9,4 +10,5 @@ void setupLocator(Isar isar) {
   locator.registerSingleton(AuthService());
   locator.registerSingleton(CalendarService());
   locator.registerSingleton(AppViewModel(isar));
+  locator.registerSingleton(UserService());
 }

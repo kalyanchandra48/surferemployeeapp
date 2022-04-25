@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:employee_app/common_widgets/background_grid_lines.dart';
 import 'package:employee_app/models/user/user.dart';
 import 'package:employee_app/pages/personal_details_page/profile_photo_page.dart';
+import 'package:employee_app/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:isar/isar.dart';
@@ -24,10 +25,11 @@ class _ProfileInfoState extends State<ProfileInfo> {
   final TextEditingController _firstname = TextEditingController();
 
   final TextEditingController _lastname = TextEditingController();
+  final UserService _us = locator<UserService>();
 
   bool isSelected = false;
   late Color selectedOne = Colors.white;
-  late List<String> locations = ['Chennai', 'Sweden'];
+  late List<String> locations = ['CHENNAI', 'STOCKHOLM'];
   late List<String> locationimages = [
     'assets/chennai.svg',
     'assets/stockholm.svg',
@@ -60,14 +62,30 @@ class _ProfileInfoState extends State<ProfileInfo> {
         floatingActionButton: StreamBuilder<Object>(
           stream: _stream.stream,
           builder: (context, snapshot) => GestureDetector(
-            onTap: () {
+            onTap: () async {
               final Isar _isar = locator<AppViewModel>().isar;
-              // addToIsar(
-              //   _firstname.text,
-              //   _lastname.text,
-              //   location,
-              //   _isar,
-              // );
+
+              List<User> users = await _isar.users.where().findAll();
+              // print('users from isar -> $users');
+              User? isarUser = await _isar.users.get(1);
+
+              _us.updateUsertoDb(
+                User(
+                  id: 1,
+                  userId: isarUser!.userId,
+                  firstname: _firstname.text,
+                  lastname: _lastname.text,
+                  location: location,
+                  imageUrl: '',
+                  insuranceNum: '',
+                  email: '',
+                  dob: '',
+                  pfNum: '',
+                ),
+              );
+              //print('Isar user -> $isarUser');
+
+              _us.addProfile(_firstname.text, _lastname.text, location);
               snapshot.data == true
                   ? Navigator.push(
                       context,
@@ -211,27 +229,27 @@ class _ProfileInfoState extends State<ProfileInfo> {
   }
 }
 
-addToIsar(
-    String _firstname, String _lastname, String location, Isar isar) async {
-  final updateDetails = User(
-      userid: '',
-      firstname: _firstname,
-      lastname: _lastname,
-      location: location,
-      imageUrl: '',
-      insuranceNum: '',
-      email: 'email',
-      pfNum: ' pfNum',
-      dob: 'dob');
+// addToIsar(
+//     String _firstname, String _lastname, String location, Isar isar) async {
+//   final updateDetails = User(
+//       userid: '',
+//       firstname: _firstname,
+//       lastname: _lastname,
+//       location: location,
+//       imageUrl: '',
+//       insuranceNum: '',
+//       email: 'email',
+//       pfNum: ' pfNum',
+//       dob: 'dob');
 
-  await isar.writeTxn((isar) async {
-    isar.users.put(updateDetails);
-  });
+//   await isar.writeTxn((isar) async {
+//     isar.users.put(updateDetails);
+//   });
 
-  isar.users.where().findAll().then((value) => value.forEach((element) {
-        print(element);
-      }));
-}
+//   isar.users.where().findAll().then((value) => value.forEach((element) {
+//         print(element);
+//       }));
+// }
 
 class ProfileAppBar extends StatelessWidget {
   const ProfileAppBar({

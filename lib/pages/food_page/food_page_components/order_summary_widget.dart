@@ -6,6 +6,8 @@ class OrderSummaryWidget extends StatelessWidget {
   static final DateTime now = DateTime.now();
   static final DateFormat formatter = DateFormat('dd MMMM yyyy, H:mm');
   final String formatted = formatter.format(now);
+
+   OrderSummaryWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -41,7 +41,7 @@ class TakenLeavesTabBody extends StatelessWidget {
                       (snapshot.data![index].toDate ==
                               snapshot.data![index].toDate)
                           ? Text(monthname, style: AppFonts.foodNameHeader)
-                          : SizedBox.shrink(),
+                          : const SizedBox.shrink(),
                       const SizedBox(
                         height: 20,
                       ),
@@ -77,7 +77,7 @@ class TakenLeavesTabBody extends StatelessWidget {
                   );
                 });
           }
-          return CupertinoActivityIndicator();
+          return const CupertinoActivityIndicator();
         });
   }
 }
