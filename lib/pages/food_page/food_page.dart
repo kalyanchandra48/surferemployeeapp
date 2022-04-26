@@ -92,7 +92,7 @@ class _FoodPageState extends State<FoodPage> with TickerProviderStateMixin {
                         isScrollControlled: true,
                         context: context,
                         builder: (BuildContext context) {
-                          return CheckoutSheet();
+                          return const CheckoutSheet();
                         },
                       );
                     },

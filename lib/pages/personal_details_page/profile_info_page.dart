@@ -69,23 +69,23 @@ class _ProfileInfoState extends State<ProfileInfo> {
               // print('users from isar -> $users');
               User? isarUser = await _isar.users.get(1);
 
-              _us.updateUsertoDb(
-                User(
-                  id: 1,
-                  userId: isarUser!.userId,
-                  firstname: _firstname.text,
-                  lastname: _lastname.text,
-                  location: location,
-                  imageUrl: '',
-                  insuranceNum: '',
-                  email: '',
-                  dob: '',
-                  pfNum: '',
-                ),
-              );
+              // _us.updateUsertoDb(
+              //   User(
+              //     id: 1,
+              //     userId: isarUser!.userId,
+              //     firstname: _firstname.text,
+              //     lastname: _lastname.text,
+              //     location: location,
+              //     imageUrl: '',
+              //     insuranceNum: '',
+              //     email: '',
+              //     dob: '',
+              //     pfNum: '',
+              //   ),
+              // );
               //print('Isar user -> $isarUser');
 
-              _us.addProfile(_firstname.text, _lastname.text, location);
+              // _us.addProfile(_firstname.text, _lastname.text, location);
               snapshot.data == true
                   ? Navigator.push(
                       context,
