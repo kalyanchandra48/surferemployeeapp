@@ -22,22 +22,21 @@ class ProfileInfo extends StatefulWidget {
 }
 
 class _ProfileInfoState extends State<ProfileInfo> {
-  final TextEditingController _firstname = TextEditingController();
-
-  final TextEditingController _lastname = TextEditingController();
-  final UserService _us = locator<UserService>();
-
   bool isSelected = false;
-  late Color selectedOne = Colors.white;
-  late List<String> locations = ['CHENNAI', 'STOCKHOLM'];
+  late String location = '';
   late List<String> locationimages = [
     'assets/chennai.svg',
     'assets/stockholm.svg',
   ];
-  int selected = 2;
 
-  late String location = '';
+  late List<String> locations = ['CHENNAI', 'STOCKHOLM'];
+  int selected = 2;
+  late Color selectedOne = Colors.white;
+
+  final TextEditingController _firstname = TextEditingController();
+  final TextEditingController _lastname = TextEditingController();
   final StreamController<bool> _stream = StreamController<bool>();
+  final UserService _us = locator<UserService>();
 
   bool _validate() {
     if (_lastname.text.length > 4 &&
@@ -83,7 +82,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
               //     pfNum: '',
               //   ),
               // );
-              //print('Isar user -> $isarUser');
+              // print('Isar user -> $isarUser');
 
               // _us.addProfile(_firstname.text, _lastname.text, location);
               snapshot.data == true

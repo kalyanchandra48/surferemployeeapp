@@ -53,7 +53,7 @@ class EssentialLabelWidget extends StatelessWidget {
                   style: AppFonts.mediumTextBB,
                 ),
                 const SizedBox(
-                  height:4,
+                  height: 4,
                 ),
                 Text(
                   labelText,

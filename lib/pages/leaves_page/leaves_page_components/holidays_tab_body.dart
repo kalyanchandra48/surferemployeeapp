@@ -14,14 +14,13 @@ class HolidaysTabBody extends StatelessWidget {
     return StreamBuilder<List<Leaves>>(
         stream: viewModel.getIndiaLeaves(),
         builder: (context, snapshot) {
-		
-		print(snapshot.hasData);
+          print(snapshot.hasData);
           return ListView.separated(
               itemCount: 4,
               shrinkWrap: true,
               padding: const EdgeInsets.only(left: 24, top: 4, right: 24),
               separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(height: 10);
+                return const SizedBox(height: 10);
               },
               itemBuilder: (BuildContext context, int index) {
                 return Column(children: [

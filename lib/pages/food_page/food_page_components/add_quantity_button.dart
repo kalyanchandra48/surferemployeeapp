@@ -5,10 +5,10 @@ import 'package:employee_app/models/food/item.dart';
 class AddQuantityButton extends StatefulWidget {
   late Item foodItem;
   late Function qtyUpdater;
-  AddQuantityButton({
+  AddQuantityButton({Key? key, 
     required this.foodItem,
     required this.qtyUpdater,
-  });
+  }) : super(key: key);
   @override
   _AddQuantityButtonState createState() => _AddQuantityButtonState();
 }

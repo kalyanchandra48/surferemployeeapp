@@ -32,7 +32,7 @@ class _FoodPageState extends State<FoodPage> with TickerProviderStateMixin {
         preferredSize: const Size.fromHeight(90),
         child: ThemeAppBar(
           herotag: 'FoodUpdates',
-          bottomSheetBody: FoodHistorySheet(),
+          bottomSheetBody: const FoodHistorySheet(),
           crossFade: crossFade,
           header: 'Food',
           subHeader: '20 varieties',

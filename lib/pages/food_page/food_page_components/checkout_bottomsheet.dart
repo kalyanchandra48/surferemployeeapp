@@ -1,11 +1,13 @@
-import 'package:employee_app/models/food/item.dart';
-import 'package:employee_app/pages/food_page/food_page_components/order_food_widget.dart';
-import 'package:employee_app/pages/food_page/food_page_components/order_view_model.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:employee_app/common_widgets/food_info_widget.dart';
+import 'package:employee_app/common_widgets/navigation_button.dart';
+import 'package:employee_app/pages/food_page/food_page_components/order_summary_widget.dart';
+import 'package:employee_app/pages/food_page/food_page_components/ordered_count_widget.dart';
+import 'package:employee_app/pages/food_page/food_page_components/tab_Body/ordered_viewmodel.dart';
+import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'order_summary_widget.dart';
-import 'package:employee_app/common_widgets/common_widgets_component.dart';
+
+import '../../../models/food/item.dart';
 
 class CheckoutSheet extends StatelessWidget {
   const CheckoutSheet({Key? key}) : super(key: key);
@@ -13,21 +15,19 @@ class CheckoutSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => OrderViewModel(),
-      builder: (context, _) => const SomeStack(),
+      create: (_) => OrderedViewModel(),
+      builder: (context, _) => const CheckOutBottomSheet(),
     );
   }
 }
 
-class SomeStack extends StatelessWidget {
-  const SomeStack({
-    Key? key,
-  }) : super(key: key);
+class CheckOutBottomSheet extends StatelessWidget {
+  const CheckOutBottomSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Stream<List<Item>> itemStream = OrderViewModel.of(context).orderItemsStream;
-
+    List<Item> allItems = OrderedViewModel.of(context).itemsnames;
+    // print(allItems.length);
     return Stack(alignment: Alignment.bottomCenter, children: [
       Container(
         padding: const EdgeInsets.all(24),
@@ -41,47 +41,28 @@ class SomeStack extends StatelessWidget {
           children: [
             ListView(
               padding: const EdgeInsets.only(top: 24, bottom: 60),
-              //  physics: ClampingScrollPhysics(),
               children: [
                 Text(
                   'Your Order',
                   style: AppFonts.largeTextBB,
                 ),
-                StreamBuilder<List<Item>>(
-                    stream: itemStream,
-                    builder: (BuildContext context,
-                        AsyncSnapshot<List<Item>> snapshot) {
-                      print('direct from stream');
-                      itemStream.last.then((value) {
-                        print(value);
-                        print("From Item Stream");
-                      });
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
-                          child: const Center(
-                            child: CupertinoActivityIndicator(
-                              color: Colors.black,
-                              radius: 26,
-                            ),
-                          ),
-                        );
-                      }
-
-                      print('snapshot from builder -> $snapshot');
-                      if (snapshot.hasData) {
-                        print('Snapshot from stream->');
-                        print(snapshot.data);
-                        return OrderFoodWidget(
-                          foodItem: snapshot.data!,
-                        );
-                      }
-                      return const SizedBox(
-                          height: 200,
-                          child: Text('No items to display!!!!!!!!!!!'));
-                    }),
+                ListView.separated(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    physics: const ClampingScrollPhysics(),
+                    itemCount: allItems.length,
+                    shrinkWrap: true,
+                    separatorBuilder: (context, index) => const SizedBox(
+                          height: 10,
+                        ),
+                    itemBuilder: (BuildContext context, int index) =>
+                        FoodInfoWidget(
+                            foodItem: allItems[index],
+                            actionWidget: OrderedCountWidget(
+                              orderedqty: allItems[index].orderQty,
+                            ))),
                 Text('Order Information', style: AppFonts.mediumTextBB),
                 const SizedBox(height: 20),
-                OrderSummaryWidget(),
+                OrderSummaryWidget(allItems: allItems),
               ],
             ),
             Positioned(
@@ -101,7 +82,7 @@ class SomeStack extends StatelessWidget {
         ),
       ),
       Positioned(
-        bottom: 20,
+        bottom: 15,
         child: NavigationButton(
             buttonColor: ButtonColors.nextButton,
             text: 'Confirm Order',

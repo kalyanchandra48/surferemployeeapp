@@ -5,7 +5,7 @@ class TabBarDelegate extends StatelessWidget {
   final TabController? controller;
   final List<String> text;
 
-  const TabBarDelegate({required this.controller, required this.text});
+  const TabBarDelegate({Key? key, required this.controller, required this.text}) : super(key: key);
 
   @override
   Widget build(
@@ -37,7 +37,7 @@ class TabBarDelegate extends StatelessWidget {
     );
   }
 
-  @override
+  
   bool shouldRebuild(covariant TabBarDelegate oldDelegate) {
     return oldDelegate.controller != controller;
   }

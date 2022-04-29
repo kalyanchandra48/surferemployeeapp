@@ -1,17 +1,33 @@
 import 'package:flutter/material.dart';
+import '../../../models/food/item.dart';
 import './food_page_components.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
-  @override
+  final List<Item> allItems;
+
   static final DateTime now = DateTime.now();
   static final DateFormat formatter = DateFormat('dd MMMM yyyy, H:mm');
   final String formatted = formatter.format(now);
 
   OrderSummaryWidget({
     Key? key,
+    required this.allItems,
   }) : super(key: key);
+
+  String getTotal() {
+    num totalAmount = 0;
+    for (var e in allItems) {
+      num amount = e.orderQty * int.parse(e.amount);
+      totalAmount = totalAmount + amount;
+    }
+    return totalAmount.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
+    //print('kak');
+    print(allItems);
+    //  print(allItems[index].amount)
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
       decoration: BoxDecoration(
@@ -66,21 +82,28 @@ class OrderSummaryWidget extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             padding: const EdgeInsets.symmetric(vertical: 15),
             shrinkWrap: true,
-            itemCount: 3,
+            itemCount: allItems.length,
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(height: 8);
             },
             itemBuilder: (BuildContext context, int index) {
+              final totalPriceItem =
+                  allItems[index].orderQty * int.parse(allItems[index].amount);
+
               return Row(
                 children: [
                   Text(
-                    'Samosa x (2)',
+                    allItems[index].name +
+                        ' x ' +
+                        '(' +
+                        allItems[index].orderQty.toString() +
+                        ')',
                     style: AppFonts.foodNameHeader
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
                   const Spacer(),
                   Text(
-                    '\$20',
+                    totalPriceItem.toString(),
                     style: AppFonts.foodNameHeader
                         .copyWith(fontWeight: FontWeight.normal),
                   ),
@@ -98,7 +121,7 @@ class OrderSummaryWidget extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              '\$60',
+              getTotal(),
               style: AppFonts.mediumTextBB
                   .copyWith(color: TextColors.secondaryColor),
             ),

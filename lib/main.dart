@@ -5,7 +5,6 @@ import 'package:employee_app/pages/splash_screen.dart';
 import 'package:employee_app/provider/app_view_model.dart';
 import 'package:employee_app/provider/my_cart_provider.dart';
 import 'package:employee_app/services/auth.dart';
-import 'package:employee_app/services/calendar_events.dart';
 import 'package:employee_app/services/locator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +26,7 @@ void main() async {
     directory: dir.path,
     inspector: true,
   );
-  final userdata = isar.users.where().findFirst();
+  // final userdata = isar.users.where().findFirst();
 
   setupLocator(isar);
   runApp(MyApp(
@@ -37,9 +36,11 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key, required this.isar}) : super(key: key);
+
   final Isar isar;
+
   final AuthService _auth = locator<AuthService>();
-  final CalendarService _cs = locator<CalendarService>();
+  //final CalendarService _cs = locator<CalendarService>();
 
   fetchleaves() async {
     final myLeaves = await isar.leavess.where().findAll();
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
 //    _cs.obtainCredentials(isar);
 //    _cs.getIndiaHolidays(isar);
 
-    AppViewModel viewModel = AppViewModel(isar);
+    // AppViewModel viewModel = AppViewModel(isar);
     //fetchleaves();
     return MultiProvider(
       providers: [

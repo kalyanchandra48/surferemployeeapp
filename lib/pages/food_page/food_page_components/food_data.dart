@@ -40,7 +40,7 @@ List<Item> foodItem() {
             'https://i2.wp.com/karissasvegankitchen.com/wp-content/uploads/2019/03/c-vegan-chocolate-bars-4-500x500.jpg'),
     Item(
         itemId: '233323',
-        name: 'Chocolate Milk Shake With Icecream',
+        name: 'Chocolate Milk Shake',
         orderQty: 0,
         availableQty: 5,
         amount: '20',

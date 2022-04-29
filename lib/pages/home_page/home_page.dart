@@ -15,7 +15,6 @@ class HomePage extends StatelessWidget {
         Container(
           padding:
               const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 24),
-          // height: MediaQuery.of(context).size.height / 1.5,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
               color: Colors.white,

@@ -5,9 +5,6 @@ import 'package:employee_app/services/locator.dart';
 import 'package:employee_app/services/user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:isar/isar.dart';
-
-import '../provider/app_view_model.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -31,7 +28,7 @@ class AuthService {
   Stream<AuthStatus> get authStatus => _streamController.stream;
 
   Future<User> signInWithGoogle() async {
-    final Isar _isar = locator<AppViewModel>().isar;
+    //final Isar _isar = locator<AppViewModel>().isar;
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     final UserService _us = locator<UserService>();
     final GoogleSignInAuthentication? googleAuth =
@@ -51,12 +48,6 @@ class AuthService {
     );
     UserService.setUserCustomClaims();
     _us.addInitialDetailsToIsar(user.uid, user.email ?? '');
-    //_us.pushUsertoDb(user);
-    // _us.addUserToIsar(user)
-
-    //User user = User(userid: "userid", firstname: 'firstname', lastname: 'lastname', location: 'location', imageUrl: 'imageUrl', insuranceNum: 'insuranceNum', email: 'email', pfNum: 'pfNum', dob: 'dob')
-
-    //store user in Isar with uid and empty strings
 
     return user;
   }

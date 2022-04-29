@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:employee_app/styles/styles.dart';
 
 class FoodHistorySheet extends StatelessWidget {
+  const FoodHistorySheet({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
