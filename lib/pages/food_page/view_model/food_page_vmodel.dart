@@ -3,12 +3,22 @@ import 'package:employee_app/pages/food_page/food_page_components/tab_Body/food_
 import 'package:employee_app/pages/leaves_page/leaves_page_components/leaves_page_components.dart';
 import 'package:provider/provider.dart';
 
-class OrderedViewModel extends ChangeNotifier {
-
+class FoodPageViewModel extends ChangeNotifier {
   Map<String, Item> orderedItems = filtered;
-  
-  static OrderedViewModel of(BuildContext context) =>
-      context.read<OrderedViewModel>();
+  static FoodPageViewModel of(BuildContext context) =>
+      context.read<FoodPageViewModel>();
+
+  ValueNotifier<bool> confirmOrder = ValueNotifier(false);
+
+  setConfirmOrder(bool confirmation) {
+    confirmOrder.value = confirmation;
+  }
+
+  bool get checklength {
+    List<Item> checking =
+        orderedItems.values.where((element) => element.orderQty > 0).toList();
+    return true;
+  }
 
   List<Item> get cart => orderedItems.values.toList();
 

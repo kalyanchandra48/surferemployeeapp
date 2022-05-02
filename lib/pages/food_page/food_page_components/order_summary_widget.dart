@@ -1,3 +1,4 @@
+import 'package:employee_app/services/utils.dart';
 import 'package:flutter/material.dart';
 import '../../../models/food/item.dart';
 import './food_page_components.dart';
@@ -23,11 +24,13 @@ class OrderSummaryWidget extends StatelessWidget {
     return totalAmount.toString();
   }
 
+  String getOrderId() {
+    String orderId = Utils.getRandomSecureString(12).toString();
+    return orderId;
+  }
+
   @override
   Widget build(BuildContext context) {
-    //print('kak');
-    print(allItems);
-    //  print(allItems[index].amount)
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
       decoration: BoxDecoration(
@@ -54,7 +57,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '#130175288223',
+                '#' + getOrderId(),
                 style: AppFonts.smallText12
                     .copyWith(color: TextColors.secondaryColor),
               ),

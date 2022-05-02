@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:employee_app/pages/bottom_nav/bottom_nav.dart';
 import 'package:employee_app/pages/food_page/food_page_components/food_page_components.dart';
+import 'package:employee_app/pages/personal_details_page/profile_info_page.dart';
 import 'package:employee_app/services/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -37,7 +37,7 @@ class _IntroScreensState extends State<IntroScreens> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const BottomNav(),
+            builder: (context) => const ProfileInfo(),
           ),
         );
       });

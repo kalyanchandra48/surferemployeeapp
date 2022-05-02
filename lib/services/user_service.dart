@@ -70,6 +70,6 @@ class UserService {
         "location": user.location,
       },
     );
-    print(res);
+    //print(res);
   }
 }

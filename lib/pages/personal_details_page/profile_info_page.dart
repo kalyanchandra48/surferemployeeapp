@@ -84,7 +84,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
               // );
               // print('Isar user -> $isarUser');
 
-              // _us.addProfile(_firstname.text, _lastname.text, location);
+              //_us.addProfile(_firstname.text, _lastname.text, location);
               snapshot.data == true
                   ? Navigator.push(
                       context,

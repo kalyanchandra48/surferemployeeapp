@@ -1,8 +1,13 @@
 import 'package:employee_app/common_widgets/food_info_widget.dart';
 import 'package:employee_app/common_widgets/navigation_button.dart';
+import 'package:employee_app/common_widgets/success_page.dart';
 import 'package:employee_app/pages/food_page/food_page_components/order_summary_widget.dart';
 import 'package:employee_app/pages/food_page/food_page_components/ordered_count_widget.dart';
-import 'package:employee_app/pages/food_page/food_page_components/tab_Body/ordered_viewmodel.dart';
+import 'package:employee_app/pages/food_page/food_page_components/tab_Body/food_item_list.dart';
+
+import 'package:employee_app/pages/food_page/view_model/food_page_vmodel.dart';
+import 'package:employee_app/services/locator.dart';
+import 'package:employee_app/services/user_service.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +20,7 @@ class CheckoutSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => OrderedViewModel(),
+      create: (_) => FoodPageViewModel(),
       builder: (context, _) => const CheckOutBottomSheet(),
     );
   }
@@ -26,8 +31,32 @@ class CheckOutBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Item> allItems = OrderedViewModel.of(context).itemsnames;
-    // print(allItems.length);
+    List<Item> allItems = FoodPageViewModel.of(context).itemsnames;
+    return ValueListenableBuilder<bool>(
+        valueListenable: FoodPageViewModel.of(context).confirmOrder,
+        builder: (context, confirmorder, _) {
+          return AnimatedSwitcher(
+              switchInCurve: Curves.easeIn,
+              switchOutCurve: Curves.easeOut,
+              duration: const Duration(seconds: 2),
+              child: confirmorder == false
+                  ? OrderItemsWidget(allItems: allItems)
+                  : const SuccessFoodPage());
+        });
+  }
+}
+
+class OrderItemsWidget extends StatelessWidget {
+  OrderItemsWidget({
+    Key? key,
+    required this.allItems,
+  }) : super(key: key);
+
+  final List<Item> allItems;
+  final UserService _us = locator<UserService>();
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(alignment: Alignment.bottomCenter, children: [
       Container(
         padding: const EdgeInsets.all(24),
@@ -40,6 +69,7 @@ class CheckOutBottomSheet extends StatelessWidget {
           alignment: Alignment.topCenter,
           children: [
             ListView(
+              physics: const ClampingScrollPhysics(),
               padding: const EdgeInsets.only(top: 24, bottom: 60),
               children: [
                 Text(
@@ -83,10 +113,18 @@ class CheckOutBottomSheet extends StatelessWidget {
       ),
       Positioned(
         bottom: 15,
-        child: NavigationButton(
-            buttonColor: ButtonColors.nextButton,
-            text: 'Confirm Order',
-            buttonTextStyle: AppFonts.buttonTextBB),
+        child: GestureDetector(
+          onTap: () {
+            filtered.clear();
+
+            // _us.purchaseorder()
+            FoodPageViewModel.of(context).setConfirmOrder(true);
+          },
+          child: NavigationButton(
+              buttonColor: ButtonColors.nextButton,
+              text: 'Confirm Order',
+              buttonTextStyle: AppFonts.buttonTextBB),
+        ),
       ),
     ]);
   }

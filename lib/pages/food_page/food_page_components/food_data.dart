@@ -13,7 +13,7 @@ List<Item> foodItem() {
             'https://www.licious.in/blog/wp-content/uploads/2020/12/Hyderabadi-chicken-Biryani.jpg'),
     Item(
         itemId: '123122343',
-        name: 'Chicken. Biryani',
+        name: 'Chicken Biryani',
         orderQty: 0,
         availableQty: 10,
         amount: '300',
@@ -38,6 +38,15 @@ List<Item> foodItem() {
         category: 'Chocolates',
         imageUrl:
             'https://i2.wp.com/karissasvegankitchen.com/wp-content/uploads/2019/03/c-vegan-chocolate-bars-4-500x500.jpg'),
+    Item(
+        itemId: '232342563',
+        name: 'Burger',
+        orderQty: 0,
+        availableQty: 15,
+        amount: '20',
+        category: 'WesternSnacks',
+        imageUrl:
+            'https://www.thesun.co.uk/wp-content/uploads/2016/07/nintchdbpict000252478792.jpg'),
     Item(
         itemId: '233323',
         name: 'Chocolate Milk Shake',

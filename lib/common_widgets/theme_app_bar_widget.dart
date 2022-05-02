@@ -1,3 +1,4 @@
+import 'package:employee_app/pages/food_page/food_page_components/tab_Body/food_item_list.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -41,6 +42,7 @@ class ThemeAppBar extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
+                    filtered.clear();
                     Navigator.pop(context);
                   },
                   child: Container(
