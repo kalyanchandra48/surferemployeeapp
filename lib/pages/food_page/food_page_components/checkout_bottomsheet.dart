@@ -6,10 +6,10 @@ import 'package:employee_app/pages/food_page/food_page_components/ordered_count_
 import 'package:employee_app/pages/food_page/food_page_components/tab_Body/food_item_list.dart';
 
 import 'package:employee_app/pages/food_page/view_model/food_page_vmodel.dart';
-import 'package:employee_app/services/locator.dart';
-import 'package:employee_app/services/user_service.dart';
+import 'package:employee_app/services/utils.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/food/item.dart';
@@ -53,7 +53,16 @@ class OrderItemsWidget extends StatelessWidget {
   }) : super(key: key);
 
   final List<Item> allItems;
-  final UserService _us = locator<UserService>();
+  String getOrderId() {
+    String orderId = Utils.getRandomSecureString(12).toString();
+    return orderId;
+  }
+
+  static final DateTime now = DateTime.now();
+  static final DateFormat formatter = DateFormat('dd MMMM yyyy, H:mm');
+  final String formatted = formatter.format(now);
+
+  //final UserService _us = locator<UserService>();
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +90,8 @@ class OrderItemsWidget extends StatelessWidget {
                     physics: const ClampingScrollPhysics(),
                     itemCount: allItems.length,
                     shrinkWrap: true,
-                    separatorBuilder: (context, index) => const SizedBox(
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(
                           height: 10,
                         ),
                     itemBuilder: (BuildContext context, int index) =>
@@ -92,7 +102,10 @@ class OrderItemsWidget extends StatelessWidget {
                             ))),
                 Text('Order Information', style: AppFonts.mediumTextBB),
                 const SizedBox(height: 20),
-                OrderSummaryWidget(allItems: allItems),
+                OrderSummaryWidget(
+                    allItems: allItems,
+                    orderId: getOrderId(),
+                    placedAt: formatted),
               ],
             ),
             Positioned(
@@ -116,8 +129,6 @@ class OrderItemsWidget extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             filtered.clear();
-
-            // _us.purchaseorder()
             FoodPageViewModel.of(context).setConfirmOrder(true);
           },
           child: NavigationButton(

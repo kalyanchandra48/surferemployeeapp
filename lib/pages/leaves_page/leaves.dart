@@ -29,7 +29,7 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
         child: ThemeAppBar(
           herotag: 'leaves',
           crossFade: crossFade,
-          bottomSheetBody: ApplyLeaveBottomSheetBody(),
+          bottomSheetBody: const ApplyLeaveBottomSheetBody(),
           header: 'Leaves',
           subHeader: '17 available',
           imageUrl: 'assets/calendar.png',

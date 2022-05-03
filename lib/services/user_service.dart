@@ -72,4 +72,16 @@ class UserService {
     );
     //print(res);
   }
+
+  createorder() async {
+    User? isarUser = await _isar.users.get(1);
+    dynamic postOrder = FireFunctionsHttpsCaller.post(
+        Uri.parse(
+            'https://us-central1-employee-app-57d9a.cloudfunctions.net/purchasable/purchase/${isarUser!.userId}'),
+        {
+         
+        
+        
+        });
+  }
 }

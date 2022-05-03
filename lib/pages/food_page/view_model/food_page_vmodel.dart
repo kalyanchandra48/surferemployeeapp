@@ -5,19 +5,13 @@ import 'package:provider/provider.dart';
 
 class FoodPageViewModel extends ChangeNotifier {
   Map<String, Item> orderedItems = filtered;
+
   static FoodPageViewModel of(BuildContext context) =>
       context.read<FoodPageViewModel>();
 
   ValueNotifier<bool> confirmOrder = ValueNotifier(false);
-
   setConfirmOrder(bool confirmation) {
     confirmOrder.value = confirmation;
-  }
-
-  bool get checklength {
-    List<Item> checking =
-        orderedItems.values.where((element) => element.orderQty > 0).toList();
-    return true;
   }
 
   List<Item> get cart => orderedItems.values.toList();

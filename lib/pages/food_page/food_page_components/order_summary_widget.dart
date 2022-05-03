@@ -1,18 +1,17 @@
-import 'package:employee_app/services/utils.dart';
 import 'package:flutter/material.dart';
 import '../../../models/food/item.dart';
 import './food_page_components.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
   final List<Item> allItems;
+  final String orderId;
+  final String placedAt;
 
-  static final DateTime now = DateTime.now();
-  static final DateFormat formatter = DateFormat('dd MMMM yyyy, H:mm');
-  final String formatted = formatter.format(now);
-
-  OrderSummaryWidget({
+  const OrderSummaryWidget({
     Key? key,
     required this.allItems,
+    required this.orderId,
+    required this.placedAt,
   }) : super(key: key);
 
   String getTotal() {
@@ -22,11 +21,6 @@ class OrderSummaryWidget extends StatelessWidget {
       totalAmount = totalAmount + amount;
     }
     return totalAmount.toString();
-  }
-
-  String getOrderId() {
-    String orderId = Utils.getRandomSecureString(12).toString();
-    return orderId;
   }
 
   @override
@@ -57,7 +51,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '#' + getOrderId(),
+                '#' + orderId,
                 style: AppFonts.smallText12
                     .copyWith(color: TextColors.secondaryColor),
               ),
@@ -73,7 +67,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                formatted,
+                placedAt,
                 style: AppFonts.smallText12
                     .copyWith(color: TextColors.secondaryColor),
               ),
