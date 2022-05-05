@@ -89,35 +89,34 @@ class _FoodPageState extends State<FoodPage> with TickerProviderStateMixin {
                           });
                         },
                       ),
-                      // ValueListenableBuilder<bool>(
-                      //     valueListenable:
-                      //         FoodPageViewModel.of(context).checklength,
-                      //     builder: (context, length, _) {
-                      //       return
-                      Visibility(
-                        visible: true,
-                        child: Positioned(
-                          bottom: 20,
-                          child: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadii.radius24px),
-                                isScrollControlled: true,
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return const CheckoutSheet();
-                                },
-                              );
-                            },
-                            child: NavigationButton(
-                                buttonColor: ButtonColors.nextButton,
-                                text: 'Place Order',
-                                buttonTextStyle: AppFonts.buttonTextBB),
-                          ),
-                        ),
-                      ),
-                      //}),
+                      ValueListenableBuilder<bool>(
+                          valueListenable: FoodPageViewModel.of(context)
+                              .enablePlaceOrderButton,
+                          builder: (context, widgetbool, _) {
+                            return Visibility(
+                              visible: widgetbool,
+                              child: Positioned(
+                                bottom: 20,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadii.radius24px),
+                                      isScrollControlled: true,
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const CheckoutSheet();
+                                      },
+                                    );
+                                  },
+                                  child: NavigationButton(
+                                      buttonColor: ButtonColors.nextButton,
+                                      text: 'Place Order',
+                                      buttonTextStyle: AppFonts.buttonTextBB),
+                                ),
+                              ),
+                            );
+                          }),
                     ],
                   ),
                 ],

@@ -1,6 +1,7 @@
 import 'package:employee_app/common_widgets/food_info_widget.dart';
 import 'package:employee_app/pages/food_page/food_page_components/add_quantity_button.dart';
 import 'package:employee_app/pages/food_page/food_page_components/default_add_button.dart';
+import 'package:employee_app/pages/food_page/view_model/food_page_vmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:employee_app/models/food/item.dart';
 import 'package:isar/isar.dart';
@@ -27,7 +28,14 @@ class _FoodItemListState extends State<FoodItemList> {
     widget.foodItem[index].orderQty = widget.foodItem[index].orderQty + 1;
     widget.cartItem[widget.foodItem[index].itemId] = (widget.foodItem[index]);
     final filteredOrder = widget.cartItem;
+
     filtered.addEntries(filteredOrder.entries);
+
+    if (widget.foodItem.where((element) => element.orderQty > 0).isNotEmpty) {
+      FoodPageViewModel.of(context).enablePlaceOrderButton.value = true;
+    } else {
+      FoodPageViewModel.of(context).enablePlaceOrderButton.value = false;
+    }
   }
 
   @override
@@ -69,9 +77,21 @@ class _FoodItemListState extends State<FoodItemList> {
                           widget.cartItem[widget.foodItem[index].itemId] =
                               (widget.foodItem[index]);
                         });
+
                         final filteredOrder = widget.cartItem;
                         filtered.addEntries(filteredOrder.entries);
-                        
+
+                        if (widget.foodItem
+                            .where((element) => element.orderQty > 0)
+                            .isNotEmpty) {
+                          FoodPageViewModel.of(context)
+                              .enablePlaceOrderButton
+                              .value = true;
+                        } else {
+                          FoodPageViewModel.of(context)
+                              .enablePlaceOrderButton
+                              .value = false;
+                        }
                       }))
             ]),
           );

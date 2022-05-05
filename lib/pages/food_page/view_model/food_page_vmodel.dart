@@ -10,8 +10,27 @@ class FoodPageViewModel extends ChangeNotifier {
       context.read<FoodPageViewModel>();
 
   ValueNotifier<bool> confirmOrder = ValueNotifier(false);
+
   setConfirmOrder(bool confirmation) {
     confirmOrder.value = confirmation;
+  }
+
+  ValueNotifier<bool> enablePlaceOrderButton = ValueNotifier(false);
+
+  checkButtonEnable() {
+    print(orderedItems.values);
+
+    if (orderedItems.values
+        .where((element) => element.orderQty > 0)
+        .isNotEmpty) {
+      enablePlaceOrderButton.value = true;
+    } else {
+      enablePlaceOrderButton.value = false;
+    }
+  }
+
+  void setOrderItems(Map<String, Item> setOrderItem) {
+    orderedItems = setOrderItem;
   }
 
   List<Item> get cart => orderedItems.values.toList();
@@ -22,6 +41,7 @@ class FoodPageViewModel extends ChangeNotifier {
         .toList();
     List<Item> sortedQuantity =
         sorted.where((element) => element.orderQty > 0).toList();
+
     return sortedQuantity;
   }
 }
