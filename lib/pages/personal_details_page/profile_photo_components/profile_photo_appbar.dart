@@ -26,12 +26,15 @@ class ProfileAppBar extends StatelessWidget {
         ),
         child: Row(
           children: [
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back_ios_outlined),
+            const SizedBox(
+              width: 30,
             ),
+            // IconButton(
+            //   onPressed: () {
+            //     //Navigator.pop(context);
+            //   },
+            //   icon: const Icon(Icons.arrow_back_ios_outlined),
+            // ),
             Container(
               height: 68,
               width: 68,

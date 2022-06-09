@@ -18,9 +18,6 @@ class UserService {
 
   addProfile(String firstname, String lastname, String location) async {
     User? isarUser = await _isar.users.get(1);
-    // print(isarUser?.id);
-
-    // print(firstname);
 
     _isar.writeTxn((isar) => isar.users.put(User(
         id: 1,
@@ -28,16 +25,14 @@ class UserService {
         firstname: firstname,
         lastname: lastname,
         location: location,
-        imageUrl: 'imageUrl',
-        insuranceNum: 'insuranceNum',
-        email: 'email',
-        pfNum: 'pfNum',
-        dob: 'dob')));
+        imageUrl: '',
+        insuranceNum: '',
+        email: isarUser.email,
+        pfNum: '',
+        dob: '')));
 
-    //print('isarAsdded');
     final User? myUser = await _isar.users.get(1);
     print('User from Isar---->$myUser');
-    //print(myUser);
   }
 
   addInitialDetailsToIsar(String uid, String email) async {
@@ -55,33 +50,47 @@ class UserService {
               pfNum: '',
               dob: '')),
         )
-        .then((value) => print('Initial user added to isar'));
+        .then((value) => print(value));
   }
 
   updateUsertoDb(
     User user,
   ) async {
+    print('I got printed from here ${user.email.toString()}');
+    print(user.email.runtimeType);
+    String myEmail = user.email.toString();
+    print(myEmail);
+    print(myEmail.runtimeType);
+
     dynamic res = await FireFunctionsHttpsCaller.post(
       Uri.parse(
-          'https://us-central1-employee-app-57d9a.cloudfunctions.net/functions/users/${user.userId}'),
+          'https://us-central1-employee-app-57d9a.cloudfunctions.net/functions/users/updateProfile'),
       {
         "firstName": user.firstname,
         "lastName": user.lastname,
         "location": user.location,
+        // "email": myEmail,
       },
     );
-    //print(res);
   }
+
+  // Future<void> getDataFromDb(
+  //   User user,
+  // ) async {
+  //   dynamic res = await FireFunctionsHttpsCaller.get(
+  //       Uri.parse(
+  //           'https://us-central1-employee-app-57d9a.cloudfunctions.net/functions/users/${user.userId}'),
+  //       {
+  //         "firstname": user.firstname,
+  //         "lastname": user.lastname,
+  //       });
+  // }
 
   createorder() async {
     User? isarUser = await _isar.users.get(1);
     dynamic postOrder = FireFunctionsHttpsCaller.post(
         Uri.parse(
             'https://us-central1-employee-app-57d9a.cloudfunctions.net/purchasable/purchase/${isarUser!.userId}'),
-        {
-         
-        
-        
-        });
+        {});
   }
 }

@@ -3,8 +3,8 @@ import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-class SuccessFoodPage extends StatelessWidget {
-  const SuccessFoodPage({Key? key}) : super(key: key);
+class RequestSucessPage extends StatelessWidget {
+  const RequestSucessPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class SuccessFoodPage extends StatelessWidget {
               SizedBox(
                   width: 190,
                   child: Text(
-                    ' Your order has been confirmed!',
+                    ' Your Request has been Registered',
                     style: AppFonts.largeTextBB,
                   )),
             ],

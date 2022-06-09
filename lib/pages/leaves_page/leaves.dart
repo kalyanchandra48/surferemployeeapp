@@ -23,6 +23,7 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.appthemeColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90),
@@ -60,7 +61,8 @@ class _LeavesPageState extends State<LeavesPage> with TickerProviderStateMixin {
               maxHeight: 900,
               minHeight: MediaQuery.of(context).size.height / 1.8,
               defaultPanelState: PanelState.OPEN,
-              borderRadius: BorderRadii.radius24px,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(24), topRight: Radius.circular(24)),
               panel: const LeavesPageBody(),
               onPanelOpened: () {
                 _controller.reset();

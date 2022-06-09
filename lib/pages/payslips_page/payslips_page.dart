@@ -2,7 +2,6 @@ import 'package:employee_app/common_widgets/background_grid_lines.dart';
 import 'package:employee_app/common_widgets/panel_bg_image.dart';
 import 'package:employee_app/common_widgets/theme_app_bar_widget.dart';
 import 'package:employee_app/pages/payslips_page/payslips_page_component/payslips_page_body.dart';
-import 'package:employee_app/pages/payslips_page/payslips_page_component/tab_body/payslip_tab_body.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -36,7 +35,7 @@ class _PayslipsPageState extends State<PayslipsPage>
           child: ThemeAppBar(
             herotag: 'payslip',
             crossFade: crossFade,
-            bottomSheetBody: Container(),
+            bottomSheetBody: const SizedBox.shrink(),
             header: 'Payslips',
             subHeader: '19 published',
             imageUrl: 'assets/files.png',
@@ -66,7 +65,8 @@ class _PayslipsPageState extends State<PayslipsPage>
               maxHeight: 900,
               minHeight: MediaQuery.of(context).size.height / 1.8,
               defaultPanelState: PanelState.OPEN,
-              borderRadius: BorderRadii.radius24px,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(24), topRight: Radius.circular(24)),
               panel: const PaySlipPanelBody(),
               onPanelOpened: () {
                 _controller.reset();

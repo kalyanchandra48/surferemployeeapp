@@ -74,7 +74,9 @@ class _FoodPageState extends State<FoodPage> with TickerProviderStateMixin {
                         maxHeight: 900,
                         minHeight: MediaQuery.of(context).size.height / 1.8,
                         defaultPanelState: PanelState.OPEN,
-                        borderRadius: BorderRadii.radius24px,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(24),
+                            topRight: Radius.circular(24)),
                         panel: const FoodPagePanelBody(),
                         onPanelOpened: () {
                           _controller.reset();
@@ -101,7 +103,9 @@ class _FoodPageState extends State<FoodPage> with TickerProviderStateMixin {
                                   onTap: () {
                                     showModalBottomSheet(
                                       shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadii.radius24px),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(24),
+                                              topRight: Radius.circular(24))),
                                       isScrollControlled: true,
                                       context: context,
                                       builder: (BuildContext context) {

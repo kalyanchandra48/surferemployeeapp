@@ -97,7 +97,7 @@ class User {
       location: map['location'] ?? '',
       imageUrl: map['imageUrl'] ?? '',
       insuranceNum: map['insuranceNum'] ?? '',
-      email: map['email'] ?? '',
+      email: map['email'],
       pfNum: map['pfNum'] ?? '',
       dob: map['dob'] ?? '',
     );

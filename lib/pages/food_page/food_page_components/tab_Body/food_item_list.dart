@@ -4,13 +4,12 @@ import 'package:employee_app/pages/food_page/food_page_components/default_add_bu
 import 'package:employee_app/pages/food_page/view_model/food_page_vmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:employee_app/models/food/item.dart';
-import 'package:isar/isar.dart';
 
 Map<String, Item> filtered = {};
 
 class FoodItemList extends StatefulWidget {
   final List<Item> foodItem;
-  late Isar isar;
+
   FoodItemList({
     Key? key,
     required this.foodItem,
@@ -30,6 +29,7 @@ class _FoodItemListState extends State<FoodItemList> {
     final filteredOrder = widget.cartItem;
 
     filtered.addEntries(filteredOrder.entries);
+    print(filtered);
 
     if (widget.foodItem.where((element) => element.orderQty > 0).isNotEmpty) {
       FoodPageViewModel.of(context).enablePlaceOrderButton.value = true;
@@ -69,6 +69,9 @@ class _FoodItemListState extends State<FoodItemList> {
                         setState(() {
                           widget.foodItem[index].orderQty =
                               widget.foodItem[index].orderQty + number;
+
+                          final filteredOrder = widget.foodItem[index];
+                          print(filteredOrder);
                           if (widget.foodItem[index].orderQty == 0) {
                             widget.cartItem
                                 .remove(widget.foodItem[index].itemId);

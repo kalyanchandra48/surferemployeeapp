@@ -101,20 +101,28 @@ class ThemeAppBar extends StatelessWidget {
                   onTap: () {
                     showModalBottomSheet(
                       shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadii.radius24px),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(24),
+                            topRight: Radius.circular(24)),
+                      ),
                       isScrollControlled: true,
                       context: context,
                       builder: (BuildContext context) {
-                        return bottomSheetBody;
+                        return Padding(
+                          padding: MediaQuery.of(context).viewInsets,
+                          child: bottomSheetBody,
+                        );
                       },
                     );
                   },
                   child: header == 'Food'
                       ? SvgPicture.asset('assets/food_history.svg')
-                      : SvgPicture.asset(
-                          'assets/add_button.svg',
-                          color: Colors.white,
-                        )),
+                      : header == 'Payslips'
+                          ? const SizedBox.shrink()
+                          : SvgPicture.asset(
+                              'assets/add_button.svg',
+                              color: Colors.white,
+                            )),
             ),
             AnimatedAlign(
               alignment: crossFade == true

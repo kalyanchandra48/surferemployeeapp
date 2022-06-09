@@ -2,6 +2,7 @@ import 'package:employee_app/pages/food_page/food_page.dart';
 import 'package:employee_app/pages/it_request_page/it_request_page.dart';
 import 'package:employee_app/pages/leaves_page/leaves.dart';
 import 'package:employee_app/pages/payslips_page/payslips_page.dart';
+import 'package:employee_app/pages/reimbursements_page/reimbursement.dart';
 import 'package:flutter/material.dart';
 import 'home_page_components/home_page_components.dart';
 
@@ -105,10 +106,20 @@ class HomePage extends StatelessWidget {
                         labelText: 'Payslips',
                       ),
                     ),
-                    ExtrasLabelWidget(
-                      bgColor: ContainerColors.bluelight,
-                      assetImagePath: 'assets/cards.png',
-                      labelText: 'Reimbursements',
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReimbursementsPage(),
+                          ),
+                        );
+                      },
+                      child: ExtrasLabelWidget(
+                        bgColor: ContainerColors.bluelight,
+                        assetImagePath: 'assets/cards.png',
+                        labelText: 'Reimbursements',
+                      ),
                     ),
                     GestureDetector(
                       onTap: () {

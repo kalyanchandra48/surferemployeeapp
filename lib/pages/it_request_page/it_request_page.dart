@@ -64,7 +64,8 @@ class _ITRequestPageState extends State<ITRequestPage>
               maxHeight: 900,
               minHeight: MediaQuery.of(context).size.height / 1.8,
               defaultPanelState: PanelState.OPEN,
-              borderRadius: BorderRadii.radius24px,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(24), topRight: Radius.circular(24)),
               panel: const ITRequestPageBody(),
               onPanelOpened: () {
                 _controller.reset();

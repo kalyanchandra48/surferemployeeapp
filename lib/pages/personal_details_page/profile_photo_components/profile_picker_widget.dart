@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:employee_app/models/user/user.dart';
+import 'package:employee_app/pages/personal_details_page/profile_photo_components/profile_page_viewmodel.dart';
 import 'package:employee_app/provider/app_view_model.dart';
 import 'package:employee_app/services/locator.dart';
+import 'package:employee_app/services/user_profile.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -24,7 +26,7 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
   XFile? image;
   late File imageFile;
   bool loading = false;
-  dynamic _image;
+  File? _image;
 
   // User? isarUser = _isar.users.where().findFirst();
 
@@ -55,10 +57,10 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
       setState(() {
         loading = true;
         _image = File(croppedFile.path);
-        print(user!.id);
-
-        // print('CROPPED FILE PATH -=> $_image');
       });
+      String url = await UserProfile.uploadUserProfile(_image!, user!.userId);
+      print(url);
+      //ProfileViewModel.of(context).url.value = url;
     }
   }
 
@@ -82,7 +84,7 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
         child: _image != null
             ? CircleAvatar(
                 radius: 90,
-                backgroundImage: FileImage(_image),
+                backgroundImage: FileImage(_image!),
               )
             : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Image.asset(

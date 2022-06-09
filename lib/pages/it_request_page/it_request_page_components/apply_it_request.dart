@@ -75,214 +75,223 @@ class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
                     topRight: Radius.circular(24),
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: ListView(
+                  physics: const ClampingScrollPhysics(),
                   children: [
-                    Center(
-                      child: SizedBox(
-                        width: 120,
-                        child: Divider(
-                          color: DividerColors.primaryGrey,
-                          thickness: 4,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: SizedBox(
+                            width: 120,
+                            child: Divider(
+                              color: DividerColors.primaryGrey,
+                              thickness: 4,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Make a request',
-                      style: AppFonts.largeTextBB,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 20,
-                    ),
-                    AnimatedCrossFade(
-                      sizeCurve: Curves.easeInOut,
-                      firstCurve: Curves.easeInOut,
-                      secondCurve: Curves.easeInOut,
-                      firstChild: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Select the type of request',
-                              style: AppFonts.mediumTextBB,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Make a request',
+                          style: AppFonts.largeTextBB,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 20,
+                        ),
+                        AnimatedCrossFade(
+                          sizeCurve: Curves.easeInOut,
+                          firstCurve: Curves.easeInOut,
+                          secondCurve: Curves.easeInOut,
+                          firstChild: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Select the type of request',
+                                  style: AppFonts.mediumTextBB,
                                 ),
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: ContainerColors.secondaryTextField
-                                        .withOpacity(0.09),
-                                    border: Border.all(
-                                        color: BorderColor.borderprimarygrey,
-                                        width: 2),
-                                    borderRadius: BorderRadii.radius8px),
-                                child: DropdownButton<String>(
-                                  itemHeight: 50,
-                                  elevation: 1,
-                                  icon: const Icon(
-                                    Icons.keyboard_arrow_down,
-                                    size: 18,
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: ContainerColors
+                                            .secondaryTextField
+                                            .withOpacity(0.09),
+                                        border: Border.all(
+                                            color:
+                                                BorderColor.borderprimarygrey,
+                                            width: 2),
+                                        borderRadius: BorderRadii.radius8px),
+                                    child: DropdownButton<String>(
+                                      itemHeight: 50,
+                                      elevation: 1,
+                                      icon: const Icon(
+                                        Icons.keyboard_arrow_down,
+                                        size: 18,
+                                      ),
+                                      iconEnabledColor: Colors.black,
+                                      hint: Text(
+                                        'Select an option',
+                                        style: AppFonts.hintText14
+                                            .copyWith(fontSize: 16),
+                                      ),
+                                      style: AppFonts.smallText12.copyWith(
+                                          fontSize: 16,
+                                          color: TextColors.secondaryColor),
+                                      enableFeedback: false,
+                                      alignment: AlignmentDirectional.topEnd,
+                                      isExpanded: true,
+                                      value: dropDownvalue,
+                                      underline: Container(),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          dropDownvalue = newValue;
+                                          selectedType = dropDownvalue!;
+                                        });
+                                      },
+                                      items: requestType
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    )),
+                              ]),
+                          secondChild: SizedBox(
+                              height: 30,
+                              width: MediaQuery.of(context).size.width,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/person.svg',
+                                        color: IconColors.secondaryColor,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        'assigned to Askin John Samuel',
+                                        style: AppFonts.smallText12.copyWith(
+                                            color: TextColors.hintText),
+                                      )
+                                    ],
                                   ),
-                                  iconEnabledColor: Colors.black,
-                                  hint: Text(
-                                    'Select an option',
-                                    style: AppFonts.hintText14
-                                        .copyWith(fontSize: 16),
-                                  ),
-                                  style: AppFonts.smallText12.copyWith(
-                                      fontSize: 16,
-                                      color: TextColors.secondaryColor),
-                                  enableFeedback: false,
-                                  alignment: AlignmentDirectional.topEnd,
-                                  isExpanded: true,
-                                  value: dropDownvalue,
-                                  underline: Container(),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      dropDownvalue = newValue;
-                                      selectedType = dropDownvalue!;
-                                    });
-                                  },
-                                  items: requestType
-                                      .map<DropdownMenuItem<String>>(
-                                          (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                )),
-                          ]),
-                      secondChild: SizedBox(
-                          height: 30,
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/clock.svg',
+                                        color: IconColors.secondaryColor,
+                                      ),
+                                      Text(
+                                        '  21 August 2021 | 11:30',
+                                        style: AppFonts.smallText12.copyWith(
+                                            color: TextColors.hintText),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              )),
+                          crossFadeState: selectedType == ''
+                              ? CrossFadeState.showFirst
+                              : CrossFadeState.showSecond,
+                          duration: const Duration(milliseconds: 600),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 20,
+                        ),
+                        Text(
+                          'Describe your request',
+                          style: AppFonts.mediumTextBB,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFieldWidget(
+                          textController: descriptionController,
+                          hintText: 'Enter description',
+                          maxLines: 10,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Request Priority',
+                          style: AppFonts.mediumTextBB,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
                           width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/person.svg',
-                                    color: IconColors.secondaryColor,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    'assigned to Askin John Samuel',
-                                    style: AppFonts.smallText12
-                                        .copyWith(color: TextColors.hintText),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/clock.svg',
-                                    color: IconColors.secondaryColor,
-                                  ),
-                                  Text(
-                                    '  21 August 2021 | 11:30',
-                                    style: AppFonts.smallText12
-                                        .copyWith(color: TextColors.hintText),
-                                  )
-                                ],
-                              )
-                            ],
-                          )),
-                      crossFadeState: selectedType == ''
-                          ? CrossFadeState.showFirst
-                          : CrossFadeState.showSecond,
-                      duration: const Duration(milliseconds: 600),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 20,
-                    ),
-                    Text(
-                      'Describe your request',
-                      style: AppFonts.mediumTextBB,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFieldWidget(
-                      textController: descriptionController,
-                      hintText: 'Enter description',
-                      maxLines: 10,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 20,
-                    ),
-                    Text(
-                      'Request Priority',
-                      style: AppFonts.mediumTextBB,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 40,
-                      child: ListView.separated(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int index) {
-                          final _isSelected =
-                              _selectedIndexs.contains(requestPriority[index]);
-                          return GestureDetector(
-                            onTap: () {
-                              if (_selectedIndexs.isNotEmpty) {
-                                _selectedIndexs.removeLast();
-                              }
-                              setState(() {
-                                if (_isSelected) {
-                                  _selectedIndexs
-                                      .remove(requestPriority[index]);
-                                } else {
-                                  _selectedIndexs.add(requestPriority[index]);
-                                }
-                                print(_selectedIndexs);
-                                print(_selectedIndexs.first);
-                              });
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 10),
-                              decoration: BoxDecoration(
-                                  color: _isSelected
-                                      ? ContainerColors.selectedBgColor
-                                      : priorityChipBg,
-                                  borderRadius: BorderRadii.radius8px,
-                                  border: Border.all(
+                          height: 40,
+                          child: ListView.separated(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                              final _isSelected = _selectedIndexs
+                                  .contains(requestPriority[index]);
+                              return GestureDetector(
+                                onTap: () {
+                                  if (_selectedIndexs.isNotEmpty) {
+                                    _selectedIndexs.removeLast();
+                                  }
+                                  setState(() {
+                                    if (_isSelected) {
+                                      _selectedIndexs
+                                          .remove(requestPriority[index]);
+                                    } else {
+                                      _selectedIndexs
+                                          .add(requestPriority[index]);
+                                    }
+                                    print(_selectedIndexs);
+                                    print(_selectedIndexs.first);
+                                  });
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25, vertical: 10),
+                                  decoration: BoxDecoration(
                                       color: _isSelected
-                                          ? BorderColor.bordersecondaryBlue
-                                          : chipBorderColor)),
-                              child: Text(
-                                requestPriority[index],
-                                style: _isSelected
-                                    ? AppFonts.mediumTextBB.copyWith(
-                                        color: TextColors.themeColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w900)
-                                    : chipTextStyle,
-                              ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(
-                            width: 20,
-                          );
-                        },
-                        itemCount: 3,
-                      ),
+                                          ? ContainerColors.selectedBgColor
+                                          : priorityChipBg,
+                                      borderRadius: BorderRadii.radius8px,
+                                      border: Border.all(
+                                          color: _isSelected
+                                              ? BorderColor.bordersecondaryBlue
+                                              : chipBorderColor)),
+                                  child: Text(
+                                    requestPriority[index],
+                                    style: _isSelected
+                                        ? AppFonts.mediumTextBB.copyWith(
+                                            color: TextColors.themeColor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w900)
+                                        : chipTextStyle,
+                                  ),
+                                ),
+                              );
+                            },
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return const SizedBox(
+                                width: 20,
+                              );
+                            },
+                            itemCount: 3,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

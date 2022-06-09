@@ -62,35 +62,37 @@ class _ProfileInfoState extends State<ProfileInfo> {
           stream: _stream.stream,
           builder: (context, snapshot) => GestureDetector(
             onTap: () async {
-              final Isar _isar = locator<AppViewModel>().isar;
+              if (snapshot.data == true) {
+                final Isar _isar = locator<AppViewModel>().isar;
 
-              List<User> users = await _isar.users.where().findAll();
-              // print('users from isar -> $users');
-              User? isarUser = await _isar.users.get(1);
+                List<User> users = await _isar.users.where().findAll();
+                // print('users from isar -> $users');
+                User? isarUser = await _isar.users.get(1);
 
-              // _us.updateUsertoDb(
-              //   User(
-              //     id: 1,
-              //     userId: isarUser!.userId,
-              //     firstname: _firstname.text,
-              //     lastname: _lastname.text,
-              //     location: location,
-              //     imageUrl: '',
-              //     insuranceNum: '',
-              //     email: '',
-              //     dob: '',
-              //     pfNum: '',
-              //   ),
-              // );
-              // print('Isar user -> $isarUser');
+                _us.updateUsertoDb(
+                  User(
+                    id: 1,
+                    userId: isarUser!.userId,
+                    firstname: _firstname.text,
+                    lastname: _lastname.text,
+                    location: location,
+                    imageUrl: '',
+                    insuranceNum: '',
+                    email: isarUser.email,
+                    dob: '',
+                    pfNum: '',
+                  ),
+                );
+                print('Isar user -> $isarUser');
 
-              //_us.addProfile(_firstname.text, _lastname.text, location);
-              snapshot.data == true
-                  ? Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfilePhotoPage()))
-                  : null;
+                // _us.addProfile(_firstname.text, _lastname.text, location);
+                snapshot.data == true
+                    ? Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ProfilePhotoPage()))
+                    : null;
+              }
             },
             child: NavigationButton(
               text: 'Next',
@@ -227,28 +229,6 @@ class _ProfileInfoState extends State<ProfileInfo> {
     );
   }
 }
-
-// addToIsar(
-//     String _firstname, String _lastname, String location, Isar isar) async {
-//   final updateDetails = User(
-//       userid: '',
-//       firstname: _firstname,
-//       lastname: _lastname,
-//       location: location,
-//       imageUrl: '',
-//       insuranceNum: '',
-//       email: 'email',
-//       pfNum: ' pfNum',
-//       dob: 'dob');
-
-//   await isar.writeTxn((isar) async {
-//     isar.users.put(updateDetails);
-//   });
-
-//   isar.users.where().findAll().then((value) => value.forEach((element) {
-//         print(element);
-//       }));
-// }
 
 class ProfileAppBar extends StatelessWidget {
   const ProfileAppBar({

@@ -26,7 +26,8 @@ void main() async {
     directory: dir.path,
     inspector: true,
   );
-  // final userdata = isar.users.where().findFirst();
+  final userdata = await isar.users.where().findFirst();
+  print(userdata);
 
   setupLocator(isar);
   runApp(MyApp(

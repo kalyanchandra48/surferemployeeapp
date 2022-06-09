@@ -11,15 +11,14 @@ class PaySlipPanelBody extends StatefulWidget {
 
 class _PaySlipPanelBodyState extends State<PaySlipPanelBody>
     with TickerProviderStateMixin {
-  TabController? _itRequestTabController;
+  TabController? _payslipsTabController;
   List<String> tabText = [
     'All Slips',
   ];
 
   @override
   void initState() {
-    _itRequestTabController =
-        TabController(length: tabText.length, vsync: this);
+    _payslipsTabController = TabController(length: tabText.length, vsync: this);
     super.initState();
   }
 
@@ -28,11 +27,11 @@ class _PaySlipPanelBodyState extends State<PaySlipPanelBody>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TabBarDelegate(controller: _itRequestTabController, text: tabText),
+        TabBarDelegate(controller: _payslipsTabController, text: tabText),
         Expanded(
           child: TabBarView(
-            controller: _itRequestTabController,
-            children: const [PaySlipTabBody()],
+            controller: _payslipsTabController,
+            children: [PaySlipTabBody()],
           ),
         ),
       ],

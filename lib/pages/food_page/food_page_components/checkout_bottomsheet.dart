@@ -1,6 +1,6 @@
 import 'package:employee_app/common_widgets/food_info_widget.dart';
 import 'package:employee_app/common_widgets/navigation_button.dart';
-import 'package:employee_app/common_widgets/success_page.dart';
+import 'package:employee_app/common_widgets/food_success_page.dart';
 import 'package:employee_app/pages/food_page/food_page_components/order_summary_widget.dart';
 import 'package:employee_app/pages/food_page/food_page_components/ordered_count_widget.dart';
 import 'package:employee_app/pages/food_page/food_page_components/tab_Body/food_item_list.dart';
@@ -34,14 +34,14 @@ class CheckOutBottomSheet extends StatelessWidget {
     List<Item> allItems = FoodPageViewModel.of(context).itemsnames;
     return ValueListenableBuilder<bool>(
         valueListenable: FoodPageViewModel.of(context).confirmOrder,
-        builder: (context, confirmorder, _) {
+        builder: (context, confirmorder, child) {
           return AnimatedSwitcher(
               switchInCurve: Curves.easeIn,
               switchOutCurve: Curves.easeOut,
               duration: const Duration(seconds: 2),
               child: confirmorder == false
                   ? OrderItemsWidget(allItems: allItems)
-                  : const SuccessFoodPage());
+                  : const FoodSuccessPage());
         });
   }
 }
