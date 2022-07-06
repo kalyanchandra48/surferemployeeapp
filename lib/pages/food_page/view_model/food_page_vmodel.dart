@@ -10,7 +10,6 @@ class FoodPageViewModel extends ChangeNotifier {
       context.read<FoodPageViewModel>();
 
   ValueNotifier<bool> confirmOrder = ValueNotifier(false);
-  
 
   setConfirmOrder(bool confirmation) {
     confirmOrder.value = confirmation;
@@ -21,6 +20,7 @@ class FoodPageViewModel extends ChangeNotifier {
   void setOrderItems(Map<String, Item> setOrderItem) {
     orderedItems = setOrderItem;
   }
+  
 
   List<Item> get cart => orderedItems.values.toList();
 

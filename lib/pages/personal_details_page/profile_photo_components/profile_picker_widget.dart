@@ -80,6 +80,7 @@ class _ProfilePickerWidgetState extends State<ProfilePickerWidget> {
             offset: Offset(10, 10),
             spreadRadius: 0,
           )
+         
         ], shape: BoxShape.circle, color: ContainerColors.white),
         child: _image != null
             ? CircleAvatar(

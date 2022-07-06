@@ -6,15 +6,15 @@ import 'package:http/http.dart' as http;
 class FireFunctionsHttpsCaller {
   static Future<dynamic> post(
     Uri uri,
-    dynamic data,
+    Map<dynamic, dynamic> data,
   ) async {
-    final response =
-        await http.post(uri, body: data, headers: await _generateHeader());
+    print("Request BODY : $data");
+    final response = await http.post(uri,
+        body: jsonEncode(data), headers: await _generateHeader());
     if (response.statusCode != 200) {
-      print('Error has occured with the request');
-      print(response.body);
-      print(response.statusCode);
+      print('failed');
     } else {
+      
       print(response.body);
     }
     final body = response.body;
@@ -42,5 +42,8 @@ Future<Map<String, String>> _generateHeader() async {
     print("Not Logged in");
   }
   final idToken = await user!.getIdToken();
-  return {'authorization': 'Bearer $idToken'};
+  return {
+    'authorization': 'Bearer $idToken',
+    'Content-Type': 'application/json'
+  };
 }

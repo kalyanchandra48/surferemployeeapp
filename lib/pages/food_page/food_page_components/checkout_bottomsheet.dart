@@ -1,10 +1,9 @@
 import 'package:employee_app/common_widgets/food_info_widget.dart';
-import 'package:employee_app/common_widgets/navigation_button.dart';
 import 'package:employee_app/common_widgets/food_success_page.dart';
+import 'package:employee_app/common_widgets/navigation_button.dart';
 import 'package:employee_app/pages/food_page/food_page_components/order_summary_widget.dart';
 import 'package:employee_app/pages/food_page/food_page_components/ordered_count_widget.dart';
 import 'package:employee_app/pages/food_page/food_page_components/tab_Body/food_item_list.dart';
-
 import 'package:employee_app/pages/food_page/view_model/food_page_vmodel.dart';
 import 'package:employee_app/services/utils.dart';
 import 'package:employee_app/styles/styles.dart';
@@ -13,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/food/item.dart';
+import '../../../services/user_service.dart';
 
 class CheckoutSheet extends StatelessWidget {
   const CheckoutSheet({Key? key}) : super(key: key);
@@ -128,6 +128,7 @@ class OrderItemsWidget extends StatelessWidget {
         bottom: 15,
         child: GestureDetector(
           onTap: () {
+            UserService().createorder(allItems);
             filtered.clear();
             FoodPageViewModel.of(context).setConfirmOrder(true);
           },

@@ -1,25 +1,12 @@
 import 'dart:convert';
-import 'package:isar/isar.dart';
-part 'item.g.dart';
 
-@Collection()
 class Item {
-  @Id()
-  int? id = Isar.autoIncrement;
-
-  @Name('itemId')
   String itemId;
-  @Name('name')
   String name;
-  @Name('orderQty')
   int orderQty;
-  @Name('availableQty')
   int availableQty;
-  @Name('amount')
   String amount;
-  @Name('category')
   String category;
-  @Name('imageUrl')
   String imageUrl;
   Item({
     required this.itemId,

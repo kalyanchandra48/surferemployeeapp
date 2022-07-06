@@ -1,29 +1,35 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
+import 'package:isar/isar.dart';
 
-import 'package:employee_app/models/food/item.dart';
+part 'purchasable_order.g.dart';
 
-class PurchasableOrder {
-  int orderId;
-  String orderPlacedAt;
-  List<Item> items;
+@Collection()
+class PurchasableOrderOne {
+  @Id()
+  int id;
+
+  @Name('orderPlacedAt')
+  DateTime orderPlacedAt;
+  @Name('items')
+  late String items;
+  @Name('total')
   int total;
-  PurchasableOrder({
-    required this.orderId,
+  PurchasableOrderOne({
+    required this.id,
     required this.orderPlacedAt,
     required this.items,
     required this.total,
   });
 
-  PurchasableOrder copyWith({
-    int? orderId,
-    String? orderPlacedAt,
-    List<Item>? items,
+  PurchasableOrderOne copyWith({
+    int? id,
+    DateTime? orderPlacedAt,
+    String? items,
     int? total,
   }) {
-    return PurchasableOrder(
-      orderId: orderId ?? this.orderId,
+    return PurchasableOrderOne(
+      id: id ?? this.id,
       orderPlacedAt: orderPlacedAt ?? this.orderPlacedAt,
       items: items ?? this.items,
       total: total ?? this.total,
@@ -32,49 +38,50 @@ class PurchasableOrder {
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
-  
-    result.addAll({'orderId': orderId});
-    result.addAll({'orderPlacedAt': orderPlacedAt});
-    result.addAll({'items': items.map((x) => x.toMap()).toList()});
+
+    result.addAll({'id': id});
+    result.addAll({'orderPlacedAt': orderPlacedAt.millisecondsSinceEpoch});
+    result.addAll({'items': json.decode(items)});
     result.addAll({'total': total});
-  
+
     return result;
   }
 
-  factory PurchasableOrder.fromMap(Map<String, dynamic> map) {
-    return PurchasableOrder(
-      orderId: map['orderId']?.toInt() ?? 0,
-      orderPlacedAt: map['orderPlacedAt'] ?? '',
-      items: List<Item>.from(map['items']?.map((x) => Item.fromMap(x))),
+  factory PurchasableOrderOne.fromMap(Map<String, dynamic> map) {
+    return PurchasableOrderOne(
+      id: map['id']?.toInt() ?? 0,
+      orderPlacedAt: DateTime.fromMillisecondsSinceEpoch(map['orderPlacedAt']),
+      items: map['items'] ?? '',
       total: map['total']?.toInt() ?? 0,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory PurchasableOrder.fromJson(String source) => PurchasableOrder.fromMap(json.decode(source));
+  factory PurchasableOrderOne.fromJson(String source) =>
+      PurchasableOrderOne.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'PurchasableOrder(orderId: $orderId, orderPlacedAt: $orderPlacedAt, items: $items, total: $total)';
+    return 'PurchasableOrderOne(id: $id, orderPlacedAt: $orderPlacedAt, items: $items, total: $total)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
-    return other is PurchasableOrder &&
-      other.orderId == orderId &&
-      other.orderPlacedAt == orderPlacedAt &&
-      listEquals(other.items, items) &&
-      other.total == total;
+
+    return other is PurchasableOrderOne &&
+        other.id == id &&
+        other.orderPlacedAt == orderPlacedAt &&
+        other.items == items &&
+        other.total == total;
   }
 
   @override
   int get hashCode {
-    return orderId.hashCode ^
-      orderPlacedAt.hashCode ^
-      items.hashCode ^
-      total.hashCode;
+    return id.hashCode ^
+        orderPlacedAt.hashCode ^
+        items.hashCode ^
+        total.hashCode;
   }
 }

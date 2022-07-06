@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:employee_app/styles/styles.dart';
 import 'package:employee_app/models/food/item.dart';
+import 'package:employee_app/styles/styles.dart';
+import 'package:flutter/material.dart';
 
 class AddQuantityButton extends StatefulWidget {
   late Item foodItem;

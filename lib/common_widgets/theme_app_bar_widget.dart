@@ -2,6 +2,7 @@ import 'package:employee_app/pages/food_page/food_page_components/tab_Body/food_
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'background_grid_lines.dart';
 
 class ThemeAppBar extends StatelessWidget {
@@ -30,11 +31,11 @@ class ThemeAppBar extends StatelessWidget {
     return CustomPaint(
       painter: BackgroundGridLines(heightGap: 5, widthGap: 15),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.5,
         margin: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height * 0.05,
+            top: MediaQuery.of(context).size.height * 0.04,
             left: 16,
-            right: 16),
+            right: 16,
+            bottom: 5),
         child: Stack(
           alignment: Alignment.center,
           children: [

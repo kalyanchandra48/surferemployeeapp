@@ -1,4 +1,5 @@
 import 'package:employee_app/models/auth_status.dart';
+import 'package:employee_app/models/food/purchasable_order.dart';
 import 'package:employee_app/models/leaves.dart';
 import 'package:employee_app/models/user/user.dart';
 import 'package:employee_app/pages/splash_screen.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:employee_app/models/food/item.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ void main() async {
   final isar = await Isar.open(
     schemas: [
       LeavesSchema,
-      ItemSchema,
+      PurchasableOrderOneSchema,
       UserSchema,
     ],
     directory: dir.path,

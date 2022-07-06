@@ -48,13 +48,13 @@ List<Item> foodItem() {
         imageUrl:
             'https://www.thesun.co.uk/wp-content/uploads/2016/07/nintchdbpict000252478792.jpg'),
     Item(
-        itemId: '233323',
-        name: 'Chocolate Milk Shake',
+        itemId: 'badam_30',
+        name: 'Badam',
         orderQty: 0,
-        availableQty: 5,
-        amount: '20',
-        category: 'Beverages',
+        availableQty: 45,
+        amount: '30',
+        category: 'beverages',
         imageUrl:
-            'https://simplyblendedsmoothies.com/wp-content/uploads/2018/11/Chocolate-Milkshake-this-is-the-perfect-chocolate-milkshake-recipe.jpg'),
+            'https://4.imimg.com/data4/OV/RR/GLADMIN-11740016/kjkj-500x500.jpg'),
   ];
 }

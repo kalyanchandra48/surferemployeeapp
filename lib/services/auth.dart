@@ -37,6 +37,7 @@ class AuthService {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
+
     // Once signed in, return the UserCredential
     User user =
         (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
@@ -59,7 +60,6 @@ class AuthService {
         message: 'Signed out',
       ),
     );
-    // Navigator.push(context,MaterialPageRoute( builder: ((context) => IntroScreens()     )
 
     await _firebaseAuth.signOut();
   }

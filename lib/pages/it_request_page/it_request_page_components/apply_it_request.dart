@@ -5,7 +5,6 @@ import 'package:employee_app/models/it_request/post_request.dart';
 import 'package:employee_app/services/it_request.dart';
 import 'package:employee_app/styles/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../models/response.dart';
 
@@ -100,112 +99,111 @@ class _ApplyITRequestBottomSheetState extends State<ApplyITRequestBottomSheet> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 20,
                         ),
-                        AnimatedCrossFade(
-                          sizeCurve: Curves.easeInOut,
-                          firstCurve: Curves.easeInOut,
-                          secondCurve: Curves.easeInOut,
-                          firstChild: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Select the type of request',
-                                  style: AppFonts.mediumTextBB,
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                    ),
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        color: ContainerColors
-                                            .secondaryTextField
-                                            .withOpacity(0.09),
-                                        border: Border.all(
-                                            color:
-                                                BorderColor.borderprimarygrey,
-                                            width: 2),
-                                        borderRadius: BorderRadii.radius8px),
-                                    child: DropdownButton<String>(
-                                      itemHeight: 50,
-                                      elevation: 1,
-                                      icon: const Icon(
-                                        Icons.keyboard_arrow_down,
-                                        size: 18,
-                                      ),
-                                      iconEnabledColor: Colors.black,
-                                      hint: Text(
-                                        'Select an option',
-                                        style: AppFonts.hintText14
-                                            .copyWith(fontSize: 16),
-                                      ),
-                                      style: AppFonts.smallText12.copyWith(
-                                          fontSize: 16,
-                                          color: TextColors.secondaryColor),
-                                      enableFeedback: false,
-                                      alignment: AlignmentDirectional.topEnd,
-                                      isExpanded: true,
-                                      value: dropDownvalue,
-                                      underline: Container(),
-                                      onChanged: (String? newValue) {
-                                        setState(() {
-                                          dropDownvalue = newValue;
-                                          selectedType = dropDownvalue!;
-                                        });
-                                      },
-                                      items: requestType
-                                          .map<DropdownMenuItem<String>>(
-                                              (String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList(),
-                                    )),
-                              ]),
-                          secondChild: SizedBox(
-                              height: 30,
-                              width: MediaQuery.of(context).size.width,
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/person.svg',
-                                        color: IconColors.secondaryColor,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        'assigned to Askin John Samuel',
-                                        style: AppFonts.smallText12.copyWith(
-                                            color: TextColors.hintText),
-                                      )
-                                    ],
+                        // AnimatedCrossFade(
+                        //   sizeCurve: Curves.easeInOut,
+                        //   firstCurve: Curves.easeInOut,
+                        //   secondCurve: Curves.easeInOut,
+                        //   firstChild:
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Select the type of request',
+                                style: AppFonts.mediumTextBB,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
                                   ),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/clock.svg',
-                                        color: IconColors.secondaryColor,
-                                      ),
-                                      Text(
-                                        '  21 August 2021 | 11:30',
-                                        style: AppFonts.smallText12.copyWith(
-                                            color: TextColors.hintText),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )),
-                          crossFadeState: selectedType == ''
-                              ? CrossFadeState.showFirst
-                              : CrossFadeState.showSecond,
-                          duration: const Duration(milliseconds: 600),
-                        ),
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: ContainerColors.secondaryTextField
+                                          .withOpacity(0.09),
+                                      border: Border.all(
+                                          color: BorderColor.borderprimarygrey,
+                                          width: 2),
+                                      borderRadius: BorderRadii.radius8px),
+                                  child: DropdownButton<String>(
+                                    itemHeight: 50,
+                                    elevation: 1,
+                                    icon: const Icon(
+                                      Icons.keyboard_arrow_down,
+                                      size: 18,
+                                    ),
+                                    iconEnabledColor: Colors.black,
+                                    hint: Text(
+                                      'Select an option',
+                                      style: AppFonts.hintText14
+                                          .copyWith(fontSize: 16),
+                                    ),
+                                    style: AppFonts.smallText12.copyWith(
+                                        fontSize: 16,
+                                        color: TextColors.secondaryColor),
+                                    enableFeedback: false,
+                                    alignment: AlignmentDirectional.topEnd,
+                                    isExpanded: true,
+                                    value: dropDownvalue,
+                                    underline: Container(),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        dropDownvalue = newValue;
+                                        selectedType = dropDownvalue!;
+                                      });
+                                    },
+                                    items: requestType
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  )),
+                            ]),
+                        //   secondChild: SizedBox(
+                        //       height: 30,
+                        //       width: MediaQuery.of(context).size.width,
+                        //       child: Column(
+                        //         children: [
+                        //           Row(
+                        //             children: [
+                        //               SvgPicture.asset(
+                        //                 'assets/person.svg',
+                        //                 color: IconColors.secondaryColor,
+                        //               ),
+                        //               const SizedBox(
+                        //                 width: 5,
+                        //               ),
+                        //               Text(
+                        //                 'assigned to Askin John Samuel',
+                        //                 style: AppFonts.smallText12.copyWith(
+                        //                     color: TextColors.hintText),
+                        //               )
+                        //             ],
+                        //           ),
+                        //           Row(
+                        //             children: [
+                        //               SvgPicture.asset(
+                        //                 'assets/clock.svg',
+                        //                 color: IconColors.secondaryColor,
+                        //               ),
+                        //               Text(
+                        //                 '  21 August 2021 | 11:30',
+                        //                 style: AppFonts.smallText12.copyWith(
+                        //                     color: TextColors.hintText),
+                        //               )
+                        //             ],
+                        //           )
+                        //         ],
+                        //       )),
+                        //   crossFadeState: selectedType == ''
+                        //       ? CrossFadeState.showFirst
+                        //       : CrossFadeState.showSecond,
+                        //   duration: const Duration(milliseconds: 600),
+                        // ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 20,
                         ),

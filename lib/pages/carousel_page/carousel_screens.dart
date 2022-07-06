@@ -53,7 +53,7 @@ class _IntroScreensState extends State<IntroScreens> {
 
     if (_status.status == AUTH_STATUS.VERIFICATION_COMPLETED) {
       Timer(const Duration(milliseconds: 100), () {
-        (name != null)
+        (name == null)
             ? Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

@@ -9,7 +9,7 @@ class IsarInstance {
     final isar = await Isar.open(
       schemas: [
         LeavesSchema,
-        ItemSchema,
+       
       ],
       directory: dir.path,
       inspector: true,
