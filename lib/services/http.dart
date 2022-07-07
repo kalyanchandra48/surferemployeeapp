@@ -14,10 +14,53 @@ class FireFunctionsHttpsCaller {
     if (response.statusCode != 200) {
       print('failed');
     } else {
-      
+      print('RESPONSE BODY');
       print(response.body);
     }
-    final body = response.body;
+    // Map<int, List<String>> map = {
+    //   0: [],
+    //   1: [],
+    //   2: [],
+    //   3: [],
+    //   4: [],
+    //   5: [],
+    //   6: [],
+    //   7: [],
+    //   8: [],
+    //   9: [],
+    //   10: [],
+    //   11: [],
+    //   12: [],
+    //   13: [],
+    // };
+    var body = response.body;
+    // var jsonresponse = jsonDecode(response.body);
+    // jsonresponse['data'];
+    // print('check');
+    // print(jsonresponse['data']["1655791963392"]);
+    // List<DateTime> dateTime = List<DateTime>.from(jsonresponse['data']
+    //     .keys
+    //     .map(
+    //         (e) => DateTime.fromMillisecondsSinceEpoch(int.parse(e.toString())))
+    //     .toList());
+
+    // for (var e in dateTime) {
+    //   print('e month');
+    //   print(e.month);
+    //   print(e.millisecondsSinceEpoch);
+    //   print(jsonresponse['data']["${e.millisecondsSinceEpoch}"]);
+
+    //   List<String> list = map[e.month] ?? [];
+    //   {
+    //     map[e.month] = jsonresponse['data']["${e.millisecondsSinceEpoch}"];
+    //   }
+    // }
+    // print('MAP');
+    // print(map);
+
+    // print(dateTime);
+    // print('this is response');
+
     return body;
   }
 
