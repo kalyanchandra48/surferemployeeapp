@@ -1,52 +1,64 @@
 import 'dart:convert';
 
-import 'package:employee_app/models/food/purchased_item.dart';
-import 'package:flutter/foundation.dart';
+import 'package:isar/isar.dart';
 
+part 'purchase.g.dart';
+
+@Collection()
 class Purchase {
+  @Id()
+  int id;
+  @Name('PurchaseId')
   String purchaseId;
+  @Name('datetime')
   int datetime;
+  @Name('total')
   int total;
-  List<PurchasedItem> items;
+  @Name('items')
+  String item;
   Purchase({
+    required this.id,
     required this.purchaseId,
     required this.datetime,
     required this.total,
-    required this.items,
+    required this.item,
   });
 
   Purchase copyWith({
+    int? id,
     String? purchaseId,
     int? datetime,
     int? total,
-    List<PurchasedItem>? items,
+    String? item,
   }) {
     return Purchase(
+      id: id ?? this.id,
       purchaseId: purchaseId ?? this.purchaseId,
       datetime: datetime ?? this.datetime,
       total: total ?? this.total,
-      items: items ?? this.items,
+      item: item ?? this.item,
     );
   }
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
+    result.addAll({'id': id});
     result.addAll({'purchaseId': purchaseId});
     result.addAll({'datetime': datetime});
     result.addAll({'total': total});
-    result.addAll({'items': items.map((x) => x.toMap()).toList()});
+    result.addAll({'item': item});
 
     return result;
   }
 
   factory Purchase.fromMap(Map<String, dynamic> map) {
     return Purchase(
+      id: map['id']?.toInt() ?? 0,
       purchaseId: map['purchaseId'] ?? '',
       datetime: map['datetime']?.toInt() ?? 0,
       total: map['total']?.toInt() ?? 0,
-      items: List<PurchasedItem>.from(
-          map['items']?.map((x) => PurchasedItem.fromMap(x))),
+      item: map['item'] ?? '',
     );
   }
 
@@ -57,7 +69,7 @@ class Purchase {
 
   @override
   String toString() {
-    return 'Purchase(purchaseId: $purchaseId, datetime: $datetime, total: $total, items: $items)';
+    return 'Purchase(id: $id, purchaseId: $purchaseId, datetime: $datetime, total: $total, item: $item)';
   }
 
   @override
@@ -65,17 +77,19 @@ class Purchase {
     if (identical(this, other)) return true;
 
     return other is Purchase &&
+        other.id == id &&
         other.purchaseId == purchaseId &&
         other.datetime == datetime &&
         other.total == total &&
-        listEquals(other.items, items);
+        other.item == item;
   }
 
   @override
   int get hashCode {
-    return purchaseId.hashCode ^
+    return id.hashCode ^
+        purchaseId.hashCode ^
         datetime.hashCode ^
         total.hashCode ^
-        items.hashCode;
+        item.hashCode;
   }
 }
