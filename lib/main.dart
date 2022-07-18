@@ -1,5 +1,5 @@
 import 'package:employee_app/models/auth_status.dart';
-import 'package:employee_app/models/food/purchasable_order.dart';
+
 import 'package:employee_app/models/leaves.dart';
 import 'package:employee_app/models/user/user.dart';
 import 'package:employee_app/pages/splash_screen.dart';
@@ -20,7 +20,7 @@ void main() async {
   final isar = await Isar.open(
     schemas: [
       LeavesSchema,
-      PurchasableOrderOneSchema,
+    
       UserSchema,
     ],
     directory: dir.path,
