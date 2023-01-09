@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>88259146899-5m6jh1gp88fmajp3dfni9vi05ftkifso.apps.googleusercontent.com</string>
+	<string>756568766792-1hkbmngol28d25durr6oc65cj7v8sak9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.88259146899-5m6jh1gp88fmajp3dfni9vi05ftkifso</string>
+	<string>com.googleusercontent.apps.756568766792-1hkbmngol28d25durr6oc65cj7v8sak9</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCE-rjXAKYSlO-jWnlrzGhESV-JW2lNLMQ</string>
+	<string>AIzaSyDIT9yhsHevhRME-Vs3PfkgUp1u7_GnqIw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>88259146899</string>
+	<string>756568766792</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.surfboard.employee-app</string>
+	<string>com.surfboard.employeeapp</string>
 	<key>PROJECT_ID</key>
-	<string>employee-app-57d9a</string>
+	<string>surferemployeeapp</string>
 	<key>STORAGE_BUCKET</key>
-	<string>employee-app-57d9a.appspot.com</string>
+	<string>surferemployeeapp.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:88259146899:ios:7dcbb1afa8dd7716734966</string>
-	<key>DATABASE_URL</key>
-	<string>https://employee-app-57d9a-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+	<string>1:756568766792:ios:939697ef13ad33f4385b7d</string>
 </dict>
 </plist>
